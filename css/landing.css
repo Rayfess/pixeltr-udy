@@ -1,0 +1,52 @@
+body {
+  font-family: "Inter", sans-serif;
+  transition: background 0.3s, color 0.3s;
+}
+
+.dropdown-menu {
+  border-radius: 12px;
+  background-color: transparent;
+}
+
+.theme-dark {
+  background-color: #1b3a2f;
+  color: white;
+}
+
+.theme-dark .dropdown-menu {
+  background-color: #2a4c3b;
+}
+
+.theme-dark .nav-link,
+.theme-dark .dropdown-item {
+  color: white !important;
+}
+
+.theme-light {
+  background-color: #f0fdf4;
+  color: #1b3a2f;
+}
+
+.theme-light .nav-link,
+.theme-light .dropdown-item {
+  color: #1b3a2f !important;
+}
+
+.theme-toggle {
+  cursor: pointer;
+}
+
+.explore-btn {
+  border: 1px #1b3a2f;
+}
+
+#navbar-title {
+  font-family: "Caveat", "Georgia";
+  font-size: 1.8rem;
+  color: #235f41;
+}
+
+#icon {
+  width: 2rem;
+  height: 2rem;
+}
