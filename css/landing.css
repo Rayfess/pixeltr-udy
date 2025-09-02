@@ -5,12 +5,17 @@ body {
 
 .dropdown-menu {
   border-radius: 12px;
-  background-color: transparent;
+  background-color: #f0fdf4;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: #f5ad42;
 }
 
 .theme-dark {
   background-color: #1b3a2f;
-  color: white;
+  color: #f0fdf4;
 }
 
 .theme-dark .dropdown-menu {
@@ -18,8 +23,9 @@ body {
 }
 
 .theme-dark .nav-link,
+.theme-dark #navbar-title,
 .theme-dark .dropdown-item {
-  color: white !important;
+  color: #f0fdf4 !important;
 }
 
 .theme-light {
@@ -34,10 +40,6 @@ body {
 
 .theme-toggle {
   cursor: pointer;
-}
-
-.explore-btn {
-  border: 1px #1b3a2f;
 }
 
 #navbar-title {
