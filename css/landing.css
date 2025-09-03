@@ -1,8 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
 body {
+  font-size: 16px;
   font-family: "Inter", sans-serif;
   transition: background 0.3s, color 0.3s;
 }
 
+/* nav */
 .dropdown-menu {
   border-radius: 12px;
   background-color: #f0fdf4;
@@ -51,4 +55,55 @@ body {
 #icon {
   width: 2rem;
   height: 2rem;
+}
+
+/* hero page */
+
+.heroPage {
+  height: 100vh;
+  background: url("../img/background.jpg"), #3fc92da2;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: multiply;
+}
+
+.heroPage h1.headingHp,
+.heroPage h2.headingHp {
+  text-align: center;
+  color: white;
+}
+.heroPage h2.headingHp {
+  width: 70vw;
+}
+
+span.heroPagesp,
+.heroPagesp .logosp,
+.btn-heroPage,
+.icon-circle {
+  background: linear-gradient(180deg, hsla(132, 79%, 68%, 1) 0%, rgb(70, 155, 31) 100%);
+}
+
+span.heroPagesp {
+  background-clip: text;
+  color: transparent;
+}
+
+.btn-heroPage {
+  border: 0;
+  color: #f0fdf4;
+}
+
+.icon-circle {
+  width: 2.5rem;
+  height: 2.5rem;
+  position: absolute;
+  right: -1rem;
+  top: -1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
 }
