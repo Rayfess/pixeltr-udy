@@ -1,0 +1,29 @@
+{
+  "home": {
+    "title": "Home",
+    "icon": "fa-solid fa-house",
+    "type": {
+      "Listrik": { "KwH": 0.85 },
+      "Minyak Tanah": { "liter": 2.5 },
+      "LPG": { "Kg": 2.9 },
+      "Minyak Goreng": { "liter": 2.2 }
+    }
+  },
+  "foods": {
+    "title": "Foods",
+    "icon": "fa-solid fa-utensils",
+    "type": {
+      "Daging": { "Kg": 27.0 },
+      "Beras": { "Kg": 2.7 },
+      "Kedelai": { "Kg": 0.3 }
+    }
+  },
+  "transportation": {
+    "title": "Transportation",
+    "icon": "fa-solid fa-car",
+    "type": {
+      "Bensin": { "liter": 2.3 },
+      "Solar": { "liter": 2.6 }
+    }
+  }
+}
