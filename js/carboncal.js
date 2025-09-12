@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(function () {
   let currentCategory = "home";
   let emissionData = {};
 
@@ -150,4 +150,70 @@ $(document).ready(function () {
     <span class="current-category fw-medium"> ${title} </span>
 `);
   }
+
+  function setRating(index) {
+    $(".rating-btn i").removeClass("active-1 active-2 active-3 active-4 active-5");
+    $(".rating-btn i").each(function (i) {
+      if (i <= index) {
+        $(this).addClass("active-" + (i + 1));
+      }
+    });
+  }
+
+  $(".rating-btn").on("click", function () {
+    let index = $(this).index();
+    setRating(index);
+  });
+
+  $(".rating-btn").hover(function () {
+    let index = $(this).index();
+    $(".rating-btn i").removeClass("active-1 active-2 active-3 active-4 active-5");
+    $(".rating-btn i").each(function (i) {
+      if (i <= index) {
+        $(this).addClass("active-" + (i + 1));
+      }
+    });
+  });
+
+  const targetCount = 1587000;
+  const $counter = $("#overall-respond");
+  const duration = 4000;
+  const interval = 20;
+  const increment = targetCount / (duration / interval);
+
+  let currentCount = 0;
+
+  function formatNumber(num) {
+    return Math.floor(num)
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
+
+  function updateCounter() {
+    currentCount += increment;
+
+    if (currentCount >= targetCount) {
+      currentCount = targetCount;
+    }
+
+    $counter.text(formatNumber(currentCount));
+  }
+
+  let counterInterval = setInterval(updateCounter, interval);
+
+  $("#reset-btn").click(function () {
+    clearInterval(counterInterval);
+    currentCount = 0;
+
+    $counter.text("0");
+  });
+
+  $(".counter-icon").hover(
+    function () {
+      $(this).css("transform", "scale(1.2)");
+    },
+    function () {
+      $(this).css("transform", "scale(1)");
+    }
+  );
 });
