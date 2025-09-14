@@ -185,10 +185,257 @@
                   <tbody id="emission-results"></tbody>
                 </table>
               </div>
-              <div class="text-end">
-                <button class="btn btn-success mt-2">
+              <div class="text-end" id="carbonResult">
+                <button
+                  type="button"
+                  id="offsetBtn"
+                  class="btn btn-primary btn-success mt-2"
+                  data-bs-toggle="modal"
+                  data-bs-target="#donationModal"
+                >
                   <i class="ri-scales-fill me-1"></i> <span class="fw-medium">Imbangi</span>
                 </button>
+              </div>
+
+              <div
+                class="modal fade"
+                id="donationModal"
+                tabindex="-1"
+                aria-labelledby="donationModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-lg border-1 overflow-hidden shadow-md">
+                  <div class="modal-content">
+                    <div class="modal-header bg-success bg-gradient text-white">
+                      <h5 class="modal-title" id="donationModalLabel">
+                        <i class="fas fa-seedling me-2"></i>Tebus Jejak Karbon
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close btn-close-white"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body" style="background-color: #bff8be">
+                      <div class="carbon-alert-modal" id="carbonAlertModal">
+                        <div class="alert-carbon-content-modal">
+                          <button
+                            type="button"
+                            class="btn-close btn-close-white alert-close-modal"
+                            id="closeAlertModal"
+                          ></button>
+                          <h5><i class="fas fa-lightbulb me-2"></i> Saran Penebusan Karbon</h5>
+                          <p id="alertMessageModal" class="mb-2">
+                            Berdasarkan jejak karbon Anda, kami merekomendasikan untuk menanam
+                            <strong> <span id="modalTreeEquivalent">0</span> pohon </strong> untuk
+                            menetralisirnya.
+                          </p>
+
+                          <div class="progress-bar-alert-modal">
+                            <div class="progress-bar-alert-inner-modal"></div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="d-flex justify-content-center mb-4">
+                        <div class="donation-type active fw-medium" id="fixedDonationBtn">
+                          <i class="fa-solid fa-cube me-2"></i>Paket Donasi
+                        </div>
+                        <div class="donation-type ms-3 fw-medium" id="customDonationBtn">
+                          <i class="fas fa-pencil-alt me-2"></i>Donasi Lebih Lanjut
+                        </div>
+                      </div>
+
+                      <div id="fixedDonationSection">
+                        <div class="row">
+                          <div class="col-md-4 mb-4">
+                            <div class="donation-card card shadow">
+                              <div class="card-body">
+                                <div class="donation-icon text-center">
+                                  <i class="fas fa-tree"></i>
+                                </div>
+                                <h5>5 Pohon Pinus</h5>
+                                <p class="text-muted">Menetralisir ~420 kg CO₂ per tahun</p>
+                                <h4 class="text-success">Rp 500.000</h4>
+                                <p class="carbon-impact">
+                                  <i class="fas fa-cloud me-1"></i> ~70 kg CO₂ per pohon/tahun
+                                </p>
+                                <div class="text-end">
+                                  <button
+                                    class="btn btn-outline-success mt-3 px-4 py-1 select-donation"
+                                    data-amount="500000"
+                                    data-desc="5 Pohon Pinus"
+                                    data-co2="420"
+                                  >
+                                    Pilih
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4 mb-4">
+                            <div class="donation-card card shadow">
+                              <div class="card-body">
+                                <div class="donation-icon text-center">
+                                  <i class="ri-tree-fill"></i>
+                                  <i class="ri-tree-fill"></i>
+                                  <i class="ri-tree-fill"></i>
+                                </div>
+                                <h5>10 Pohon Beringin</h5>
+                                <p class="text-muted">Menetralisir ~1000 kg CO₂ per tahun</p>
+                                <h4 class="text-success">Rp 900.000</h4>
+                                <p class="carbon-impact">
+                                  <i class="fas fa-cloud me-1"></i> ~100 kg CO₂ per pohon/tahun
+                                </p>
+                                <div class="text-end">
+                                  <button
+                                    class="btn btn-outline-success px-4 py-1 mt-3 select-donation"
+                                    data-amount="900000"
+                                    data-desc="10 Pohon Beringin"
+                                    data-co2="1000"
+                                  >
+                                    Pilih
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4 mb-4">
+                            <div class="donation-card card shadow">
+                              <div class="card-body">
+                                <div class="donation-icon text-center">
+                                  <i class="fas fa-solar-panel"></i>
+                                </div>
+                                <h5>Energi Terbarukan</h5>
+                                <p class="text-muted">
+                                  Mendukung proyek energi surya setara 800 kg CO₂
+                                </p>
+                                <h4 class="text-success">Rp 400.000</h4>
+                                <p class="carbon-impact">
+                                  <i class="fas fa-bolt me-1"></i> ~800 kg CO₂ terhindar
+                                </p>
+                                <div class="text-end">
+                                  <button
+                                    class="btn btn-outline-success px-4 py-1 mt-5 select-donation"
+                                    data-amount="400000"
+                                    data-desc="Dukungan Energi Terbarukan"
+                                    data-co2="800"
+                                  >
+                                    Pilih
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- fx -->
+                      <div id="customDonationSection" class="d-none">
+                        <div class="row mt-4">
+                          <div class="col-md-6">
+                            <div class="mb-4">
+                              <label class="form-label fw-semibold">Jenis Pohon</label>
+                              <select class="form-select" id="treeOptions">
+                                -
+                              </select>
+                            </div>
+
+                            <div class="mb-4">
+                              <label class="form-label fw-semibold">Jumlah Pohon</label>
+                              <input
+                                type="number"
+                                class="form-control"
+                                min="1"
+                                value="1"
+                                id="treeCount"
+                              />
+                            </div>
+
+                            <div class="tree-details">
+                              <div class="tree-info-content mb-5">
+                                <h6><i class="fas fa-info-circle"></i> Informasi Pohon</h6>
+                                <div id="treeDetails">-</div>
+                              </div>
+                              <div class="tree-image-container">
+                                <img id="treeImage" class="tree-image" src="" alt="Gambar Pohon" />
+                              </div>
+                              <div class="hover-instruction">
+                                <i class="fas fa-mouse-pointer"></i> Arahkan untuk melihat gambar
+                                pohon
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="result-box">
+                              <h5 class="text-success">
+                                <i class="fa-solid fa-calculator mb-2"></i> Kalkulasi
+                              </h5>
+                              <div class="d-flex justify-content-between mb-2">
+                                <span>Jenis Pohon:</span>
+                                <span id="selectedTree" class="text-success fw-bold fst-italic">
+                                  -
+                                </span>
+                              </div>
+                              <div class="d-flex justify-content-between mb-2">
+                                <span>Jumlah Pohon:</span>
+                                <strong id="treeCountResult">1</strong>
+                              </div>
+                              <div class="d-flex justify-content-between mb-2">
+                                <span>Penyerapan Karbon per Tahun:</span>
+                                <strong><span id="carbonOffset">0</span> kg CO₂</strong>
+                              </div>
+                              <div class="d-flex justify-content-between mb-2">
+                                <span>Total Biaya:</span>
+                                <strong><span id="treeCost">Rp 0</span></strong>
+                              </div>
+                              <div class="d-flex justify-content-between mb-2">
+                                <span>Perkiraan Waktu Tumbuh:</span>
+                                <strong id="growthTime">-</strong>
+                              </div>
+                            </div>
+
+                            <div class="info-box">
+                              <h6><i class="fas fa-info-circle"></i> Informasi Karbon</h6>
+                              <p>
+                                1 pohon dewasa dapat menyerap rata-rata
+                                <span class="fw-semibold"> 22 kg CO₂ per tahun</span> , tetapi
+                                jumlahnya sangat bervariasi
+                                <i> tergantung jenis pohon, usia, dan kondisi lingkungan</i>.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="alert alert-info mt-4 d-none" id="selectedDonation">
+                        <div class="d-inline-flex justify-content-start align-items-center">
+                          <i class="ri-information-line fs-5 me-2"></i>
+                          <h6 class="mb-1">Donasi Dipilih:</h6>
+                        </div>
+
+                        <p id="selectedDescription fw-semibold"></p>
+                        <p class="mb-1">Total: <strong id="selectedAmount"></strong></p>
+                        <p class="mb-0">
+                          Perkiraan Penyerapan Karbon: <strong id="selectedCO2">0</strong> kg
+                          CO₂/tahun
+                        </p>
+                      </div>
+                    </div>
+                    <div class="modal-footer" style="background-color: #bff8be">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Batal
+                      </button>
+                      <button type="button" class="btn btn-success" id="donateNowBtn">
+                        Donasi Sekarang
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -200,7 +447,7 @@
           >
             <div>
               <h6><i class="ri-earth-line"></i> Total Emisi Karbon</h6>
-              <h3 id="overall-emission" class="fs-2">0 KgCO2</h3>
+              <h3 id="overall-emission" class="fs-2 fw-bold">0 KgCO2</h3>
             </div>
             <div>
               <h1 class="opacity-50 mb-0 me-2 pulse counter-icon"><i class="ri-leaf-line"></i></h1>
@@ -211,7 +458,7 @@
           >
             <div>
               <h6><i class="ri-money-dollar-circle-line"></i> Total Tangguhan</h6>
-              <h3 id="overall-tangguhan" class="fs-2">0 IDR</h3>
+              <h3 id="overall-tangguhan" class="fs-2 fw-bold">0 IDR</h3>
             </div>
             <div>
               <h1 class="opacity-50 mb-0 me-2 pulse counter-icon">
@@ -297,6 +544,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="/js/carboncal.js"></script>
+    <script defer src="/js/carboncal.js"></script>
   </body>
 </html>

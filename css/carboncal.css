@@ -73,12 +73,7 @@ body {
 .counter-number {
   font-weight: bold;
   color: #fff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   transition: all 0.5s ease;
-}
-
-.counter-number {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .counter-icon {
@@ -87,6 +82,224 @@ body {
 
 .pulse {
   animation: pulseAnimation 2s infinite;
+}
+
+/*  */
+
+.donation-card {
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.donation-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-color: #28a745;
+}
+.donation-card.selected {
+  transform: translateY(-5px);
+  border-color: #28a745;
+  background-color: rgb(188, 253, 203);
+}
+.donation-icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: #28a745;
+}
+
+.donation-type {
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: all 0.3s;
+  border: 1px solid #d7ffd1;
+}
+.donation-type.active {
+  background-color: #28a745;
+  color: white;
+  border-color: #28a745;
+}
+.impact-stats {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 20px;
+  text-align: center;
+}
+.btn-donate {
+  background-color: #28a745;
+  border: none;
+  padding: 10px 25px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+.btn-donate:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+.carbon-impact {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-top: 5px;
+}
+.carbon-summary {
+  background-color: #e8f5e9;
+  border-left: 4px solid #28a745;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.carbon-alert-modal {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.5s ease-in-out;
+  max-width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  height: 0;
+}
+.carbon-alert-modal.show {
+  opacity: 1;
+  transform: translateY(0);
+  height: auto;
+}
+.alert-carbon-content-modal {
+  background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  position: relative;
+}
+.alert-close-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: white;
+  opacity: 0.8;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+.alert-close-modal:hover {
+  opacity: 1;
+}
+.progress-bar-alert-modal {
+  height: 5px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.3);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.progress-bar-alert-inner-modal {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  animation: progressBarModal 5s linear forwards;
+}
+
+/*  */
+
+.form-control,
+.form-select {
+  border-radius: 8px;
+  border: 2px solid #dee2e6;
+  transition: all 0.3s;
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+}
+
+.result-box {
+  background-color: #e8f5e9;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 25px;
+  border-left: 4px solid #28a745;
+}
+.info-box {
+  background-color: #e3f2fd;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 20px;
+  border-left: 4px solid #2196f3;
+}
+.tree-details {
+  background-color: #fff8e1;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 20px;
+  border-left: 4px solid #ffc107;
+  transition: all 0.5s ease;
+  min-height: 300px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.tree-info-content {
+  transition: all 0.5s ease;
+}
+.tree-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: all 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(250, 172, 3, 0.9);
+}
+.tree-image {
+  max-width: 150%;
+  max-height: 150%;
+  object-fit: fill;
+}
+.hover-instruction {
+  position: absolute;
+  bottom: 0px;
+  right: 10px;
+  font-size: 0.8rem;
+  color: #6c757d;
+  opacity: 0.7;
+  transition: opactity 0.5s ease;
+}
+.hover-instruction.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.tree-details:hover .tree-info-content {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+.tree-details:hover .tree-image-container {
+  opacity: 1;
+}
+.hover-instruction {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 0.8rem;
+  color: #6c757d;
+  opacity: 0.7;
+}
+
+@keyframes progressBarModal {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
 }
 
 @keyframes pulseAnimation {

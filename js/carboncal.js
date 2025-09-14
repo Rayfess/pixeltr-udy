@@ -1,7 +1,23 @@
 $(function () {
   let currentCategory = "home";
   let emissionData = {};
+  let treeData = {};
+  let totalEmission = 0;
+  let treeEquivalent = 0;
 
+  //
+
+  $.getJSON("/data/treedata.json", function (data) {
+    treeData = data;
+    populateTreeOptions();
+    calculateCarbon();
+
+    $("#treeOptions, #treeCount").on("change input", function () {
+      calculateCarbon();
+    });
+  });
+
+  // Inisialisasi tampilan
   if (currentCategory === "transportation") {
     $(".norm").addClass("d-none");
     $(".trnsp").removeClass("d-none");
@@ -48,16 +64,15 @@ $(function () {
       $(".trnsp").addClass("d-none");
     }
 
-    $(".current-category").text;
     populateUsageTypes();
     updateCategoryDropdown();
   });
 
+  // Kalkulasi emisi
   $("#btn-calc").on("click", function () {
     $(".card-show").removeClass("d-none");
 
     const type = $("#usage-type").val();
-
     let emission = 0;
     let tangguhan = 0;
     let row = "";
@@ -67,7 +82,6 @@ $(function () {
       const efficiency = parseFloat($("#efficiency").val());
 
       if (isNaN(distance) || distance <= 0 || isNaN(efficiency) || efficiency <= 0) {
-        $(".card-show").addClass("d-none");
         alert("Masukkan jarak dan efisiensi yang valid");
         return;
       }
@@ -91,7 +105,6 @@ $(function () {
       const freq = $("#frequency").val();
 
       if (isNaN(amount) || amount <= 0) {
-        $(".card-show").addClass("d-none");
         alert("Masukkan jumlah yang valid");
         return;
       }
@@ -122,8 +135,9 @@ $(function () {
   });
 
   function updateTotals() {
-    let totalEmission = 0,
-      totalTangguhan = 0;
+    totalEmission = 0;
+    let totalTangguhan = 0;
+
     $("#emission-results tr").each(function () {
       totalEmission += parseFloat($(this).find("td:eq(2)").text());
       totalTangguhan += parseFloat(
@@ -133,6 +147,7 @@ $(function () {
 
     $("#overall-emission").text(totalEmission.toFixed(2) + " KgCO2");
     $("#overall-tangguhan").text(totalTangguhan.toLocaleString("id-ID") + " IDR");
+    treeEquivalent = Math.ceil(totalEmission / 70);
   }
 
   $("#btn-reset").on("click", function () {
@@ -151,6 +166,7 @@ $(function () {
 `);
   }
 
+  // Sistem rating
   function setRating(index) {
     $(".rating-btn i").removeClass("active-1 active-2 active-3 active-4 active-5");
     $(".rating-btn i").each(function (i) {
@@ -175,12 +191,12 @@ $(function () {
     });
   });
 
+  // Counter
   const targetCount = 1587000;
-  const $counter = $("#overall-respond");
+  const ovcountr = $("#overall-respond");
   const duration = 4000;
   const interval = 20;
   const increment = targetCount / (duration / interval);
-
   let currentCount = 0;
 
   function formatNumber(num) {
@@ -191,22 +207,13 @@ $(function () {
 
   function updateCounter() {
     currentCount += increment;
-
     if (currentCount >= targetCount) {
       currentCount = targetCount;
     }
-
-    $counter.text(formatNumber(currentCount));
+    ovcountr.text(formatNumber(currentCount));
   }
 
   let counterInterval = setInterval(updateCounter, interval);
-
-  $("#reset-btn").click(function () {
-    clearInterval(counterInterval);
-    currentCount = 0;
-
-    $counter.text("0");
-  });
 
   $(".counter-icon").hover(
     function () {
@@ -216,4 +223,215 @@ $(function () {
       $(this).css("transform", "scale(1)");
     }
   );
+
+  // Fungsi untuk alert modal
+  function showCarbonAlertModal(message) {
+    $("#alertMessageModal").html(message);
+    $("#carbonAlertModal").removeClass("d-none").addClass("show");
+
+    setTimeout(function () {
+      hideCarbonAlertModal();
+    }, 5000);
+  }
+
+  function hideCarbonAlertModal() {
+    $("#carbonAlertModal").removeClass("show").addClass("d-none");
+  }
+
+  $("#closeAlertModal").click(function () {
+    hideCarbonAlertModal();
+  });
+
+  // Modal donation event
+  $("#donationModal").on("shown.bs.modal", function () {
+    $("#modalTreeEquivalent").text(treeEquivalent);
+    let suggestionMessage;
+
+    if (totalEmission < 100) {
+      suggestionMessage =
+        "Jejak karbon Anda relatif rendah. Untuk menetralisirnya, kami sarankan menanam <strong>1-2 pohon pinus</strong>.";
+    } else if (totalEmission < 300) {
+      suggestionMessage =
+        "Berdasarkan jejak karbon Anda, kami merekomendasikan untuk menanam <strong>" +
+        treeEquivalent +
+        " pohon beringin</strong> untuk menetralisirnya.";
+    } else {
+      suggestionMessage =
+        "Jejak karbon Anda cukup signifikan. Kami sarankan paket <strong>10 pohon beringin</strong> atau dukungan <strong>energi terbarukan</strong> untuk menetralisirnya.";
+    }
+
+    showCarbonAlertModal(suggestionMessage);
+  });
+
+  // Toggle antara fixed dan custom donation
+  $("#fixedDonationBtn").click(function () {
+    $(this).addClass("active");
+    $("#customDonationSection").addClass("d-none");
+    $("#selectedDonation").addClass("d-none");
+    $("#customDonationBtn").removeClass("active");
+    $("#fixedDonationSection").removeClass("d-none");
+  });
+
+  $("#customDonationBtn").click(function () {
+    $(this).addClass("active");
+    $("#fixedDonationBtn").removeClass("active");
+    $("#fixedDonationSection").addClass("d-none");
+    $("#customDonationSection").removeClass("d-none");
+    $("#selectedDonation").addClass("d-none");
+  });
+
+  $("#treeCount").on("input", function () {
+    updateTreeCost();
+  });
+
+  function updateTreeCost() {
+    const count = parseInt($("#treeCount").val()) || 1;
+    const absorptionRate = parseInt($("#treeOptions").val()) || 70;
+
+    const cost = count * 100000;
+    carbonOffset = count * absorptionRate;
+
+    $("#treeCost").text("Rp " + cost.toLocaleString("id-ID"));
+    $("#carbonOffset").text(carbonOffset);
+  }
+
+  $("#carbonAmount").on("input", function () {
+    updateCarbonCost();
+  });
+
+  function updateCarbonCost() {
+    const carbonAmount = parseFloat($("#carbonAmount").val()) || 0;
+    const cost = carbonAmount * 500;
+    $("#carbonCost").text(cost.toLocaleString("id-ID"));
+  }
+
+  // Pilih donasi
+  $(".select-donation").click(function () {
+    $(".donation-card").removeClass("selected");
+    $(this).closest(".donation-card").addClass("selected");
+
+    const amount = $(this).data("amount");
+    const desc = $(this).data("desc");
+    const co2 = $(this).data("co2");
+
+    $("#selectedDescription").text(desc);
+    $("#selectedAmount").text("Rp " + amount.toLocaleString("id-ID"));
+    $("#selectedCO2").text(co2);
+    $("#selectedDonation").removeClass("d-none");
+  });
+
+  // Tombol donasi sekarang
+  $("#donateNowBtn").click(function () {
+    const isCustom = $("#customDonationBtn").hasClass("active");
+
+    if (isCustom) {
+      const type = $("#treeOptions option:selected").text();
+
+      if ($("#treeOptions").val() === "tree") {
+        const amount = parseInt($("#treeCount").val()) * treeData.cost;
+        const treeType = $("#treeOptions select").val();
+
+        alert(
+          "Terima kasih! Donasi custom Anda sebesar Rp " +
+            amount.toLocaleString("id-ID") +
+            " untuk " +
+            treeType +
+            " berhasil diproses."
+        );
+      } else {
+        const carbonAmount = parseFloat($("#carbonAmount").val()) || 0;
+        const amount = carbonAmount * 500;
+
+        alert(
+          "Terima kasih! Donasi custom Anda sebesar Rp " +
+            amount.toLocaleString("id-ID") +
+            " untuk " +
+            type +
+            " berhasil diproses."
+        );
+      }
+    } else {
+      if (!$(".donation-card").hasClass("selected")) {
+        alert("Silakan pilih paket donasi terlebih dahulu");
+        return;
+      }
+
+      const amount = $(".donation-card.selected").find(".select-donation").data("amount");
+      const desc = $(".donation-card.selected").find(".select-donation").data("desc");
+
+      alert(
+        "Terima kasih! Donasi Anda untuk " +
+          desc +
+          " sebesar Rp " +
+          amount.toLocaleString("id-ID") +
+          " berhasil diproses."
+      );
+    }
+
+    $("#donationModal").modal("d-none");
+    $(".donation-card").removeClass("selected");
+    $("#selectedDonation").addClass("d-none");
+  });
+
+  //
+
+  function populateTreeOptions() {
+    const treeOpts = $("#treeOptions");
+    treeOpts.empty();
+
+    Object.keys(treeData).forEach((key) => {
+      const tree = treeData[key];
+      treeOpts.append(new Option(tree.name, key));
+    });
+
+    if (Object.keys(treeData).length > 0) {
+      treeOpts.val(Object.keys(treeData)[0]);
+    }
+  }
+
+  function calculateCarbon() {
+    const treeType = $("#treeOptions").val();
+
+    if (!treeType || !treeData[treeType]) return;
+
+    const count = parseInt($("#treeCount").val()) || 1;
+    const tree = treeData[treeType];
+
+    const carbonAbsorption = Math.round(tree.absorption * count);
+
+    const cost = tree.cost * count;
+
+    $("#selectedTree").text(tree.name);
+    $("#treeCountResult").text(count);
+    $("#carbonOffset").text(carbonAbsorption);
+    $("#treeCost").text("Rp " + cost.toLocaleString("id-ID"));
+    $("#growthTime").text(tree.growth);
+
+    updateTreeDetails(treeType);
+  }
+
+  function updateTreeDetails(treeType) {
+    const tree = treeData[treeType];
+    $("#treeDetails").html(`
+                <p class="mb-1 fw-medium text-secondary fs-5 mt-3 "><i>${tree.name}</i></p>
+                <p class="mb-1 ">Penyerapan karbon: <strong>${
+                  tree.absorption
+                } kg CO₂/tahun per pohon</strong></p>
+                <p class="mb-1 ">Biaya per pohon: <strong>Rp ${tree.cost.toLocaleString(
+                  "id-ID"
+                )}</strong></p>
+                <p class="mb-1 ">Waktu tumbuh: <strong>${tree.growth}</strong></p>
+                <p class="mb-0 mt-2 fw-medium fst-italic">${tree.details}</p>
+            `);
+
+    $("#treeImage").attr("src", tree.image);
+
+    $("#treeImage").on("mouseenter", function () {
+      $(this).closest(".tree-details").find(".hover-instruction").addClass("hidden");
+    });
+
+    $("#treeImage").on("mouseleave", function () {
+      $(this).closest(".tree-details").find(".hover-instruction").removeClass("hidden");
+    });
+  }
 });
