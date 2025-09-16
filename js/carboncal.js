@@ -7,11 +7,11 @@ $(function () {
 
   //
 
+  //  ambil data jenis pohon dsb
   $.getJSON("/data/treedata.json", function (data) {
     treeData = data;
     populateTreeOptions();
     calculateCarbon();
-
     $("#treeOptions, #treeCount").on("change input", function () {
       calculateCarbon();
     });
@@ -26,6 +26,7 @@ $(function () {
     $(".trnsp").addClass("d-none");
   }
 
+  // ambil data emisi
   $.getJSON("/data/emisi.json", function (data) {
     emissionData = data;
     populateUsageTypes();
@@ -68,7 +69,7 @@ $(function () {
     updateCategoryDropdown();
   });
 
-  // Kalkulasi emisi
+  // Kalkulasi emisi awl hlaman
   $("#btn-calc").on("click", function () {
     $(".card-show").removeClass("d-none");
 
@@ -146,7 +147,7 @@ $(function () {
     });
 
     $("#overall-emission").text(totalEmission.toFixed(2) + " KgCO2");
-    $("#overall-tangguhan").text(totalTangguhan.toLocaleString("id-ID") + " IDR");
+    $("#overall-tangguhan").text("Rp " + totalTangguhan.toLocaleString("id-ID"));
     treeEquivalent = Math.ceil(totalEmission / 70);
   }
 
@@ -288,7 +289,7 @@ $(function () {
     const count = parseInt($("#treeCount").val()) || 1;
     const absorptionRate = parseInt($("#treeOptions").val()) || 70;
 
-    const cost = count * 100000;
+    const cost = count * treeData.cost;
     carbonOffset = count * absorptionRate;
 
     $("#treeCost").text("Rp " + cost.toLocaleString("id-ID"));
@@ -325,21 +326,21 @@ $(function () {
     const isCustom = $("#customDonationBtn").hasClass("active");
 
     if (isCustom) {
-      const type = $("#treeOptions option:selected").text();
+      const treeType = $("#treeOptions option:selected").text();
+      const treeCount = parseInt($("#treeCountResult").val()) || 0;
 
+      alert(
+        "Terima kasih! Donasi custom Anda sebesar Rp " +
+          treeCount.toLocaleString("id-ID") +
+          " untuk " +
+          treeType +
+          " berhasil diproses."
+      );
       if ($("#treeOptions").val() === "tree") {
-        const amount = parseInt($("#treeCount").val()) * treeData.cost;
-        const treeType = $("#treeOptions select").val();
-
-        alert(
-          "Terima kasih! Donasi custom Anda sebesar Rp " +
-            amount.toLocaleString("id-ID") +
-            " untuk " +
-            treeType +
-            " berhasil diproses."
-        );
+        // const amount = parseInt($("#treeCount").val()) * treeData.cost;
+        // const treeType = $("#treeOptions select").val();
       } else {
-        const carbonAmount = parseFloat($("#carbonAmount").val()) || 0;
+        const carbonAmount = parseFloat($("#overall-emission").val()) || 0;
         const amount = carbonAmount * 500;
 
         alert(
@@ -389,6 +390,7 @@ $(function () {
     }
   }
 
+  // calcu carbon btnDonasiSekarang
   function calculateCarbon() {
     const treeType = $("#treeOptions").val();
 
