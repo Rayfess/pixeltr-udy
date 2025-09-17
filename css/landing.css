@@ -92,6 +92,27 @@ span.heroPagesp {
 
 /* sec2 */
 
+h1.headingS2 {
+  position: relative;
+  display: inline-block;
+}
+
+h1.headingS2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 5px;
+  background: #f39c12;
+  border-radius: 10px;
+  transition: width 0.5s ease;
+}
+
+h1.headingS2:hover::after {
+  width: 100%;
+}
+
 .comparison-slider-container {
   position: relative;
   border-radius: 15px;
@@ -186,24 +207,10 @@ span.heroPagesp {
   right: 25px;
 }
 
-.slider-percentage {
-  position: absolute;
-  bottom: 25px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 8px 16px;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  border-radius: 8px;
-  font-weight: 600;
-  z-index: 4;
-  backdrop-filter: blur(4px);
-}
-
 /*  */
 
 .slider-container {
-  max-width: 50vh;
+  max-width: 90vh;
   position: relative;
   overflow: hidden;
   border-radius: 15px;
@@ -223,9 +230,10 @@ span.heroPagesp {
 
 .stats-card {
   flex: 0 0 100%;
+  flex-direction: row;
   background: white;
   border-radius: 12px;
-  padding: 1rem;
+  padding: 1rem 0 1rem;
   text-align: center;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
   border: 2px solid #e8f5e9;
@@ -238,20 +246,24 @@ span.heroPagesp {
 }
 
 .stats-icon {
+  display: inline-block;
+  margin: 0 1rem 0;
   font-size: 2.5rem;
   color: var(--primary-color);
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 
 .stats-value {
+  display: inline-block;
+  margin: 0 1rem 0;
   font-size: 2.2rem;
   font-weight: 700;
   color: var(--dark-color);
   margin-bottom: 10px;
-  line-height: 1.2;
 }
 
 .stats-label {
+  display: inline-block;
   font-size: 1.1rem;
   color: #6c757d;
   margin-bottom: 20px;
