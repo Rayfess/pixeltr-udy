@@ -148,4 +148,92 @@ $(document).ready(function () {
     );
 
   // comparisonslider,, sec2
+  const containercs = $(".comparison-container");
+  const beforeimgc = $(".before-img");
+  const shandlec = $(".slider-handle");
+  const beforelabelcs = $(".label.before");
+  const afterlabelcs = $(".label.after");
+
+  function initSlider() {
+    beforeimgc.css("width", "50%");
+    shandlec.css("left", "50%");
+    updateLabelVisibility(50);
+  }
+
+  initSlider();
+
+  function moveSlider(x) {
+    const containerOffset = containercs.offset().left;
+    const containerWidth = containercs.width();
+    let position = x - containerOffset;
+
+    if (position < 0) position = 0;
+    if (position > containerWidth) position = containerWidth;
+
+    const percent = (position / containerWidth) * 100;
+    beforeimgc.css("width", percent + "%");
+    shandlec.css("left", percent + "%");
+
+    updateLabelVisibility(percent);
+  }
+
+  function updateLabelVisibility(percent) {
+    beforelabelcs.removeClass("visible");
+    afterlabelcs.removeClass("visible");
+
+    if (percent <= 5) {
+      beforelabelcs.addClass("visible");
+    } else if (percent >= 95) {
+      afterlabelcs.addClass("visible");
+    }
+  }
+
+  shandlec.on("mousedown", function (e) {
+    e.preventDefault();
+    isDragging = true;
+    $("body").css("cursor", "ew-resize");
+  });
+
+  $(document).on("mousemove", function (e) {
+    if (isDragging) {
+      moveSlider(e.pageX);
+    }
+  });
+
+  $(document).on("mouseup", function () {
+    if (isDragging) {
+      isDragging = false;
+      $("body").css("cursor", "");
+    }
+  });
+
+  shandlec.on("touchstart", function (e) {
+    e.preventDefault();
+    isDragging = true;
+  });
+
+  $(document).on("touchmove", function (e) {
+    if (isDragging && e.originalEvent.touches.length > 0) {
+      moveSlider(e.originalEvent.touches[0].pageX);
+    }
+  });
+
+  $(document).on("touchend", function () {
+    isDragging = false;
+  });
+
+  containercs.on("click", function (e) {
+    moveSlider(e.pageX);
+  });
+
+  let resizeTimer;
+  $(window).on("resize", function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      const currentPercent = (parseFloat(beforeimgc.css("width")) / containercs.width()) * 100;
+      beforeimgc.css("width", currentPercent + "%");
+      shandlec.css("left", currentPercent + "%");
+      updateLabelVisibility(currentPercent);
+    }, 250);
+  });
 });

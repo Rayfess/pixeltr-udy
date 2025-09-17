@@ -173,8 +173,6 @@ h1.headingS2:hover::after {
 }
 
 .slider-handle:before {
-  content: "\f07e";
-  font-family: "Font Awesome 5 Free";
   font-weight: 900;
   position: absolute;
   top: 50%;
@@ -322,4 +320,114 @@ h1.headingS2:hover::after {
   background: var(--primary-color);
   color: white;
   border-color: var(--primary-color);
+}
+
+/*  */
+
+.comparison-container {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  height: 0;
+  padding-bottom: 90%;
+  background: #f1f1f1;
+}
+
+.comparison-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.before-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.before-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slider-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  background: white;
+  cursor: ew-resize;
+  z-index: 10;
+  transform: translateX(-50%);
+}
+
+.slider-handle::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  background: var(--primary-color);
+  color: white;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.slider-handle:hover::after {
+  background: #27ae60;
+}
+
+.label {
+  position: absolute;
+  top: 20px;
+  padding: 8px 16px;
+  color: #fff;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: opacity 0.2s ease;
+  opacity: 0;
+}
+
+.label.before {
+  left: 20px;
+  background: rgba(231, 76, 60, 0.85);
+}
+
+.label.after {
+  right: 20px;
+  background: rgba(46, 204, 113, 0.85);
+}
+
+.label.visible {
+  opacity: 1;
+}
+
+.instruction {
+  text-align: center;
+  margin-top: 15px;
+  color: #6c757d;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
