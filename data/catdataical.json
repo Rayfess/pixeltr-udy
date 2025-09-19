@@ -1,0 +1,105 @@
+{
+  "home": {
+    "title": "Rumah Tangga",
+    "desc": "Aktivitas rumah tangga menyumbang sekitar 20% dari total emisi karbon di Indonesia. Mulai dari penggunaan listrik, air, hingga pengelolaan sampah memiliki dampak signifikan terhadap lingkungan.",
+    "icon": "fa-home",
+    "bgImage": "https://images.unsplash.com/photo-1448630360428-65456885c650?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1167&q=80",
+    "stats": ["20%", "72 Jt", "45%"],
+    "dataTitle": "Data Emisi Karbon Rumah Tangga di Indonesia",
+    "generalOverview": "Rumah tangga Indonesia menyumbang sekitar 72 juta ton CO2e per tahun, dengan konsumsi listrik sebagai kontributor terbesar (45%), diikuti oleh transportasi (30%) dan pengelolaan sampah (25%).",
+    "chartTitle": "Sumber Emisi Karbon Rumah Tangga",
+    "chartData": [
+      { "label": "Listrik", "value": 45, "color": "#2ecc71" },
+      { "label": "Transportasi", "value": 30, "color": "#3498db" },
+      { "label": "Sampah", "value": 25, "color": "#e74c3c" }
+    ],
+    "factors": [
+      "Pemakaian listrik berlebihan dan tidak efisien",
+      "Penggunaan peralatan elektronik yang boros energi",
+      "Kebiasaan mobilitas dengan kendaraan pribadi",
+      "Kurangnya daur ulang dan pengelolaan sampah",
+      "Pemilihan produk rumah tangga yang tidak ramah lingkungan",
+      "Penggunaan air yang berlebihan untuk kegiatan sehari-hari",
+      "Pemanfaatan energi tidak terbarukan untuk memasak dan memanaskan air"
+    ],
+    "impacts": [
+      "Meningkatnya gas rumah kaca dan pemanasan global",
+      "Polusi udara yang mempengaruhi kualitas hidup",
+      "Penumpukan sampah dan limbah rumah tangga",
+      "Berkurangnya sumber daya alam yang tidak terbarukan",
+      "Gangguan ekosistem dan keanekaragaman hayati",
+      "Perubahan iklim yang mempengaruhi pola cuaca",
+      "Kenaikan permukaan air laut akibat pencairan es di kutub"
+    ]
+  },
+  "foods": {
+    "title": "Makanan",
+    "desc": "Sektor makanan menyumbang sekitar 26% dari emisi gas rumah kaca global. Pola konsumsi dan produksi makanan memiliki dampak besar terhadap lingkungan, termasuk deforestasi, penggunaan air, dan emisi metana.",
+    "icon": "fa-utensils",
+    "bgImage": "https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+    "stats": ["26%", "30%", "35%"],
+    "dataTitle": "Data Emisi Karbon dari Sektor Makanan di Indonesia",
+    "generalOverview": "Sektor makanan di Indonesia menyumbang sekitar 30% dari total emisi karbon, dengan produksi daging dan produk susu sebagai kontributor terbesar (35%), diikuti oleh beras (25%) dan sayuran (20%).",
+    "chartTitle": "Sumber Emisi Karbon dari Makanan",
+    "chartData": [
+      { "label": "Daging & Susu", "value": 35, "color": "#2ecc71" },
+      { "label": "Beras", "value": 25, "color": "#3498db" },
+      { "label": "Sayuran", "value": 20, "color": "#e74c3c" },
+      { "label": "Buah", "value": 15, "color": "#f39c12" },
+      { "label": "Lainnya", "value": 5, "color": "#9b59b6" }
+    ],
+    "factors": [
+      "Tingginya konsumsi daging dan produk hewani",
+      "Food waste atau pembuangan makanan",
+      "Praktik pertanian yang tidak berkelanjutan",
+      "Transportasi makanan jarak jauh",
+      "Penggunaan pupuk dan pestisida kimia",
+      "Konversi lahan untuk pertanian dan peternakan",
+      "Penggunaan air yang berlebihan untuk irigasi"
+    ],
+    "impacts": [
+      "Deforestasi untuk lahan pertanian dan peternakan",
+      "Emisi metana dari peternakan dan sawah",
+      "Penggunaan air yang berlebihan untuk irigasi",
+      "Polusi tanah dan air dari pupuk kimia",
+      "Hilangnya keanekaragaman hayati",
+      "Gangguan terhadap siklus nitrogen dan fosfor",
+      "Berkurangnya cadangan air tanah akibat irigasi berlebihan"
+    ]
+  },
+  "transportation": {
+    "title": "Transportasi",
+    "desc": "Transportasi menyumbang sekitar 24% dari emisi CO2 global terkait energi. Pilihan moda transportasi dan kebiasaan bepergian memiliki dampak signifikan terhadap jejak karbon individu dan komunitas.",
+    "icon": "fa-car",
+    "bgImage": "https://images.unsplash.com/photo-1698163316844-88f209ea90b7?q=80&w=387&auto=format&fit=crop&w=1171&q=80",
+    "stats": ["24%", "28%", "45%"],
+    "dataTitle": "Data Emisi Karbon dari Transportasi di Indonesia",
+    "generalOverview": "Sektor transportasi di Indonesia menyumbang sekitar 28% dari total emisi karbon, dengan kendaraan pribadi sebagai kontributor terbesar (45%), diikuti oleh angkutan barang (30%) dan transportasi udara (15%).",
+    "chartTitle": "Sumber Emisi Karbon dari Transportasi",
+    "chartData": [
+      { "label": "Kendaraan Pribadi", "value": 45, "color": "#2ecc71" },
+      { "label": "Angkutan Barang", "value": 30, "color": "#3498db" },
+      { "label": "Transportasi Udara", "value": 15, "color": "#e74c3c" },
+      { "label": "Transportasi Laut", "value": 7, "color": "#f39c12" },
+      { "label": "Lainnya", "value": 3, "color": "#9b59b6" }
+    ],
+    "factors": [
+      "Ketergantungan pada kendaraan pribadi berbahan bakar fosil",
+      "Kurangnya infrastruktur transportasi umum",
+      "Jarak tempuh perjalanan yang panjang",
+      "Kemacetan lalu lintas yang meningkatkan emisi",
+      "Pemilihan moda transportasi yang tidak efisien",
+      "Kurangnya fasilitas untuk pejalan kaki dan pesepeda",
+      "Tingginya penggunaan kendaraan bermotor untuk jarak dekat"
+    ],
+    "impacts": [
+      "Polusi udara perkotaan yang mempengaruhi kesehatan",
+      "Emisi gas rumah kaca yang berkontribusi pada perubahan iklim",
+      "Kebisingan yang mempengaruhi kualitas hidup",
+      "Fragmentasi habitat alam karena pembangunan infrastruktur",
+      "Ketergantungan pada bahan bakar fosil yang tidak terbarukan",
+      "Peningkatan penyakit pernapasan akibat polusi udara",
+      "Kerusakan jalan dan infrastruktur akibat beban kendaraan berat"
+    ]
+  }
+}

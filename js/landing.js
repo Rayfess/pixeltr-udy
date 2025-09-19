@@ -236,4 +236,180 @@ $(document).ready(function () {
       updateLabelVisibility(currentPercent);
     }, 250);
   });
+
+  //carbon cal intro
+  let categories = {};
+
+  function loadCategoriesData() {
+    return fetch("/data/catdataical.json")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        categories = data;
+        return data;
+      })
+      .catch((error) => {
+        console.error("Error loading categories data:", error);
+        return categories;
+      });
+  }
+
+  function changeCategory(category) {
+    const catData = categories[category];
+
+    $("#category-icon")
+      .removeClass()
+      .addClass("fas " + catData.icon);
+    $("#category-title").text(catData.title);
+    $("#category-desc").text(catData.desc);
+    $("#category-bg").css("background-image", "url('" + catData.bgImage + "')");
+
+    $("#default-category-icon")
+      .removeClass()
+      .addClass("fas " + catData.icon);
+    $("#stat-value-1").text(catData.stats[0]);
+    $("#stat-value-2").text(catData.stats[1]);
+    $("#stat-value-3").text(catData.stats[2]);
+
+    $("#data-title").text(catData.dataTitle);
+    $("#general-overview").text(catData.generalOverview);
+    $("#chart-title").text(catData.chartTitle);
+
+    generatePieChart(catData.chartData);
+
+    let factorsHtml = "";
+    catData.factors.forEach((factor) => {
+      factorsHtml += `<li>${factor}</li>`;
+    });
+    $("#factors-list").html(factorsHtml).removeClass("expanded");
+
+    let impactsHtml = "";
+    catData.impacts.forEach((impact) => {
+      impactsHtml += `<li>${impact}</li>`;
+    });
+    $("#impacts-list").html(impactsHtml).removeClass("expanded");
+
+    $(".category-btn").removeClass("active");
+    $(`.category-btn[data-category="${category}"]`).addClass("active");
+
+    $(".read-more")
+      .removeClass("expanded")
+      .html('Lihat selengkapnya <i class="fas fa-chevron-down"></i>');
+  }
+
+  function generatePieChart(chartData) {
+    let conicGradient = "";
+    let legendHtml = "";
+    let accumulatedPercent = 0;
+
+    chartData.forEach((item, index) => {
+      const startPercent = accumulatedPercent;
+      accumulatedPercent += item.value;
+      const endPercent = accumulatedPercent;
+
+      conicGradient += `${item.color} ${startPercent}% ${endPercent}%`;
+      if (index < chartData.length - 1) {
+        conicGradient += ", ";
+      }
+
+      legendHtml += `
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: ${item.color};"></div>
+                    <div class="legend-label">
+                        ${item.label} <span class="legend-value">${item.value}%</span>
+                    </div>
+                </div>
+            `;
+    });
+
+    $("#pie-chart").css("background", `conic-gradient(${conicGradient})`);
+
+    $("#pie-legend").html(legendHtml);
+  }
+
+  $(".carbon-data-content").html(`
+          <div class="loading">
+            <div class="loading-spinner"></div>
+            <span>Memuat data...</span>
+          </div>
+        `);
+
+  loadCategoriesData().then(() => {
+    // Sembunyikan loading state dan tampilkan konten
+    $(".carbon-data-content").html(`
+            <h2 id="data-title">Data Emisi Karbon Rumah Tangga di Indonesia</h2>
+            <div class="data-card active" id="general-card">
+              <h3>Gambaran Umum</h3>
+              <p id="general-overview">${categories.home.generalOverview}</p>
+            </div>
+            <div class="chart-container active" id="chart-card">
+              <h3 class="chart-title" id="chart-title">${categories.home.chartTitle}</h3>
+              <div class="pie-chart-container">
+                <div class="pie-chart" id="pie-chart">
+                  <div class="pie-center"><i class="fa-solid fa-wind"></i></div>
+                </div>
+                <div class="pie-legend" id="pie-legend"></div>
+              </div>
+            </div>
+            <div class="data-card active" id="factors-card">
+              <h3>Faktor Penentu</h3>
+              <ul class="factors-list" id="factors-list"></ul>
+              <div class="read-more">Lihat selengkapnya <i class="fas fa-chevron-down"></i></div>
+            </div>
+            <div class="data-card active" id="impacts-card">
+              <h3>Dampak Lingkungan</h3>
+              <ul class="impacts-list" id="impacts-list"></ul>
+              <div class="read-more">Lihat selengkapnya <i class="fas fa-chevron-down"></i></div>
+            </div>
+          `);
+
+    changeCategory("home");
+
+    const tooltipTriggerList = [].slice.call(
+      document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    );
+    const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+
+    $(".category-btn").click(function () {
+      const category = $(this).data("category");
+      changeCategory(category);
+    });
+
+    $(".calculator-btn").click(function () {
+      window.location.href = "./pages/carboncal.html";
+    });
+
+    $(".read-more").click(function () {
+      const list = $(this).prev();
+      if (list.hasClass("expanded")) {
+        list.removeClass("expanded");
+        $(this)
+          .removeClass("expanded")
+          .html('Lihat selengkapnya <i class="fas fa-chevron-down"></i>');
+      } else {
+        list.addClass("expanded");
+        $(this).addClass("expanded").html('Lihat lebih sedikit <i class="fas fa-chevron-up"></i>');
+      }
+    });
+
+    function checkOverflow() {
+      const content = $(".carbon-data-content");
+      content.each(function () {
+        if (this.scrollHeight > this.clientHeight) {
+          $(this).siblings(".scroll-indicator").show();
+        } else {
+          $(this).siblings(".scroll-indicator").hide();
+        }
+      });
+    }
+
+    setTimeout(checkOverflow, 500);
+    $(window).resize(checkOverflow);
+  });
 });
