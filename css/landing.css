@@ -449,7 +449,7 @@ h1.headingS2:hover::after {
   top: 0;
   left: 0;
   width: 100%;
-  height: 200%; /* 2x tinggi viewport untuk animasi */
+  height: 200%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
@@ -1272,4 +1272,172 @@ h1.headingS2:hover::after {
   width: 100%;
   height: 100%;
   border: none;
+}
+
+/* sec3 */
+#container-section-3 {
+  padding: 40px;
+}
+
+.title-section-3 {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.desc-section-3,
+#heading-right p {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.container-profile-section-3 {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+#profile img {
+  width: 45px;
+}
+
+.container-profile-section-3 h3 {
+  margin: 0;
+}
+
+.container-profile-section-3 h3 span {
+  font-size: 18px;
+}
+
+#heading-left {
+  display: flex;
+  flex-direction: column;
+}
+
+#heading-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.card {
+  width: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #28572a;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.card-wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.card-image {
+  position: relative;
+}
+
+.card-image img {
+  object-fit: cover;
+  width: 120%;
+  position: relative;
+  right: 10px;
+  height: 240px;
+}
+
+.expand-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.card-action {
+  margin-left: 10px;
+}
+
+.card-content {
+  padding: 16px;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.card-desc {
+  font-size: 14px;
+  color: #d0d0d0;
+  margin: 10px 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.card-profile {
+  display: flex;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.avatar {
+  width: 40px;
+  object-fit: cover;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.container-side p span a {
+  color: #f2a93b;
+}
+
+.profile-info h4 {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.profile-info p {
+  margin: 0;
+  font-size: 12px;
+  color: #bbb;
+}
+
+.btn-sec3 {
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.container-button-showmore {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.container-button-showmore button {
+  background-color: #f5ad42;
+  padding: 10px 20px 10px 20px;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 30px;
+  border: 2px #f5ad42 solid;
+}
+
+.container-button-showmore button:hover {
+  background-color: #fff;
+  padding: 10px 20px 10px 20px;
+  font-weight: 700;
+  font-size: 14px;
+  color: #f5ad42;
+  border-radius: 30px;
+  border: 2px #f5ad42 solid;
 }
