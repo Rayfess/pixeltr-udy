@@ -89,7 +89,7 @@ body {
 }
 
 .card-action {
-  margin-left: 10px;
+  margin-left: 60px;
 }
 
 .card-content {
@@ -137,14 +137,39 @@ body {
   color: #bbb;
 }
 
+.card-image button i{
+  color: #28572A;
+  background: transparent;
+  transition: 0.4s ease-in-out;
+}
+
+.card-image button i:hover{
+  background: transparent;
+  color: #fff;
+}
+.card-image button{
+  background: #fff;
+  transition: 0.4s ease-in-out;
+}
+.card-image button:hover{
+  background: transparent;
+  border: 1px solid #fff;
+}
+
 
 .btn-1 {
   font-size: 11px;
   border-radius: 6px;
   font-weight: 600;
-  border: none;
+  border: 1px solid transparent;
   cursor: pointer;
   background: #D9D9D9;
+  transition: 0.3s ease-in-out;
+}
+
+.btn-1:hover{
+  background: transparent;
+  border: 1px solid #fff;
 }
 
 .btn-2 {
@@ -154,12 +179,18 @@ body {
   border: none;
   cursor: pointer;
   background: #D9D9D9;
+  transition: 0.3s ease-in-out;
+}
+
+.btn-2:hover{
+  background: transparent;
+  border: 1px solid #fff;
 }
 
 .container-button-showmore {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 30px;
 }
 
 .container-button-showmore button {
@@ -168,7 +199,8 @@ body {
   font-weight: 700;
   font-size: 14px;
   border-radius: 30px;
-  border: 2px #F5AD42 solid;
+  border: 1px #F5AD42 solid;
+  transition: 0.4s ease-in-out;
 }
 
 .container-button-showmore button:hover {
@@ -178,7 +210,8 @@ body {
   font-size: 14px;
   color: #F5AD42;
   border-radius: 30px;
-  border: 2px #F5AD42 solid;
+  border: 1px #F5AD42 solid;
+  transform: translateY(-2px);
 }
 
 /* section-6 */
@@ -212,19 +245,23 @@ body {
 }
 
 .button-wrapper button {
-  padding: 10px 20px 10px 20px;
-  background-color: #1E6F3A;
+  background: #28572A;
   border-radius: 30px;
-  border: none;
-  font-weight: 600;
+  padding: 10px 20px;
+  border: 1px solid transparent; /* biar ga geser pas hover */
   color: #fff;
-  transition: all 0.3s ease;
+  font-weight: 700;
+  font-size: 16px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* shadow tipis default */
 }
 
 .button-wrapper button:hover {
-  background-color: #fff;
-  border: 1px solid #1E6F3A;
-  color: #1E6F3A;
+  border: 1px solid #28572A;
+  background: #fff;
+  color: #28572A;
+  box-shadow: 0 4px 12px rgba(40, 87, 42, 0.4);
+  transform: translateY(-2px);
 }
 
 .header-section-6 p,

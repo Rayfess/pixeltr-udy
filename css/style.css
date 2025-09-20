@@ -512,7 +512,6 @@ button.btn-learn {
 }
 
 /* slider konten */
-/* ---------- minimal CSS untuk section (sesuaikan lebar/spacing) ---------- */
 .carbon-slider {
     display: flex;
     flex-direction: column;
@@ -531,7 +530,6 @@ button.btn-learn {
     background: #fff;
 }
 
-/* slides: setiap .slide mengambil 100% container */
 .heading-slider h1 {
     font-weight: 700;
     font-size: 46px;
