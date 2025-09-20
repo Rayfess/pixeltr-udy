@@ -1441,3 +1441,131 @@ h1.headingS2:hover::after {
   border-radius: 30px;
   border: 2px #f5ad42 solid;
 }
+
+/* sec 6 */
+#section-6-landing img {
+  width: 650px;
+  object-fit: cover;
+  border-radius: 25px;
+  height: 500px;
+}
+
+#desc-section-6 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+}
+
+#desc-section-6 h1 {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+#desc-section-6 p {
+  font-size: 16px;
+  font-weight: 700;
+  color: #6b6a6a;
+  width: 400px;
+}
+
+.button-wrapper button {
+  padding: 10px 20px 10px 20px;
+  background-color: #1e6f3a;
+  border-radius: 30px;
+  border: none;
+  font-weight: 600;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.button-wrapper button:hover {
+  background-color: #fff;
+  border: 1px solid #1e6f3a;
+  color: #1e6f3a;
+}
+
+.header-section-6 p,
+.header-section-6 h1 {
+  text-align: center;
+}
+
+.header-section-6 p {
+  color: #6b6a6a;
+  font-weight: 700;
+}
+
+.header-section-6 h1 {
+  font-weight: 700;
+  font-size: 40px;
+}
+
+.header-section-6 {
+  margin-top: 40px;
+}
+
+.container-berita {
+  display: flex;
+  margin-top: 50px;
+  gap: 5rem;
+}
+
+.desc-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.berita-wrapper {
+  display: flex;
+}
+
+.berita-wrapper img {
+  box-shadow: 5px 12px 40px rgba(44, 44, 44, 0.25);
+}
+
+.berita-wrapper h1 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.berita-wrapper p {
+  font-size: 14px;
+  color: #6b6a6a;
+  font-weight: 600;
+}
+
+.container-views {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+}
+
+.container-views p {
+  color: black;
+}
+
+.container-views * {
+  margin: 0;
+  line-height: 1;
+}
+
+.container-views button {
+  background: #28572a;
+  border-radius: 30px;
+  padding: 5px 20px 5px 20px;
+  border: 1px #28572a solid;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  transition: all 0.5s ease-in-out;
+}
+
+.container-views button:hover {
+  background: #fff;
+  border: 1px solid #28572a;
+  color: #28572a;
+}
