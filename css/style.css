@@ -123,7 +123,7 @@ button.btn-learn {
 .btn-learn {
     justify-content: flex-end;
     margin-top: 60px;
-    background: #2E6E65;
+    background: #28572A;
     color: white;
     border-radius: 30px;
     padding: 2px 30px;
@@ -167,19 +167,16 @@ button.btn-learn {
     height: 383px;
     padding: 10px;
     border-radius: 30px;
-    border: 2px solid transparent;
     transition: 0.2s ease;
     text-decoration: none;
 }
-.card-link-carousel p{
+
+.card-link-carousel p {
     color: #fff;
     font-weight: 700;
     font-size: 14px;
 }
 
-.card-link-carousel:hover {
-    border-color: #062F08;
-}
 
 .card-image-carousel {
     width: 100%;
@@ -191,7 +188,7 @@ button.btn-learn {
 .badge-carousel {
     color: #22c55e;
     padding: 8px 16px;
-    font-size: 0.95rem; 
+    font-size: 0.95rem;
     font-weight: 600;
     margin: 16px 0px 18px;
     background: #062F08;
@@ -245,18 +242,15 @@ button.btn-learn {
     right: 10px;
 }
 
-/* Responsive */
 @media (max-width: 900px) {
     .card-item-carousel {
         flex: 0 0 50%;
-        /* 2 item per slide */
     }
 }
 
 @media (max-width: 600px) {
     .card-item-carousel {
         flex: 0 0 100%;
-        /* 1 item per slide */
     }
 }
 
@@ -296,7 +290,7 @@ button.btn-learn {
 }
 
 #header-article-6 h1 span {
-    color: #2E6E65;
+    color: #28572A;
 }
 
 #header-article-6 p {
@@ -315,7 +309,7 @@ button.btn-learn {
 }
 
 #konten-article-6 h1 {
-    background-color: #2E6E65;
+    background-color: #28572A;
     border-radius: 50%;
     padding: 20px 30px 20px 30px;
     font-size: 46x;
@@ -332,7 +326,7 @@ button.btn-learn {
 #konten-article-6 p {
     font-size: 14px;
     color: #6B6A6A;
-    font-weight: 500;
+    font-weight: 600;
     text-align: center;
     width: 275px;
 }
@@ -354,7 +348,7 @@ button.btn-learn {
 }
 
 .heading-desc span {
-    color: #2E6E65;
+    color: #28572A;
 }
 
 .card-list {
@@ -363,6 +357,7 @@ button.btn-learn {
     padding: 100px;
     background: url(../resources/image/image-slider-article/Frame\ 1.png) center no-repeat;
 }
+
 
 .grid-container {
     margin: auto;
@@ -381,33 +376,47 @@ button.btn-learn {
     border-radius: 15px;
     padding: 20px;
     box-shadow: 5px 12px 30px rgba(44, 44, 44, 0.25);
-    transition: transform 1s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    transition: 0.4s ease-in-out;
 }
 
-.card-grid img {
-    margin-bottom: 10px;
+.card-grid svg {
+    fill: #28572A;
     width: 100px;
+    transition: fill 0.4s;
 }
 
 .card-grid h3 {
     font-size: 14px !important;
     font-weight: 700;
-    max-width: 100%;
+    color: #28572A;
+    transition: color 0.4s;
 }
 
 .card-grid p {
     font-size: 12px;
     font-weight: 500;
     color: #6B6A6A;
+    transition: color 0.4s;
 }
 
 .card-grid:hover {
     transform: translateY(-5px);
-    background-color: #2E6E65;
+    background-color: #28572A;
+    color: #fff;
+}
+
+
+.card-grid:hover svg {
+    fill: #fff;
+}
+
+.card-grid:hover h3,
+.card-grid:hover p {
+    color: #fff;
 }
 
 
@@ -833,10 +842,12 @@ button.btn-learn {
     font-weight: 600;
     margin-left: 10px;
 }
+
 .card-footer .views-text {
     font-size: 13px;
     font-weight: 600;
 }
+
 .card-footer .info {
     padding: 4px 15px 4px 15px;
     font-size: 13px;
