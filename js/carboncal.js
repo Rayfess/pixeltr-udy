@@ -5,8 +5,6 @@ $(function () {
   let totalEmission = 0;
   let treeEquivalent = 0;
 
-  //
-
   //  ambil data jenis pohon dsb
   $.getJSON("/data/treedata.json", function (data) {
     treeData = data;
@@ -294,16 +292,6 @@ $(function () {
 
     $("#treeCost").text("Rp " + cost.toLocaleString("id-ID"));
     $("#carbonOffset").text(carbonOffset);
-  }
-
-  $("#carbonAmount").on("input", function () {
-    updateCarbonCost();
-  });
-
-  function updateCarbonCost() {
-    const carbonAmount = parseFloat($("#carbonAmount").val()) || 0;
-    const cost = carbonAmount * 500;
-    $("#carbonCost").text(cost.toLocaleString("id-ID"));
   }
 
   // Pilih donasi
