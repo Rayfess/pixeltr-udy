@@ -1,3 +1,5 @@
+// berita
+
 $(document).ready(function () {
   const tabs = document.querySelectorAll(".tab");
   const contents = document.querySelectorAll(".content");
