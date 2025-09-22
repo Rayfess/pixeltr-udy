@@ -29,6 +29,7 @@
     <main class="container mt-4">
       <section class="row g-4">
         <div class="col-12 col-lg-7">
+          <!-- left card -->
           <div class="card">
             <div class="card-header bg-success bg-gradient text-white">
               <i class="ri-user-fill"></i>
@@ -165,6 +166,7 @@
             </div>
           </div>
 
+          <!-- l card tabel kalku -->
           <div class="card card-show d-none mt-4">
             <div class="card-header bg-success bg-gradient text-white">
               <i class="ri-calculator-fill"></i>
@@ -185,18 +187,21 @@
                   <tbody id="emission-results"></tbody>
                 </table>
               </div>
-              <div class="text-end" id="carbonResult">
+
+              <!-- imbangi btn -->
+              <div class="text-end">
                 <button
                   type="button"
                   id="offsetBtn"
-                  class="btn btn-primary btn-success mt-2"
+                  class="btn btn-success mt-2"
                   data-bs-toggle="modal"
                   data-bs-target="#donationModal"
                 >
-                  <i class="ri-scales-fill me-1"></i> <span class="fw-medium">Imbangi</span>
+                  <i class="ri-scales-fill me-1"></i> <span class="fw-medium">Imbangi Karbon</span>
                 </button>
               </div>
 
+              <!-- modal -->
               <div
                 class="modal fade"
                 id="donationModal"
@@ -204,20 +209,18 @@
                 aria-labelledby="donationModalLabel"
                 aria-hidden="true"
               >
-                <div class="modal-dialog modal-lg border-1 overflow-hidden shadow-md">
+                <div class="modal-dialog modal-lg">
                   <div class="modal-content">
-                    <div class="modal-header bg-success bg-gradient text-white">
-                      <h5 class="modal-title" id="donationModalLabel">
-                        <i class="fas fa-seedling me-2"></i>Tebus Jejak Karbon
-                      </h5>
+                    <div class="modal-header text-white" style="background-color: #28a745" ;>
+                      <h5 class="modal-title" id="donationModalLabel">Pilih Jenis Donasi</h5>
                       <button
                         type="button"
-                        class="btn-close btn-close-white"
+                        class="btn-close-white btn-close"
                         data-bs-dismiss="modal"
                         aria-label="Close"
                       ></button>
                     </div>
-                    <div class="modal-body" style="background-color: #bff8be">
+                    <div class="modal-body bg-cc">
                       <div class="carbon-alert-modal" id="carbonAlertModal">
                         <div class="alert-carbon-content-modal">
                           <button
@@ -238,6 +241,7 @@
                         </div>
                       </div>
 
+                      <!-- Donation Type Selector -->
                       <div class="d-flex justify-content-center mb-4">
                         <div class="donation-type active fw-medium" id="paketDonationBtn">
                           <i class="fa-solid fa-cube me-2"></i>Paket Donasi
@@ -250,6 +254,7 @@
                         </div>
                       </div>
 
+                      <!-- Paket Donasi Section -->
                       <div id="paketDonationSection">
                         <div class="row">
                           <div class="col-md-4 mb-4">
@@ -282,8 +287,6 @@
                             <div class="donation-card card shadow">
                               <div class="card-body">
                                 <div class="donation-icon text-center">
-                                  <i class="ri-tree-fill"></i>
-                                  <i class="ri-tree-fill"></i>
                                   <i class="ri-tree-fill"></i>
                                 </div>
                                 <h5>10 Pohon Beringin</h5>
@@ -336,13 +339,14 @@
                         </div>
                       </div>
 
-                      <div id="customDonationSection" class="d-none">
+                      <!-- Donasi Pohon Section -->
+                      <div id="pohonDonationSection" class="d-none">
                         <div class="row mt-4">
                           <div class="col-md-6">
                             <div class="mb-4">
                               <label class="form-label fw-semibold">Jenis Pohon</label>
                               <select class="form-select" id="treeOptions">
-                                -
+                                <option value="">Pilih Jenis Pohon</option>
                               </select>
                             </div>
 
@@ -358,16 +362,12 @@
                             </div>
 
                             <div class="tree-details">
-                              <div class="tree-info-content mb-5">
+                              <div class="tree-info-content mb-3">
                                 <h6><i class="fas fa-info-circle"></i> Informasi Pohon</h6>
-                                <div id="treeDetails">-</div>
+                                <div id="treeDetails">Pilih jenis pohon untuk melihat detail</div>
                               </div>
                               <div class="tree-image-container">
                                 <img id="treeImage" class="tree-image" src="" alt="Gambar Pohon" />
-                              </div>
-                              <div class="hover-instruction">
-                                <i class="fas fa-mouse-pointer"></i> Arahkan untuk melihat gambar
-                                pohon
                               </div>
                             </div>
                           </div>
@@ -379,9 +379,9 @@
                               </h5>
                               <div class="d-flex justify-content-between mb-2">
                                 <span>Jenis Pohon:</span>
-                                <span id="selectedTree" class="text-success fw-bold fst-italic">
-                                  -
-                                </span>
+                                <span id="selectedTree" class="text-success fw-bold fst-italic"
+                                  >-</span
+                                >
                               </div>
                               <div class="d-flex justify-content-between mb-2">
                                 <span>Jumlah Pohon:</span>
@@ -405,7 +405,7 @@
                               <h6><i class="fas fa-info-circle"></i> Informasi Karbon</h6>
                               <p>
                                 1 pohon dewasa dapat menyerap rata-rata
-                                <span class="fw-semibold"> 22 kg CO₂ per tahun</span> , tetapi
+                                <span class="fw-semibold"> 22 kg CO₂ per tahun</span>, tetapi
                                 jumlahnya sangat bervariasi
                                 <i> tergantung jenis pohon, usia, dan kondisi lingkungan</i>.
                               </p>
@@ -414,13 +414,74 @@
                         </div>
                       </div>
 
-                      <div class="alert alert-info mt-4 d-none" id="selectedDonation">
+                      <!-- Donasi Mata Uang Section -->
+                      <div id="uangDonationSection" class="d-none">
+                        <div class="row mt-4">
+                          <div class="col-md-6">
+                            <div class="mb-4">
+                              <label class="form-label fw-semibold">Jumlah Donasi (Rupiah)</label>
+                              <input
+                                type="number"
+                                class="form-control"
+                                min="10000"
+                                value="0"
+                                id="amountInput"
+                              />
+                              <div class="form-text">Minimum donasi: Rp 10.000</div>
+                            </div>
+
+                            <div class="mb-4">
+                              <label class="form-label fw-semibold">Metode Pembayaran</label>
+                              <select class="form-select" id="paymentMethod">
+                                <option value="transfer">Transfer Bank</option>
+                                <option value="creditcard">Kartu Kredit</option>
+                                <option value="ewallet">E-Wallet</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="result-box">
+                              <h5 class="text-success">
+                                <i class="fa-solid fa-calculator mb-2"></i> Kalkulasi
+                              </h5>
+                              <div class="d-flex justify-content-between mb-2">
+                                <span>Jumlah Donasi:</span>
+                                <strong id="amountResult">Rp 0</strong>
+                              </div>
+                              <div class="d-flex justify-content-between mb-2">
+                                <span>Perkiraan Penyerapan Karbon:</span>
+                                <strong><span id="carbonFromMoney">0</span> kg CO₂/tahun</strong>
+                              </div>
+                              <div class="d-flex justify-content-between mb-2">
+                                <span>Biaya Administrasi:</span>
+                                <strong>Rp 2.500</strong>
+                              </div>
+                              <div class="d-flex justify-content-between mb-2">
+                                <span>Total yang akan dibayar:</span>
+                                <strong><span id="totalAmount">Rp 0</span></strong>
+                              </div>
+                            </div>
+
+                            <div class="info-box">
+                              <h6><i class="fas fa-info-circle"></i> Informasi</h6>
+                              <p>
+                                Donasi Anda akan digunakan untuk menanam dan merawat pohon.
+                                <span class="fw-semibold">Setiap Rp 10.000</span> setara dengan
+                                penanaman dan perawatan 1 pohon selama 1 tahun.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- footer Selected Donation Info -->
+                      <div class="alert alert-success mt-4 d-none" id="selectedDonation">
                         <div class="d-inline-flex justify-content-start align-items-center">
                           <i class="ri-information-line fs-5 me-2"></i>
                           <h6 class="mb-1">Donasi Dipilih:</h6>
                         </div>
-
-                        <p id="selectedDescription fw-semibold"></p>
+                        <p id="selectedDescription" class="fw-semibold mb-1"></p>
                         <p class="mb-1">Total: <strong id="selectedAmount"></strong></p>
                         <p class="mb-0">
                           Perkiraan Penyerapan Karbon: <strong id="selectedCO2">0</strong> kg
@@ -428,7 +489,7 @@
                         </p>
                       </div>
                     </div>
-                    <div class="modal-footer" style="background-color: #bff8be">
+                    <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                         Batal
                       </button>
@@ -443,6 +504,7 @@
           </div>
         </div>
 
+        <!-- overview r card -->
         <aside class="col-12 col-lg-5">
           <div
             class="aside-card d-flex justify-content-between align-items-center bg-success text-white bg-gradient rounded-3 p-3 mb-3"
