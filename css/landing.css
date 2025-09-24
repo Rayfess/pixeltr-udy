@@ -369,7 +369,7 @@ h1.headingS2:hover::after {
 /* slider l */
 
 .slider-container {
-  max-width: 90vh;
+  max-width: max-content;
   position: relative;
   overflow: hidden;
   border-radius: 15px;
@@ -379,7 +379,7 @@ h1.headingS2:hover::after {
 .stats-slider {
   display: flex;
   transition: transform 0.5s ease;
-  margin-bottom: 30px;
+  margin-bottom: 1rem;
   cursor: grab;
 }
 
@@ -437,7 +437,6 @@ h1.headingS2:hover::after {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
   gap: 1rem;
 }
 
