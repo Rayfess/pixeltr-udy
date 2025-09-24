@@ -50,9 +50,100 @@ span.heroPagesp {
   color: transparent;
 }
 
+/* btnland */
+
+.button-container {
+  text-align: center;
+  padding: 40px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+}
+
 .btn-heroPage {
   border: 0;
   color: #f0fdf4;
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  font-size: 1.2rem;
+  padding: 15px 40px;
+  border-radius: 50px;
+  font-weight: 700;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.btn-heroPage:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(46, 204, 113, 0.5);
+  background: linear-gradient(135deg, #27ae60, #229954);
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+.btn-heroPage:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 10px rgba(46, 204, 113, 0.4);
+}
+
+.btn-heroPage:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.4);
+}
+
+/* Efek ripple saat diklik */
+.btn-heroPage::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+.btn-heroPage:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(20, 20);
+    opacity: 0;
+  }
+}
+
+/* Animasi latar belakang bergerak */
+.btn-heroPage::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.7s;
+  z-index: -1;
+}
+
+.btn-heroPage:hover::before {
+  left: 100%;
 }
 
 .icon-circle {
@@ -61,12 +152,103 @@ span.heroPagesp {
   position: absolute;
   right: -1rem;
   top: -1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #ff9a00, #ff6a00);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+  z-index: 2;
+  animation: float 3s ease-in-out infinite;
 }
 
 .icon {
   width: 1.5rem;
   height: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+/* Animasi hover untuk ikon */
+.button-wrapper:hover .icon-circle {
+  transform: scale(1.1) rotate(15deg);
+  box-shadow: 0 6px 15px rgba(255, 106, 0, 0.4);
+  animation: none;
+}
+
+.button-wrapper:hover .icon {
+  transform: scale(1.2);
+}
+
+/* Animasi mengambang untuk ikon */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Efek partikel saat hover */
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.button-wrapper:hover .particle {
+  animation: particle-float 1.5s ease-out forwards;
+}
+
+@keyframes particle-float {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) scale(1);
+  }
+}
+
+/* Responsif untuk perangkat mobile */
+@media (max-width: 576px) {
+  .btn-heroPage {
+    padding: 12px 30px;
+    font-size: 1.1rem;
+  }
+
+  .icon-circle {
+    width: 2rem;
+    height: 2rem;
+    right: -0.8rem;
+    top: -0.8rem;
+  }
+
+  .icon {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
 }
 
 /* sec2 */
@@ -1428,7 +1610,7 @@ h1.headingS2:hover::after {
   border-radius: 25px;
 }
 
-.button-wrapper button {
+.button-wrappers button {
   padding: 10px 20px 10px 20px;
   background-color: #1e6f3a;
   border-radius: 25px;
@@ -1438,7 +1620,7 @@ h1.headingS2:hover::after {
   transition: all 0.3s ease;
 }
 
-.button-wrapper button:hover {
+.button-wrappers button:hover {
   background-color: #fff;
   border: 1px solid #1e6f3a;
   color: #1e6f3a;
