@@ -15,28 +15,6 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
-/* nav */
-.dropdown-menu {
-  border-radius: 12px;
-  background-color: #f0fdf4;
-}
-
-.dropdown-item:hover,
-.dropdown-item:focus {
-  background-color: #f5ad42;
-}
-
-#navbar-title {
-  font-family: "Caveat", "Georgia";
-  font-size: 1.8rem;
-  color: #235f41;
-}
-
-#icon {
-  width: 2rem;
-  height: 2rem;
-}
-
 /* hero page */
 
 .pagepage {
