@@ -231,7 +231,6 @@ span.heroPagesp {
   }
 }
 
-/* Responsif untuk perangkat mobile */
 @media (max-width: 576px) {
   .btn-heroPage {
     padding: 12px 30px;
@@ -724,7 +723,6 @@ h1.headingS2:hover::after {
   }
 }
 
-/* Responsive styles */
 @media (max-width: 992px) {
   .gallery-grid-container {
     grid-template-columns: repeat(2, 1fr);
@@ -890,6 +888,7 @@ h1.headingS2:hover::after {
 }
 
 .category-btn {
+  cursor: pointer;
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -1438,17 +1437,6 @@ h1.headingS2:hover::after {
   padding: 40px;
 }
 
-.title-section-3 {
-  font-size: 40px;
-  font-weight: 700;
-}
-
-.desc-section-3,
-#heading-right p {
-  font-size: 14px;
-  font-weight: 500;
-}
-
 .container-profile-section-3 {
   display: flex;
   align-items: center;
@@ -1465,17 +1453,6 @@ h1.headingS2:hover::after {
 
 .container-profile-section-3 h3 span {
   font-size: 18px;
-}
-
-#heading-left {
-  display: flex;
-  flex-direction: column;
-}
-
-#heading-right {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
 }
 
 .card {
