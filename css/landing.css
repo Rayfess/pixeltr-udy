@@ -1427,30 +1427,19 @@ h1.headingS2:hover::after {
   width: 45px;
 }
 
-.card {
-  width: 500px;
-  border-radius: 12px;
+.cardd {
+  border-radius: 1rem;
   overflow: hidden;
-  background: #28572a;
-  color: white;
-  font-family: Arial, sans-serif;
-}
-
-.card-wrapper {
-  display: flex;
-  gap: 10px;
-}
-
-.card-image {
-  position: relative;
+  background: #f8fff4;
+  font-family: Inter, sans-serif;
 }
 
 .card-image img {
   object-fit: cover;
   width: 120%;
   position: relative;
-  right: 10px;
-  height: 240px;
+  right: 20px;
+  height: min-content;
 }
 
 .expand-btn {
@@ -1465,42 +1454,18 @@ h1.headingS2:hover::after {
   cursor: pointer;
 }
 
-.card-action {
-  margin-left: 10px;
-}
-
-.card-content {
-  padding: 16px;
-}
-
-.card-title {
-  margin: 0;
-  font-size: 20px;
-  font-weight: bold;
-}
-
 .card-desc {
-  font-size: 14px;
-  color: #d0d0d0;
-  margin: 10px 0;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
 
-.card-profile {
-  display: flex;
-  align-items: center;
-  margin: 16px 0;
-}
-
-.avatar {
-  width: 40px;
+.avatarimg {
+  width: 2rem;
+  height: 2rem;
   object-fit: cover;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
+  margin-right: 1rem;
 }
 
 .container-side p span a {
@@ -1515,12 +1480,12 @@ h1.headingS2:hover::after {
 
 .profile-info p {
   margin: 0;
-  font-size: 12px;
+  font-size: 0.9rem;
   color: #bbb;
 }
 
 .btn-sec3 {
-  padding: 0.5rem 1rem;
+  padding: 0.2rem 0.5rem;
   font-size: 0.8rem;
   font-weight: 600;
 }
@@ -1538,6 +1503,7 @@ h1.headingS2:hover::after {
   font-size: 14px;
   border-radius: 30px;
   border: 2px #f5ad42 solid;
+  transition: all 0.5s ease-out;
 }
 
 .container-button-showmore button:hover {
@@ -1548,6 +1514,7 @@ h1.headingS2:hover::after {
   color: #f5ad42;
   border-radius: 30px;
   border: 2px #f5ad42 solid;
+  transition: all 0.5s ease-out;
 }
 
 /* sec 6 */
