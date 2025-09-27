@@ -84,7 +84,7 @@ body {
   animation: pulseAnimation 2s infinite;
 }
 
-/*  */
+/* modl */
 
 .donation-card {
   transition: all 0.3s ease;
@@ -101,7 +101,7 @@ body {
 .donation-card.selected {
   transform: translateY(-5px);
   border-color: #28a745;
-  background-color: rgb(188, 253, 203);
+  background-color: #e5fde9;
 }
 .donation-icon {
   font-size: 2.5rem;
@@ -115,19 +115,15 @@ body {
   border-radius: 8px;
   margin-bottom: 10px;
   transition: all 0.3s;
-  border: 1px solid #d7ffd1;
+  border: 1px solid #eafce8;
 }
 .donation-type.active {
   background-color: #28a745;
   color: white;
   border-color: #28a745;
 }
-.impact-stats {
-  background-color: #f8f9fa;
-  border-radius: 10px;
-  padding: 15px;
-  margin-top: 20px;
-  text-align: center;
+.donation-type:hover:not(.active) {
+  background-color: #e9ecef;
 }
 .btn-donate {
   background-color: #28a745;
@@ -203,7 +199,7 @@ body {
   animation: progressBarModal 5s linear forwards;
 }
 
-/*  */
+/* box box */
 
 .form-control,
 .form-select {
@@ -231,6 +227,11 @@ body {
   margin-top: 20px;
   border-left: 4px solid #2196f3;
 }
+#selectedDonation {
+  background-color: #e6f7e6;
+  border-left: 4px solid #198754;
+}
+/* tree overview */
 .tree-details {
   background-color: #fff8e1;
   border-radius: 10px;

@@ -4,15 +4,27 @@ $(function () {
   let treeData = {};
   let totalEmission = 0;
   let treeEquivalent = 0;
-
-  //
+  let selectedDonationType = "paket";
+  let selectedTreeType = "";
+  let selectedPackage = null;
 
   //  ambil data jenis pohon dsb
   $.getJSON("/data/treedata.json", function (data) {
     treeData = data;
     populateTreeOptions();
     calculateCarbon();
-    $("#treeOptions, #treeCount").on("change input", function () {
+
+    if (Object.keys(treeData).length > 0) {
+      selectedTreeType = $("#treeOptions").val();
+    }
+
+    $("#treeOptions").on("change", function () {
+      selectedTreeType = $(this).val();
+      calculateCarbon();
+      updateTreeDetails();
+    });
+
+    $("#treeCount").on("input", function () {
       calculateCarbon();
     });
   });
@@ -264,25 +276,32 @@ $(function () {
     showCarbonAlertModal(suggestionMessage);
   });
 
-  // Toggle antara fixed dan custom donation
-  $("#fixedDonationBtn").click(function () {
-    $(this).addClass("active");
-    $("#customDonationSection").addClass("d-none");
-    $("#selectedDonation").addClass("d-none");
-    $("#customDonationBtn").removeClass("active");
-    $("#fixedDonationSection").removeClass("d-none");
+  // Toggle jenis donasi
+  $("#paketDonationBtn").click(function () {
+    selectDonationType("paket");
   });
 
-  $("#customDonationBtn").click(function () {
-    $(this).addClass("active");
-    $("#fixedDonationBtn").removeClass("active");
-    $("#fixedDonationSection").addClass("d-none");
-    $("#customDonationSection").removeClass("d-none");
-    $("#selectedDonation").addClass("d-none");
+  $("#pohonDonationBtn").click(function () {
+    selectDonationType("pohon");
   });
 
+  $("#uangDonationBtn").click(function () {
+    selectDonationType("uang");
+  });
+
+  // Event listener untuk perubahan jenis pohon
+  $("#treeOptions").change(function () {
+    updateTreeDetails();
+  });
+
+  // Event listener untuk perubahan jumlah pohon
   $("#treeCount").on("input", function () {
     updateTreeCost();
+  });
+
+  // Event listener untuk perubahan jumlah uang
+  $("#amountInput").on("input", function () {
+    updateMoneyDonation();
   });
 
   function updateTreeCost() {
@@ -296,85 +315,165 @@ $(function () {
     $("#carbonOffset").text(carbonOffset);
   }
 
-  $("#carbonAmount").on("input", function () {
-    updateCarbonCost();
-  });
-
-  function updateCarbonCost() {
-    const carbonAmount = parseFloat($("#carbonAmount").val()) || 0;
-    const cost = carbonAmount * 500;
-    $("#carbonCost").text(cost.toLocaleString("id-ID"));
-  }
-
-  // Pilih donasi
+  // Pilih Donasi, Event listener untuk pemilihan paket donasi
   $(".select-donation").click(function () {
     $(".donation-card").removeClass("selected");
     $(this).closest(".donation-card").addClass("selected");
 
-    const amount = $(this).data("amount");
-    const desc = $(this).data("desc");
-    const co2 = $(this).data("co2");
+    selectedPackage = {
+      amount: $(this).data("amount"),
+      desc: $(this).data("desc"),
+      co2: $(this).data("co2"),
+    };
 
-    $("#selectedDescription").text(desc);
-    $("#selectedAmount").text("Rp " + amount.toLocaleString("id-ID"));
-    $("#selectedCO2").text(co2);
-    $("#selectedDonation").removeClass("d-none");
+    updateSelectedDonation();
   });
 
   // Tombol donasi sekarang
   $("#donateNowBtn").click(function () {
-    const isCustom = $("#customDonationBtn").hasClass("active");
+    processDonation();
+  });
 
-    if (isCustom) {
-      const treeType = $("#treeOptions option:selected").text();
-      const treeCount = parseInt($("#treeCountResult").val()) || 0;
+  // Fungsi untuk memilih jenis donasi
+  function selectDonationType(type) {
+    selectedDonationType = type;
 
-      alert(
-        "Terima kasih! Donasi custom Anda sebesar Rp " +
-          treeCount.toLocaleString("id-ID") +
-          " untuk " +
-          treeType +
-          " berhasil diproses."
-      );
-      if ($("#treeOptions").val() === "tree") {
-        // const amount = parseInt($("#treeCount").val()) * treeData.cost;
-        // const treeType = $("#treeOptions select").val();
-      } else {
-        const carbonAmount = parseFloat($("#overall-emission").val()) || 0;
-        const amount = carbonAmount * 500;
+    // Update tampilan tombol
+    $(".donation-type").removeClass("active");
+    $(`#${type}DonationBtn`).addClass("active");
 
-        alert(
-          "Terima kasih! Donasi custom Anda sebesar Rp " +
-            amount.toLocaleString("id-ID") +
-            " untuk " +
-            type +
-            " berhasil diproses."
-        );
-      }
+    // Tampilkan section yang sesuai
+    $("#paketDonationSection, #pohonDonationSection, #uangDonationSection").addClass("d-none");
+    $(`#${type}DonationSection`).removeClass("d-none");
+
+    // Reset pilihan donasi
+    $("#selectedDonation").addClass("d-none");
+    selectedPackage = null;
+  }
+
+  // Fungsi untuk memperbarui detail pohon
+  function updateTreeDetails() {
+    const treeType = $("#treeOptions").val();
+    selectedTreeType = treeType;
+
+    if (treeType && treeData[treeType]) {
+      const tree = treeData[treeType];
+      $("#treeDetails").html(`
+                    <p><strong>Penyerapan Karbon:</strong> ${tree.absorption} kg CO₂/tahun</p>
+                    <p><strong>Biaya per Pohon:</strong> Rp ${tree.cost.toLocaleString("id-ID")}</p>
+                    <p><strong>Waktu Tumbuh:</strong> ${tree.growth}</p>
+                    <p>${tree.details}</p>
+                `);
+      $("#treeImage").attr("src", tree.image);
+      $("#selectedTree").text(tree.name);
+      $("#growthTime").text(tree.growth);
+
+      updateTreeCost();
     } else {
-      if (!$(".donation-card").hasClass("selected")) {
+      $("#treeDetails").text("Pilih jenis pohon untuk melihat detail");
+      $("#treeImage").attr("src", "");
+      $("#selectedTree").text("-");
+      $("#growthTime").text("-");
+    }
+  }
+
+  // Fungsi untuk memperbarui biaya pohon
+  function updateTreeCost() {
+    const count = parseInt($("#treeCount").val()) || 1;
+    $("#treeCountResult").text(count);
+
+    if (selectedTreeType && treeData[selectedTreeType]) {
+      const tree = treeData[selectedTreeType];
+      const cost = count * tree.cost;
+      const carbonOffset = count * tree.absorption;
+
+      $("#treeCost").text("Rp " + cost.toLocaleString("id-ID"));
+      $("#carbonOffset").text(carbonOffset);
+
+      // Update selected donation jika ini adalah donasi yang dipilih
+      if (selectedDonationType === "pohon") {
+        $("#selectedDescription").text(`${count} Pohon ${tree.name}`);
+        $("#selectedAmount").text("Rp " + cost.toLocaleString("id-ID"));
+        $("#selectedCO2").text(carbonOffset);
+        $("#selectedDonation").removeClass("d-none");
+      }
+    }
+  }
+
+  // Fungsi untuk memperbarui donasi uang
+  function updateMoneyDonation() {
+    const amount = parseInt($("#amountInput").val()) || 0;
+    const carbonEstimate = Math.floor(amount / 10000) * 22; // Setiap Rp 10.000 = 1 pohon = 22 kg CO₂/tahun
+    const totalAmount = amount + 2500; // Tambah biaya administrasi
+
+    $("#amountResult").text("Rp " + amount.toLocaleString("id-ID"));
+    $("#carbonFromMoney").text(carbonEstimate);
+    $("#totalAmount").text("Rp " + totalAmount.toLocaleString("id-ID"));
+
+    if (selectedDonationType === "uang" && amount >= 10000) {
+      $("#selectedDescription").text("Donasi Mata Uang");
+      $("#selectedAmount").text("Rp " + amount.toLocaleString("id-ID"));
+      $("#selectedCO2").text(carbonEstimate);
+      $("#selectedDonation").removeClass("d-none");
+    } else {
+      $("#selectedDonation").addClass("d-none");
+      return;
+    }
+  }
+
+  function updateSelectedDonation() {
+    if (selectedPackage) {
+      $("#selectedDescription").text(selectedPackage.desc);
+      $("#selectedAmount").text("Rp " + selectedPackage.amount.toLocaleString("id-ID"));
+      $("#selectedCO2").text(selectedPackage.co2);
+      $("#selectedDonation").removeClass("d-none");
+    }
+  }
+
+  function processDonation() {
+    let message = "";
+
+    if (selectedDonationType === "paket") {
+      if (!selectedPackage) {
         alert("Silakan pilih paket donasi terlebih dahulu");
         return;
       }
+      message = `Terima kasih! Donasi Anda untuk ${
+        selectedPackage.desc
+      } sebesar Rp ${selectedPackage.amount.toLocaleString("id-ID")} berhasil diproses.`;
+    } else if (selectedDonationType === "pohon") {
+      if (!selectedTreeType || !treeData[selectedTreeType]) {
+        alert("Silakan pilih jenis pohon terlebih dahulu");
+        return;
+      }
+      const count = parseInt($("#treeCount").val()) || 1;
+      const tree = treeData[selectedTreeType];
+      const cost = count * tree.cost;
 
-      const amount = $(".donation-card.selected").find(".select-donation").data("amount");
-      const desc = $(".donation-card.selected").find(".select-donation").data("desc");
-
-      alert(
-        "Terima kasih! Donasi Anda untuk " +
-          desc +
-          " sebesar Rp " +
-          amount.toLocaleString("id-ID") +
-          " berhasil diproses."
-      );
+      message = `Terima kasih! Donasi Anda untuk ${count} pohon ${
+        tree.name
+      } sebesar Rp ${cost.toLocaleString("id-ID")} berhasil diproses.`;
+    } else if (selectedDonationType === "uang") {
+      const amount = parseInt($("#amountInput").val()) || 0;
+      if (amount < 10000) {
+        alert("Minimum donasi adalah Rp 10.000");
+        return;
+      }
+      message = `Terima kasih! Donasi Anda sebesar Rp ${amount.toLocaleString(
+        "id-ID"
+      )} berhasil diproses.`;
     }
 
-    $("#donationModal").modal("d-none");
+    alert(message);
+    $("#donationModal").modal("hide");
+
+    // Reset form
     $(".donation-card").removeClass("selected");
     $("#selectedDonation").addClass("d-none");
-  });
+    selectedPackage = null;
+  }
 
-  //
+  // treetree
 
   function populateTreeOptions() {
     const treeOpts = $("#treeOptions");
@@ -386,13 +485,15 @@ $(function () {
     });
 
     if (Object.keys(treeData).length > 0) {
-      treeOpts.val(Object.keys(treeData)[0]);
+      const firstKey = Object.keys(treeData)[0];
+      treeOpts.val(firstKey);
+      selectedTreeType = firstKey;
     }
   }
 
   // calcu carbon btnDonasiSekarang
   function calculateCarbon() {
-    const treeType = $("#treeOptions").val();
+    const treeType = selectedTreeType;
 
     if (!treeType || !treeData[treeType]) return;
 
@@ -409,31 +510,38 @@ $(function () {
     $("#treeCost").text("Rp " + cost.toLocaleString("id-ID"));
     $("#growthTime").text(tree.growth);
 
-    updateTreeDetails(treeType);
+    updateTreeDetails();
   }
 
-  function updateTreeDetails(treeType) {
-    const tree = treeData[treeType];
-    $("#treeDetails").html(`
-                <p class="mb-1 fw-medium text-secondary fs-5 mt-3 "><i>${tree.name}</i></p>
-                <p class="mb-1 ">Penyerapan karbon: <strong>${
-                  tree.absorption
-                } kg CO₂/tahun per pohon</strong></p>
-                <p class="mb-1 ">Biaya per pohon: <strong>Rp ${tree.cost.toLocaleString(
-                  "id-ID"
-                )}</strong></p>
-                <p class="mb-1 ">Waktu tumbuh: <strong>${tree.growth}</strong></p>
+  function updateTreeDetails() {
+    const treeType = selectedTreeType;
+    if (treeType && treeData[treeType]) {
+      const tree = treeData[treeType];
+
+      $("#treeDetails").html(`
+        <p class="mb-1 fw-medium text-secondary fs-5 mt-3 "><i>${tree.name}</i></p>
+        <p class="mb-1 ">Penyerapan karbon: <strong>${
+          tree.absorption
+        } kg CO₂/tahun per pohon</strong></p>
+          <p class="mb-1 ">Biaya per pohon: <strong>Rp ${tree.cost.toLocaleString(
+            "id-ID"
+          )}</strong></p>
+          <p class="mb-1 ">Waktu tumbuh: <strong>${tree.growth}</strong></p>
                 <p class="mb-0 mt-2 fw-medium fst-italic">${tree.details}</p>
-            `);
+                `);
 
-    $("#treeImage").attr("src", tree.image);
+      $("#treeImage").attr("src", tree.image);
 
-    $("#treeImage").on("mouseenter", function () {
-      $(this).closest(".tree-details").find(".hover-instruction").addClass("hidden");
-    });
+      $("#treeImage").on("mouseenter", function () {
+        $(this).closest(".tree-details").find(".hover-instruction").addClass("hidden");
+      });
 
-    $("#treeImage").on("mouseleave", function () {
-      $(this).closest(".tree-details").find(".hover-instruction").removeClass("hidden");
-    });
+      $("#treeImage").on("mouseleave", function () {
+        $(this).closest(".tree-details").find(".hover-instruction").removeClass("hidden");
+      });
+    } else {
+      $("#treeDetails").html("<p class='text-muted'>Pilih jenis pohon untuk melihat detail</p>");
+      $("#treeImage").attr("src", "");
+    }
   }
 });
