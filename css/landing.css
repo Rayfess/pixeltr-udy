@@ -1519,14 +1519,14 @@ h1.headingS2:hover::after {
 
 /* sec 6 */
 #sec6img {
-  width: 100% !important;
+  /* width: 100%; */
   object-fit: cover;
   border-radius: 25px;
 }
 
 @media (min-width: 992px) {
   #sec6img {
-    width: 100%;
+    width: 100vh;
     height: 70%;
   }
 }
@@ -1535,13 +1535,6 @@ h1.headingS2:hover::after {
   #sec6img {
     width: 50vh !important;
     height: auto !important;
-  }
-}
-
-@media (min-width: 768px) {
-  #sec6img {
-    width: 100vh !important;
-    min-height: max-content !important;
   }
 }
 
