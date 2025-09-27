@@ -1519,7 +1519,7 @@ h1.headingS2:hover::after {
 
 /* sec 6 */
 #sec6img {
-  /* width: 100%; */
+  width: 100%;
   object-fit: cover;
   border-radius: 25px;
 }
