@@ -63,6 +63,8 @@ span.heroPagesp {
 }
 
 .btn-heroPage {
+  cursor: pointer;
+  transition: all 0.5s ease;
   border: 0;
   color: #f0fdf4;
   background: linear-gradient(135deg, #2ecc71, #27ae60);
@@ -82,6 +84,7 @@ span.heroPagesp {
 }
 
 .btn-heroPage:hover {
+  transition: all 0.5s ease;
   transform: translateY(-3px);
   box-shadow: 0 8px 25px rgba(46, 204, 113, 0.5);
   background: linear-gradient(135deg, #27ae60, #229954);
@@ -90,11 +93,13 @@ span.heroPagesp {
 }
 
 .btn-heroPage:active {
+  transition: all 0.5s ease;
   transform: translateY(1px);
   box-shadow: 0 2px 10px rgba(46, 204, 113, 0.4);
 }
 
 .btn-heroPage:focus {
+  transition: all 0.5s ease;
   outline: none;
   box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.4);
 }
@@ -1491,22 +1496,25 @@ h1.headingS2:hover::after {
 }
 
 .container-button-showmore {
+  cursor: pointer;
   display: flex;
   justify-content: center;
   margin-top: 10px;
 }
 
 .container-button-showmore button {
+  cursor: pointer;
   background-color: #f5ad42;
   padding: 10px 20px 10px 20px;
   font-weight: 700;
   font-size: 14px;
   border-radius: 30px;
   border: 2px #f5ad42 solid;
-  transition: all 0.5s ease-out;
+  transition: all 0.5s ease;
 }
 
 .container-button-showmore button:hover {
+  cursor: pointer;
   background-color: #fff;
   padding: 10px 20px 10px 20px;
   font-weight: 700;
@@ -1514,7 +1522,7 @@ h1.headingS2:hover::after {
   color: #f5ad42;
   border-radius: 30px;
   border: 2px #f5ad42 solid;
-  transition: all 0.5s ease-out;
+  transition: all 0.5s ease;
 }
 
 /* sec 6 */
@@ -1531,10 +1539,11 @@ h1.headingS2:hover::after {
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 576px) {
   #sec6img {
-    width: 50vh !important;
-    height: auto !important;
+    width: 50vh;
+    height: auto;
+    margin-bottom: 1rem;
   }
 }
 
