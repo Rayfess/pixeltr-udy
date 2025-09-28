@@ -5,7 +5,7 @@
     "cost": 35000,
     "growth": "15-20 tahun",
     "details": "Pinus tumbuh optimal di dataran tinggi. Memiliki kemampuan menyerap karbon sedang tetapi tumbuh relatif cepat.",
-    "image": "/img/omar-sabra-aNygRCGNwts-unsplash.jpg"
+    "image": "../resources/img/omar-sabra-aNygRCGNwts-unsplash.jpg"
   },
   "beringin": {
     "name": "Beringin (Ficus benjamina)",
@@ -13,7 +13,7 @@
     "cost": 175000,
     "growth": "20-30 tahun",
     "details": "Beringin adalah pohon yang besar dan kuat, mampu hidup ratusan tahun. Sangat efektif menyerap karbon dalam jangka panjang.",
-    "image": "/img/emma-henderson-B645igbiKCw-unsplash.jpg"
+    "image": "../resources/img/emma-henderson-B645igbiKCw-unsplash.jpg"
   },
   "mangrove": {
     "name": "Mangrove (Rhizophora spp.)",
@@ -21,7 +21,7 @@
     "cost": 55000,
     "growth": "10-15 tahun",
     "details": "Mangrove sangat efektif untuk rehabilitasi pesisir. Selain menyerap CO2, juga melindungi garis pantai dari abrasi.",
-    "image": "/img/dileesh-kumar-46OKPiRfDBg-unsplash.jpg"
+    "image": "../resources/img/dileesh-kumar-46OKPiRfDBg-unsplash.jpg"
   },
   "jati": {
     "name": "Jati (Tectona grandis)",
@@ -29,7 +29,7 @@
     "cost": 125000,
     "growth": "25-40 tahun",
     "details": "Jati adalah pohon kayu keras yang bernilai ekonomi tinggi. Tumbuh lambat tetapi sangat baik dalam menyimpan karbon.",
-    "image": "/img/mak-J5YDaqKKGOY-unsplash.jpg"
+    "image": "../resources/img/mak-J5YDaqKKGOY-unsplash.jpg"
   },
   "mahoni": {
     "name": "Mahoni (Swietenia mahagoni)",
@@ -37,7 +37,7 @@
     "cost": 85000,
     "growth": "15-25 tahun",
     "details": "Mahoni sering digunakan untuk penghijauan kota. Memiliki kayu yang berkualitas dan kemampuan menyerap karbon yang baik.",
-    "image": "/img/alexey-demidov-ev1SAthrakE-unsplash.jpg"
+    "image": "../resources/img/alexey-demidov-ev1SAthrakE-unsplash.jpg"
   },
   "trembesi": {
     "name": "Trembesi (Albizia saman)",
@@ -45,7 +45,7 @@
     "cost": 95000,
     "growth": "15-20 tahun",
     "details": "Trembesi dikenal sebagai 'pohon hujan' karena tajuknya yang lebar. Sangat efektif menyerap karbon dibandingkan pohon lainnya.",
-    "image": "/img/zoshua-colah-ioHAF1bjrSg-unsplash.jpg"
+    "image": "../resources/img/zoshua-colah-ioHAF1bjrSg-unsplash.jpg"
   },
   "sengon": {
     "name": "Sengon (Paraserianthes falcataria)",
@@ -53,6 +53,6 @@
     "cost": 45000,
     "growth": "5-8 tahun",
     "details": "Sengon tumbuh sangat cepat dan sering digunakan dalam program reboisasi. Memberikan hasil karbon yang baik dalam waktu singkat.",
-    "image": "/img/kevin-wang-n4r4PfWTw5A-unsplash.jpg"
+    "image": "../resources/img/kevin-wang-n4r4PfWTw5A-unsplash.jpg"
   }
 }
