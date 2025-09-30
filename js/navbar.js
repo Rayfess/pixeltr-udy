@@ -1,11 +1,7 @@
 $(document).ready(function () {
   // Efek scroll pada navbar
   $(window).scroll(function () {
-    if ($(window).scrollTop() > 100) {
-      $(".navbar").addClass("scrolled");
-    } else {
-      $(".navbar").removeClass("scrolled");
-    }
+    $(".navbar").toggleClass("scrolled", $(window).scrollTop() > 100);
   });
 
   // Menutup sidebar saat mengklik item dropdown
