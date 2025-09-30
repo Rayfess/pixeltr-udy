@@ -24,8 +24,8 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="../css/carboncal.css" />
-    <link rel="stylesheet" href="../css/navbar.css" />
-    <script defer src="../js/navbar.js"></script>
+    <link rel="stylesheet" href="../css/navbara.css" />
+    <script defer src="../js/navbara.js"></script>
     <script defer src="/js/carboncal.js"></script>
   </head>
   <body class="bg-cc">
@@ -128,6 +128,90 @@
         </div>
       </div>
     </nav>
+
+    <!-- Offcanvas sidebar untuk mobile -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+      <div class="offcanvas-header">
+        <img src="../resources/icon/icon.png" alt="iconweb" id="icon" class="me-3" />
+        <h5 class="offcanvas-title">Bumi Berseka</h5>
+        <button
+          type="button"
+          class="btn-close opacity-50"
+          aria-label="Close"
+          data-bs-toggle="offcanvas"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
+              <i class="fas fa-compass me-2"></i>Explore
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="/index.html#statistikEmisi">
+                  <i class="fas fa-chart-line me-2"></i>Statistik Emisi
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/pages/carboncal.html">
+                  <i class="fas fa-calculator me-2"></i>Kalkulator Karbon
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/pages/article.html">
+                  <i class="fas fa-book-open me-2"></i>Artikel & Edukasi
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/pages/news.html">
+                  <i class="fas fa-newspaper me-2"></i>Berita & Informasi
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
+              <i class="fas fa-bolt me-2"></i>Aksi & Perubahan
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="/index.html#gabungSekarangNow">
+                  <i class="fas fa-users me-2"></i>Gabung Komunitas
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/index.html#section-6-landing">
+                  <i class="fas fa-calendar-alt me-2"></i>Event & Berita
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
+              <i class="fas fa-bars me-2"></i>Menu
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="#"> <i class="fas fa-home me-2"></i>Beranda </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/index.html#tntgProgram">
+                  <i class="fas fa-info-circle me-2"></i>About Us
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#footer">
+                  <i class="fas fa-book me-2"></i>Resources
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
 
     <div class="container mt-4" style="padding-top: 5rem">
       <section class="row g-4">
@@ -710,19 +794,19 @@
     </div>
 
     <!-- footer -->
-    <footer id="footer">
+    <footer id="footer" class="mt-5">
       <!-- Dekorasi daun -->
       <i class="leaf-decoration leaf-1 fas fa-leaf"></i>
       <i class="leaf-decoration leaf-2 fas fa-leaf"></i>
 
       <div class="container">
-        <div class="row gx-5 justify-content-center">
+        <div class="row gx-5 pt-3 justify-content-center">
           <!-- Kolom 1 -->
-          <div class="col-lg-3 col-md-6 animate-footer me-lg-5 mb-5">
+          <div class="col-lg-3 col-md-6 animate-footer mb-5">
             <h2 class="footer-title">
               <i class="environment-icon fas fa-seedling"></i>Hijaukan Bumi
             </h2>
-            <p class="mb-3" style="text-align: justify; width: 300px">
+            <p class="mb-3" style="text-align: justify">
               Bersama kita wujudkan lingkungan yang hijau dan berkelanjutan untuk generasi
               mendatang. Mari berkolaborasi dalam aksi nyata pelestarian alam.
             </p>
@@ -735,7 +819,7 @@
               />
               <button
                 type="submit"
-                class="btn footer-btn d-flex align-items-center justify-content-center gap-2 mt-2"
+                class="btn footer-btn d-flex align-items-center justify-content-center gap-2 mt-2 w-100"
               >
                 <i class="fas fa-paper-plane"></i> Berlangganan
               </button>
@@ -743,11 +827,11 @@
           </div>
 
           <!-- Kolom 2 -->
-          <div class="col-lg-3 col-md-6 animate-footer me-lg-5">
+          <div class="col-lg-3 col-md-6 animate-footer mx-lg-2">
             <div class="mb-2">
               <h2 class="footer-title"><i class="environment-icon fas fa-globe"></i>Laman Kami</h2>
               <div class="d-flex flex-column">
-                <a href="/index.html#" class="footer-link mb-2">Beranda</a>
+                <a href="index.html" class="footer-link mb-2">Beranda</a>
                 <a href="/pages/news.html" class="footer-link mb-2">Berita Lingkungan</a>
                 <a href="/pages/article.html" class="footer-link mb-2">Artikel Edukasi</a>
                 <a href="/pages/carboncal.html" class="footer-link mb-2">Kalkulator Karbon</a>
@@ -761,7 +845,7 @@
                 Dukung program pelestarian lingkungan kami dengan berdonasi.
               </p>
               <button
-                class="btn footer-btn d-flex align-items-center justify-content-center gap-2 mt-3"
+                class="btn footer-btn d-flex align-items-center justify-content-center gap-2 mt-3 w-100"
               >
                 <i class="fas fa-donate"></i> Donasi Sekarang
               </button>
@@ -769,7 +853,7 @@
           </div>
 
           <!-- Kolom 3 -->
-          <div class="col-lg-3 col-md-6 animate-footer">
+          <div class="col-lg-3 col-md-6 animate-footer mx-lg-2">
             <div class="mb-5">
               <h2 class="footer-title"><i class="environment-icon fas fa-users"></i>Ikuti Kami</h2>
               <div class="d-flex gap-3 mb-4">
