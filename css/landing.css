@@ -29,13 +29,10 @@ body {
   background-blend-mode: multiply;
 }
 
-.section1 h1.headingHp,
-.section1 h2.headingHp {
+h1.headingHp,
+h2.headingHp {
   text-align: center;
   color: white;
-}
-.section1 h2.headingHp {
-  width: 70vw;
 }
 
 span.heroPagesp,
@@ -1267,7 +1264,7 @@ h1.headingS2:hover::after {
 }
 
 /* mq lg */
-@media (max-width: 992px) {
+@media (min-width: 992px) {
   .card-left,
   .card-right {
     width: 100%;
@@ -1539,7 +1536,7 @@ h1.headingS2:hover::after {
   }
 }
 
-@media (max-width: 576px) {
+@media (min-width: 576px) {
   #sec6img {
     width: 50vh;
     height: auto;
@@ -1547,7 +1544,7 @@ h1.headingS2:hover::after {
   }
 }
 
-.button-wrappers button {
+.button-wrappers a {
   padding: 10px 20px 10px 20px;
   background-color: #1e6f3a;
   border-radius: 25px;
@@ -1557,7 +1554,7 @@ h1.headingS2:hover::after {
   transition: all 0.3s ease;
 }
 
-.button-wrappers button:hover {
+.button-wrappers a:hover {
   background-color: #fff;
   border: 1px solid #1e6f3a;
   color: #1e6f3a;

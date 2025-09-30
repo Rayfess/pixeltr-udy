@@ -10,10 +10,15 @@
 
 #navbar-title {
   font-family: "Caveat", "Georgia";
+  font-weight: 800;
   font-size: 1.8rem;
-  color: #235f41;
+  color: var(--light-green);
+  transition: all 0.3s ease;
 }
 
+.navbar.scrolled #navbar-title {
+  color: #235f41;
+}
 /* Dark overlay ketika sidebar terbuka */
 body.sidebar-open::before {
   content: "";
@@ -48,7 +53,7 @@ body.sidebar-open .navbar {
 
 .navbar.scrolled .nav-link,
 .navbar.scrolled .navbar-brand {
-  color: #2c3e50 !important;
+  color: #2f502c !important;
 }
 
 .navbar-brand {
@@ -56,12 +61,6 @@ body.sidebar-open .navbar {
   color: white !important;
   display: flex;
   align-items: center;
-  transition: all 0.3s ease;
-}
-
-#navbar-title {
-  color: white;
-  font-size: 1.5rem;
   transition: all 0.3s ease;
 }
 
@@ -77,18 +76,18 @@ body.sidebar-open .navbar {
 }
 
 .navbar.scrolled .nav-link {
-  color: #2c3e50 !important;
+  color: #2f502c !important;
 }
 
 .nav-link:hover,
 .nav-link:focus {
-  color: white !important;
+  color: white;
   background-color: rgba(255, 255, 255, 0.15);
   transform: translateY(-2px);
 }
 
 .navbar.scrolled .nav-link:hover {
-  color: #27ae60 !important;
+  color: #27ae60;
   background-color: rgba(46, 204, 113, 0.1);
 }
 
@@ -108,7 +107,7 @@ body.sidebar-open .navbar {
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
-  color: #2c3e50;
+  color: #2f502c;
 }
 
 .navbar .dropdown-item:hover {
@@ -221,7 +220,7 @@ body.sidebar-open .navbar {
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
-  color: #2c3e50;
+  color: #2f502c;
 }
 
 .offcanvas-body .dropdown-item:hover {
