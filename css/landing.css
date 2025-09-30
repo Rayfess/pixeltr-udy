@@ -1432,19 +1432,26 @@ h1.headingS2:hover::after {
 .cardd {
   border-radius: 1rem;
   overflow: hidden;
-  background: #f8fff4;
+  background: #fffaf6;
   font-family: Inter, sans-serif;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.card-image {
+  height: 200px;
+  overflow: hidden;
 }
 
 .card-image img {
   object-fit: cover;
-  width: 120%;
-  position: relative;
-  right: 20px;
-  height: min-content;
+  width: 100%;
+  height: 100%;
 }
 
 .expand-btn {
+  color: #555555;
+  text-decoration: none;
   position: absolute;
   top: 10px;
   right: 10px;
@@ -1454,6 +1461,10 @@ h1.headingS2:hover::after {
   border: none;
   border-radius: 50%;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
 }
 
 .card-desc {
@@ -1472,11 +1483,16 @@ h1.headingS2:hover::after {
 
 .container-side p span a {
   color: #f2a93b;
+  text-decoration: none;
+  font-weight: 600;
+}
+.container-side p span a:hover {
+  text-decoration: underline;
 }
 
 .profile-info h4 {
   margin: 0;
-  font-size: 12px;
+  font-size: 0.9rem;
   font-weight: 700;
 }
 
@@ -1496,32 +1512,60 @@ h1.headingS2:hover::after {
   cursor: pointer;
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 1rem;
 }
 
 .container-button-showmore button {
   cursor: pointer;
   background-color: #f5ad42;
-  padding: 10px 20px 10px 20px;
+  padding: 10px 20px;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 0.9rem;
   border-radius: 30px;
   border: 2px #f5ad42 solid;
   transition: all 0.5s ease;
+  color: white;
 }
 
-.container-button-showmore button:hover {
-  cursor: pointer;
-  background-color: #fff;
-  padding: 10px 20px 10px 20px;
-  font-weight: 700;
-  font-size: 14px;
-  color: #f5ad42;
-  border-radius: 30px;
-  border: 2px #f5ad42 solid;
-  transition: all 0.5s ease;
+/* Card yang disembunyikan di tablet dan mobile */
+.hidden-card {
+  display: none;
 }
 
+/* Media Queries untuk responsif */
+@media (max-width: 992px) {
+  .card-row .col-lg-4:not(:first-child) {
+    display: none;
+  }
+
+  .card-row .col-lg-4:first-child {
+    width: 100%;
+  }
+
+  .container-button-showmore {
+    display: flex;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-row .col-lg-4:not(:first-child) {
+    display: none;
+  }
+
+  .card-row .col-lg-4:first-child {
+    width: 100%;
+  }
+
+  .container-button-showmore {
+    display: flex;
+  }
+}
+
+@media (min-width: 993px) {
+  .container-button-showmore {
+    display: none;
+  }
+}
 /* sec 6 */
 #sec6img {
   width: 100%;

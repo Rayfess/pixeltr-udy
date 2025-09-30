@@ -237,6 +237,33 @@ $(document).ready(function () {
     }, 250);
   });
 
+  //sec3
+  function showMoreCards() {
+    $(".hidden-card").each(function () {
+      $(this).fadeIn(500).removeClass("hidden-card");
+    });
+
+    $("#showMoreBtn").parent().fadeOut(500);
+  }
+
+  $("#showMoreBtn").on("click", showMoreCards);
+
+  function checkScreenSize() {
+    if ($(window).width() >= 993) {
+      $(".hidden-card").removeClass("hidden-card").show();
+      $(".container-button-showmore").hide();
+    } else {
+      $(".card-row .col-lg-4:not(:first-child)").addClass("hidden-card").hide();
+      $(".container-button-showmore").show();
+    }
+  }
+
+  // Jalankan saat halaman dimuat
+  checkScreenSize();
+
+  // Jalankan saat ukuran jendela berubah
+  $(window).on("resize", checkScreenSize);
+
   //carbon cal intro
   let categories = {};
 
