@@ -1,31 +1,46 @@
 :root {
-  --dark-green: #27ae60;
+  --primary-green: #27ae60;
   --light-green: #d5f5e3;
+  --dark-green: #2f502c;
+  --dark-gray: #28343d;
+  --w09: rgba(255, 255, 255, 0.9);
+  --title: "Caveat", "Georgia";
 }
 
-#icon {
+#site-icon {
   width: 2rem;
   height: 2rem;
 }
 
-.navbar.scrolled #icon {
+.navbar.scrolled #site-icon {
   filter: grayscale(0);
 }
-.navbar #icon {
+.navbar #site-icon {
   filter: grayscale(1);
 }
 
 #navbar-title {
-  font-family: "Caveat", "Georgia";
+  font-family: var(--title);
   font-weight: 800;
   font-size: 1.8rem;
-  color: #33424e !important;
   transition: all 0.3s ease;
 }
 
-.navbar.scrolled #navbar-title {
-  color: #235f41 !important;
+#navbar-title,
+.nav-link,
+.nav-link:hover,
+.nav-link:focus {
+  color: var(--dark-gray);
 }
+
+.navbar.scrolled #navbar-title,
+.navbar.scrolled .nav-link,
+.navbar.scrolled .navbar-brand,
+.navbar .dropdown-item,
+.offcanvas-body .dropdown-item {
+  color: var(--dark-green) !important;
+}
+
 /* Dark overlay ketika sidebar terbuka */
 body.sidebar-open::before {
   content: "";
@@ -57,21 +72,15 @@ body.sidebar-open .navbar {
   visibility: hidden;
 }
 
-.navbar.scrolled .nav-link,
-.navbar.scrolled .navbar-brand {
-  color: #2f502c !important;
-}
-
 .navbar-brand {
   font-weight: 700;
-  color: white !important;
+  color: white;
   display: flex;
   align-items: center;
   transition: all 0.3s ease;
 }
 
 .nav-link {
-  color: #28343d !important;
   font-weight: 500;
   padding: 0.8rem 1rem !important;
   border-radius: 8px;
@@ -81,20 +90,15 @@ body.sidebar-open .navbar {
   align-items: center;
 }
 
-.navbar.scrolled .nav-link {
-  color: #2f502c !important;
-}
-
 .nav-link:hover,
 .nav-link:focus {
-  color: #28343d !important;
   background-color: rgba(230, 230, 230, 0.5) !important;
   transform: translateY(-2px);
 }
 
 .navbar.scrolled .nav-link:hover,
 .navbar.scrolled .nav-link:focus {
-  color: #27ae60 !important;
+  color: var(--primary-green) !important;
   background-color: rgba(46, 204, 113, 0.1) !important;
 }
 
@@ -114,12 +118,12 @@ body.sidebar-open .navbar {
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
-  color: #2f502c;
 }
 
 .navbar .dropdown-item:hover {
+  font-weight: 500;
   background-color: #d5f5e3;
-  color: #27ae60;
+  color: var(--primary-green);
   transform: translateX(5px);
 }
 
@@ -181,22 +185,23 @@ body.sidebar-open .navbar {
 .offcanvas-header {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding: 1.5rem;
-  background: #2555;
+  background: rgba(37, 85, 85, 0.5);
 }
 
 .offcanvas-title {
-  color: white;
+  color: var(--light-green);
+  font-family: var(--title);
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
 
 .offcanvas-body {
   padding: 1.5rem;
-  background-color: #5555;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .offcanvas-body .nav-link {
-  color: rgba(255, 255, 255, 0.9) !important;
+  color: var(--w09) !important;
   padding: 0.75rem 1rem !important;
   border-radius: 8px;
   margin-bottom: 0.5rem;
@@ -212,7 +217,7 @@ body.sidebar-open .navbar {
 }
 
 .offcanvas-body .dropdown-menu {
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--w09);
   backdrop-filter: blur(10px);
   margin-left: 1rem;
   border: none;
@@ -227,12 +232,11 @@ body.sidebar-open .navbar {
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
-  color: #2f502c;
 }
 
 .offcanvas-body .dropdown-item:hover {
   background-color: #d5f5e3;
-  color: #27ae60;
+  color: var(--primary-green);
   transform: translateX(5px);
 }
 
@@ -243,7 +247,7 @@ body.sidebar-open .navbar {
 /* Responsive styles */
 @media (max-width: 991.98px) {
   .navbar-collapse {
-    display: none !important;
+    display: none;
   }
 
   .offcanvas-body .dropdown-menu {
@@ -264,8 +268,8 @@ body.sidebar-open .navbar {
 
 /* Sederhanakan dropdown di sidebar */
 .offcanvas-body .dropdown-menu {
-  position: static !important;
-  transform: none !important;
+  position: static;
+  transform: none;
   float: none;
   width: 100%;
   margin-top: 0.5rem;
