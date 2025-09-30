@@ -23,17 +23,24 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
     <link rel="stylesheet" href="../css/news-page.css" />
     <link rel="stylesheet" href="../css/navbar.css" />
-    <script defer src="../js/news.js"></script>
-    <script defer src="../js/navbar.js"></script>
+    <link rel="stylesheet" href="../css/footer.css" />
+
+    <script src="../js/news.js"></script>
+    <script src="../js/footer.js"></script>
+    <script src="../js/navbar.js"></script>
   </head>
 
   <body>
     <nav class="navbar navbar-expand-lg fixed-top px-3 py-2 shadow">
       <div class="container">
         <a class="navbar-brand fw-semibold" href="#">
-          <img src="../resources/icon/icon.png" alt="icon" id="icon" srcset="" />
+          <img src="../resources/icon/icon.png" alt="icon" id="site-icon" srcset="" />
           <span class="align-middle ms-2" id="navbar-title">Bumi Berseka</span>
         </a>
 
@@ -126,13 +133,9 @@
     </nav>
 
     <!-- Offcanvas sidebar untuk mobile -->
-    <div
-      class="offcanvas offcanvas-end"
-      tabindex="-1"
-      id="offcanvasNavbar"
-      aria-labelledby="offcanvasNavbarLabel"
-    >
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
       <div class="offcanvas-header">
+        <img src="../resources/icon/icon.png" alt="iconweb" id="site-icon" class="me-3" />
         <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Bumi Berseka</h5>
         <button
           type="button"
@@ -216,7 +219,7 @@
     </div>
 
     <section>
-      <div class="hero-news-page pt-5">
+      <div class="hero-news-page container-fluid">
         <div class="row">
           <div class="col-lg-9">
             <h1 class="header-news-hero">Berita Terkini Isu Jejak Karbon</h1>
@@ -227,11 +230,25 @@
           </div>
           <div class="col-lg-3">
             <div class="row justify-content-center">
-              <img
-                src="../resources/icon/icon-article-edukasi/Rectangle 86.png"
-                alt=""
-                style="width: min-content"
-              />
+              <svg
+                class="w-50"
+                fill="#D5F5E3"
+                viewBox="0 0 512 512"
+                xmlns="http://www.w3.org/2000/svg"
+                stroke="#D5F5E3"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <title>ionicons-v5-n</title>
+                  <path
+                    d="M439.91,112H416.09a.09.09,0,0,0-.09.09V416a32,32,0,0,0,32,32h0a32,32,0,0,0,32-32V152.09A40.09,40.09,0,0,0,439.91,112Z"
+                  ></path>
+                  <path
+                    d="M384,416V72a40,40,0,0,0-40-40H72A40,40,0,0,0,32,72V424a56,56,0,0,0,56,56H430.85a1.14,1.14,0,0,0,1.15-1.15h0a1.14,1.14,0,0,0-.85-1.1A64.11,64.11,0,0,1,384,416ZM96,128a16,16,0,0,1,16-16h64a16,16,0,0,1,16,16v64a16,16,0,0,1-16,16H112a16,16,0,0,1-16-16ZM304,400H112.45c-8.61,0-16-6.62-16.43-15.23A16,16,0,0,1,112,368H303.55c8.61,0,16,6.62,16.43,15.23A16,16,0,0,1,304,400Zm0-64H112.45c-8.61,0-16-6.62-16.43-15.23A16,16,0,0,1,112,304H303.55c8.61,0,16,6.62,16.43,15.23A16,16,0,0,1,304,336Zm0-64H112.45c-8.61,0-16-6.62-16.43-15.23A16,16,0,0,1,112,240H303.55c8.61,0,16,6.62,16.43,15.23A16,16,0,0,1,304,272Zm0-64H240.45c-8.61,0-16-6.62-16.43-15.23A16,16,0,0,1,240,176h63.55c8.61,0,16,6.62,16.43,15.23A16,16,0,0,1,304,208Zm0-64H240.45c-8.61,0-16-6.62-16.43-15.23A16,16,0,0,1,240,112h63.55c8.61,0,16,6.62,16.43,15.23A16,16,0,0,1,304,144Z"
+                  ></path>
+                </g>
+              </svg>
             </div>
           </div>
         </div>
@@ -246,7 +263,7 @@
       </div>
 
       <!-- Content: All -->
-      <div id="all" class="container-fluid content show active">
+      <div id="all" class="container content show active">
         <div class="cards">
           <img src="../resources/image/news-hero-image/Group 411.png" alt="" />
           <p>Transportasi umum ramah lingkungan:pemerintah kurangi emisi</p>
@@ -362,7 +379,7 @@
       </div>
 
       <!-- Content: Trending -->
-      <div id="trending" class="content container-fluid">
+      <div id="trending" class="content container">
         <div class="cards">
           <img src="../resources/image/news-hero-image/Group 411.png" alt="" />
           <p>Transportasi umum ramah lingkungan:pemerintah kurangi emisi</p>
@@ -422,7 +439,7 @@
       </div>
 
       <!-- Content: Breaking News -->
-      <div id="breaking" class="content container-fluid">
+      <div id="breaking" class="content container">
         <div class="cards">
           <img src="../resources/image/news-hero-image/Rectangle 281 (1).png" alt="" />
           <p>Startup Indonesia Ciptakan Baterai Ramah Lingkungan dari Limbah Sawit</p>
@@ -483,7 +500,7 @@
     </section>
 
     <!-- Highlighted news -->
-    <div class="news-section container-fluid my-5">
+    <div class="news-section container my-5">
       <!-- Kiri -->
       <div class="news-main">
         <img src="../resources/image/berita-hightlighted/Rectangle 2932.png" alt="Main News" />
@@ -574,7 +591,7 @@
 
     <!-- Berita Terkini -->
     <section id="berita-terkini">
-      <div class="container-fluid">
+      <div class="container">
         <h1 class="text-center fw-bold mt-5 mb-5">Berita Terkini</h1>
         <div class="card-terkini">
           <h1 class="header-terkini">
@@ -818,7 +835,5 @@
         </div>
       </div>
     </footer>
-
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   </body>
 </html>

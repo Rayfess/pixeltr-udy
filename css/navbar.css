@@ -76,7 +76,7 @@ body.sidebar-open .navbar {
 
 .nav-link:hover,
 .nav-link:focus {
-  color: white;
+  color: white !important;
   background-color: rgba(255, 255, 255, 0.15);
   transform: translateY(-2px);
 }

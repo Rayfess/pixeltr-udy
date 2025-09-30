@@ -19,16 +19,20 @@
     />
     <link rel="stylesheet" href="/css/navbar.css" />
     <link rel="stylesheet" href="/css/landing.css" />
-    <script defer src="/js/navbar.js"></script>
-    <script defer src="/js/btnlanding.js"></script>
-    <script defer src="/js/landing.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script src="/js/navbar.js"></script>
+    <script src="/js/btnlanding.js"></script>
+    <script src="/js/landing.js"></script>
   </head>
 
   <body>
     <nav class="navbar navbar-expand-lg fixed-top px-3 py-2 shadow">
       <div class="container">
         <a class="navbar-brand fw-semibold" href="#">
-          <img src="../resources/icon/icon.png" alt="iconweb" id="icon" srcset="" />
+          <img src="../resources/icon/icon.png" alt="iconweb" id="site-icon" srcset="" />
           <span class="align-middle ms-2" id="navbar-title">Bumi Berseka</span>
         </a>
 
@@ -121,7 +125,7 @@
     <!-- Offcanvas sidebar untuk mobile -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
       <div class="offcanvas-header">
-        <img src="../resources/icon/icon.png" alt="iconweb" id="icon" class="me-3" />
+        <img src="../resources/icon/icon.png" alt="iconweb" id="site-icon" class="me-3" />
         <h5 class="offcanvas-title">Bumi Berseka</h5>
         <button
           type="button"
@@ -310,10 +314,10 @@
                 <p class="fw-medium" style="text-align: justify">
                   Lingkungan yang kita rusak hari ini, bisa jadi bencana untuk
 
-                  <span class="fw-bold text-danger"><u> generasi esok</u></span
+                  <span class="fw-bold text-secondary"><u> generasi esok</u></span
                   >. apa benar sekecil itu dampaknya? Mari kita lihat faktanya.
                   <span>
-                    <i class="fw-semibold">
+                    <i class="fw-semibold text-secondary">
                       Pada tahun 2022, Indonesia menempati peringkat ke-6 secara global sebagai
                       penyumbang emisi karbon.
                     </i> </span
@@ -1131,8 +1135,5 @@
         </div>
       </div>
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   </body>
 </html>
