@@ -1,0 +1,170 @@
+{
+  "home": {
+    "title": "Rumah Tangga",
+    "stats": [
+      {
+        "value": "17%",
+        "label": "Kontribusi Emisi Nasional",
+        "source": "Kementerian ESDM 2023",
+        "icon": "fa-industry"
+      },
+      {
+        "value": "125 Jt Ton",
+        "label": "CO2e per Tahun",
+        "source": "KLHK 2023",
+        "icon": "fa-temperature-high"
+      },
+      {
+        "value": "58%",
+        "label": "Dari Konsumsi Listrik",
+        "source": "Kementerian ESDM 2023",
+        "icon": "fa-bolt"
+      }
+    ],
+    "overviewTitle": "Konsumsi Energi Rumah Tangga",
+    "overviewText": "Sektor rumah tangga Indonesia menyumbang 17% dari total emisi karbon nasional. Penggunaan listrik menjadi kontributor terbesar dengan 58%, diikuti oleh transportasi pribadi (22%) dan pengelolaan sampah (12%).",
+    "overviewSource": "Sumber: Kementerian ESDM & BPS 2023",
+    "overviewImage": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "chartTitle": "Sumber Emisi Karbon Rumah Tangga",
+    "chartData": [
+      { "label": "Konsumsi Listrik", "value": 58, "color": "#feb64c" },
+      { "label": "Transportasi Pribadi", "value": 22, "color": "#2ecc71" },
+      { "label": "Pengelolaan Sampah", "value": 12, "color": "#3498db" },
+      { "label": "Pemanas Air & Masak", "value": 6, "color": "#9b59b6" },
+      { "label": "Lainnya", "value": 2, "color": "#e74c3c" }
+    ],
+    "factors": [
+      "Penggunaan AC dan peralatan elektronik yang tidak efisien",
+      "Ketergantungan pada kendaraan pribadi berbahan bakar fosil",
+      "Praktik pengelolaan sampah yang belum optimal",
+      "Pemanas air konvensional yang boros energi",
+      "Kurangnya kesadaran tentang efisiensi energi"
+    ],
+    "impacts": [
+      "Meningkatkan beban pembangkit listrik berbahan bakar fosil",
+      "Berkontribusi pada polusi udara perkotaan",
+      "Menghasilkan limbah padat yang mencemari lingkungan",
+      "Mempercepat perubahan iklim melalui emisi GRK",
+      "Meningkatkan biaya hidup rumah tangga"
+    ],
+    "solutions": [
+      "Beralih ke peralatan hemat energi dengan label BEEF",
+      "Mengoptimalkan penggunaan transportasi umum",
+      "Menerapkan pemilahan sampah dan komposting",
+      "Memasang pemanas air tenaga surya",
+      "Mengadopsi smart home technology"
+    ]
+  },
+  "foods": {
+    "title": "Makanan",
+    "stats": [
+      {
+        "value": "24%",
+        "label": "Kontribusi Emisi Nasional",
+        "source": "FAO & BPS 2023",
+        "icon": "fa-industry"
+      },
+      {
+        "value": "176 Jt Ton",
+        "label": "CO2e per Tahun",
+        "source": "KLHK 2023",
+        "icon": "fa-temperature-high"
+      },
+      {
+        "value": "28%",
+        "label": "Dari Peternakan",
+        "source": "FAO 2023",
+        "icon": "fa-cow"
+      }
+    ],
+    "overviewTitle": "Sistem Pangan Berkelanjutan",
+    "overviewText": "Sektor makanan dan pertanian menyumbang 24% emisi karbon Indonesia. Peternakan menjadi kontributor utama (28%), diikuti oleh produksi beras (24%) dan limbah makanan (18%).",
+    "overviewSource": "Sumber: FAO & BPS 2023",
+    "overviewImage": "https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "chartTitle": "Sumber Emisi Karbon dari Sektor Pangan",
+    "chartData": [
+      { "label": "Peternakan", "value": 28, "color": "#feb64c" },
+      { "label": "Produksi Beras", "value": 24, "color": "#2ecc71" },
+      { "label": "Limbah Makanan", "value": 18, "color": "#3498db" },
+      { "label": "Transportasi Pangan", "value": 12, "color": "#9b59b6" },
+      { "label": "Lainnya", "value": 18, "color": "#e74c3c" }
+    ],
+    "factors": [
+      "Praktik sawah basah yang menghasilkan metana",
+      "Peternakan intensif dengan emisi metana tinggi",
+      "Rantai pasok makanan yang panjang dan tidak efisien",
+      "Limbah makanan di tingkat retail dan konsumen",
+      "Penggunaan pupuk kimia berlebihan"
+    ],
+    "impacts": [
+      "Emisi metana dari sawah dan peternakan",
+      "Deforestasi untuk perluasan lahan pertanian",
+      "Polusi air dari runoff pupuk dan pestisida",
+      "Penggunaan air yang tidak berkelanjutan",
+      "Kehilangan keanekaragaman hayati"
+    ],
+    "solutions": [
+      "Menerapkan System of Rice Intensification (SRI)",
+      "Mengembangkan peternakan berkelanjutan",
+      "Memperpendek rantai pasok makanan lokal",
+      "Mengurangi limbah makanan melalui perencanaan",
+      "Beralih ke pertanian organik dan regeneratif"
+    ]
+  },
+  "transportation": {
+    "title": "Transportasi",
+    "stats": [
+      {
+        "value": "28%",
+        "label": "Kontribusi Emisi Nasional",
+        "source": "Kementerian Perhubungan 2023",
+        "icon": "fa-industry"
+      },
+      {
+        "value": "205 Jt Ton",
+        "label": "CO2e per Tahun",
+        "source": "KLHK 2023",
+        "icon": "fa-temperature-high"
+      },
+      {
+        "value": "76%",
+        "label": "Dari Transportasi Darat",
+        "source": "Kementerian Perhubungan 2023",
+        "icon": "fa-road"
+      }
+    ],
+    "overviewTitle": "Mobilitas Perkotaan Berkelanjutan",
+    "overviewText": "Sektor transportasi menyumbang 28% emisi karbon Indonesia. Transportasi darat mendominasi dengan 76%, terutama kendaraan pribadi (54%). Penerbangan domestik (12%) dan transportasi laut (8%) juga berkontribusi signifikan.",
+    "overviewSource": "Sumber: Kementerian Perhubungan 2023",
+    "overviewImage": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "chartTitle": "Sumber Emisi Karbon Sektor Transportasi",
+    "chartData": [
+      { "label": "Kendaraan Pribadi", "value": 54, "color": "#feb64c" },
+      { "label": "Angkutan Barang", "value": 22, "color": "#2ecc71" },
+      { "label": "Penerbangan Domestik", "value": 12, "color": "#3498db" },
+      { "label": "Transportasi Laut", "value": 8, "color": "#9b59b6" },
+      { "label": "Lainnya", "value": 4, "color": "#e74c3c" }
+    ],
+    "factors": [
+      "Tingginya kepemilikan kendaraan pribadi",
+      "Ketergantungan pada bahan bakar fosil",
+      "Infrastruktur transportasi umum yang terbatas",
+      "Kepadatan lalu lintas perkotaan",
+      "Efisiensi kendaraan yang rendah"
+    ],
+    "impacts": [
+      "Polusi udara perkotaan yang mempengaruhi kesehatan",
+      "Kemacetan yang mengurangi produktivitas",
+      "Emisi gas rumah kaca yang tinggi",
+      "Ketergantungan impor bahan bakar",
+      "Biaya logistik yang tinggi"
+    ],
+    "solutions": [
+      "Pengembangan transportasi massal (MRT, LRT, BRT)",
+      "Insentif untuk kendaraan listrik dan hibrida",
+      "Kebijakan pembatasan kendaraan pribadi",
+      "Pengoptimalan angkutan umum terintegrasi",
+      "Pengembangan infrastruktur pejalan kaki dan pesepeda"
+    ]
+  }
+}
