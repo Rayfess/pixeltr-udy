@@ -3,12 +3,25 @@
   height: 2rem;
 }
 
+.navbar.scrolled #site-icon {
+  filter: grayscale(0);
+}
+.navbar #site-icon {
+  filter: grayscale(1);
+}
+
 #navbar-title {
   font-family: var(--title);
   font-weight: 800;
   font-size: 1.8rem;
-  color: var(--light-green);
   transition: all 0.3s ease;
+}
+
+#navbar-title,
+.nav-link,
+.nav-link:hover,
+.nav-link:focus {
+  color: var(--dark-color);
 }
 
 .navbar.scrolled #navbar-title,
@@ -18,6 +31,7 @@
 .offcanvas-body .dropdown-item {
   color: var(--dark-green) !important;
 }
+
 /* Dark overlay ketika sidebar terbuka */
 body.sidebar-open::before {
   content: "";
@@ -35,7 +49,7 @@ body.sidebar-open::before {
 .navbar {
   background: transparent;
   transition: all 0.3s ease;
-  z-index: 1000;
+  padding: 0.8rem 1rem;
 }
 
 .navbar.scrolled {
@@ -50,13 +64,14 @@ body.sidebar-open .navbar {
 }
 
 .navbar-brand {
+  font-weight: 700;
+  color: var(--light-color);
   display: flex;
   align-items: center;
   transition: all 0.3s ease;
 }
 
 .nav-link {
-  color: var(--w09);
   font-weight: 500;
   padding: 0.8rem 1rem !important;
   border-radius: 8px;
@@ -68,13 +83,14 @@ body.sidebar-open .navbar {
 
 .nav-link:hover,
 .nav-link:focus {
-  color: var(--light-color) !important;
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(230, 230, 230, 0.5) !important;
   transform: translateY(-2px);
 }
 
-.navbar.scrolled .nav-link:hover {
-  background-color: rgba(46, 204, 113, 0.1);
+.navbar.scrolled .nav-link:hover,
+.navbar.scrolled .nav-link:focus {
+  color: var(--primary-green) !important;
+  background-color: rgba(46, 204, 113, 0.1) !important;
 }
 
 /* Styling untuk dropdown pada navbar (bukan sidebar) */
@@ -96,9 +112,9 @@ body.sidebar-open .navbar {
 }
 
 .navbar .dropdown-item:hover {
-  background-color: var(--light-green);
-  color: var(--primary-green) !important;
   font-weight: 500;
+  background-color: #d5f5e3;
+  color: var(--primary-green) !important;
   transform: translateX(5px);
 }
 
@@ -131,12 +147,12 @@ body.sidebar-open .navbar {
 }
 
 .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgb(150, 150, 150)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
   transition: all 0.3s ease;
 }
 
 .navbar.scrolled .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgb(35, 95, 65)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 .offcanvas {
@@ -164,8 +180,8 @@ body.sidebar-open .navbar {
 }
 
 .offcanvas-title {
-  font-family: var(--title);
   color: var(--light-green);
+  font-family: var(--title);
   font-weight: 700;
   font-size: 1.8rem;
 }
@@ -210,8 +226,8 @@ body.sidebar-open .navbar {
 }
 
 .offcanvas-body .dropdown-item:hover {
-  background-color: var(--light-green);
-  color: var(--primary-green);
+  background-color: #d5f5e3;
+  color: var(--primary-green) !important;
   transform: translateX(5px);
 }
 
@@ -222,7 +238,7 @@ body.sidebar-open .navbar {
 /* Responsive styles */
 @media (max-width: 991.98px) {
   .navbar-collapse {
-    display: none !important;
+    display: none;
   }
 
   .offcanvas-body .dropdown-menu {
@@ -243,8 +259,8 @@ body.sidebar-open .navbar {
 
 /* Sederhanakan dropdown di sidebar */
 .offcanvas-body .dropdown-menu {
-  position: static !important;
-  transform: none !important;
+  position: static;
+  transform: none;
   float: none;
   width: 100%;
   margin-top: 0.5rem;

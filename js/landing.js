@@ -237,6 +237,33 @@ $(document).ready(function () {
     }, 250);
   });
 
+  //sec3
+  function showMoreCards() {
+    $(".hidden-card").each(function () {
+      $(this).fadeIn(500).removeClass("hidden-card");
+    });
+
+    $("#showMoreBtn").parent().fadeOut(500);
+  }
+
+  $("#showMoreBtn").on("click", showMoreCards);
+
+  function checkScreenSize() {
+    if ($(window).width() >= 993) {
+      $(".hidden-card").removeClass("hidden-card").show();
+      $(".container-button-showmore").hide();
+    } else {
+      $(".card-row .col-lg-4:not(:first-child)").addClass("hidden-card").hide();
+      $(".container-button-showmore").show();
+    }
+  }
+
+  // Jalankan saat halaman dimuat
+  checkScreenSize();
+
+  // Jalankan saat ukuran jendela berubah
+  $(window).on("resize", checkScreenSize);
+
   //carbon cal intro
   let categories = {};
 
@@ -412,57 +439,4 @@ $(document).ready(function () {
     setTimeout(checkOverflow, 500);
     $(window).resize(checkOverflow);
   });
-
-  //footer
-  function animateFooter() {
-    $(".animate-footer").each(function () {
-      let position = $(this).offset().top;
-      let scroll = $(window).scrollTop();
-      let windowHeight = $(window).height();
-
-      if (scroll + windowHeight - 100 > position) {
-        $(this).addClass("visible");
-      }
-    });
-  }
-
-  // Panggil saat load dan scroll
-  animateFooter();
-  $(window).scroll(function () {
-    animateFooter();
-  });
-
-  // Validasi form sederhana
-  $("form").submit(function (e) {
-    e.preventDefault();
-    const email = $(this).find("input[type='email']").val();
-
-    if (email === "") {
-      alert("Silakan masukkan alamat email Anda");
-      return;
-    }
-
-    if (!isValidEmail(email)) {
-      alert("Silakan masukkan alamat email yang valid");
-      return;
-    }
-
-    alert("Terima kasih! Anda telah berlangganan newsletter kami.");
-    $(this).find("input[type='email']").val("");
-  });
-
-  function isValidEmail(email) {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  }
-
-  // Animasi untuk judul footer saat dihover
-  $(".footer-title", ".main-title").hover(
-    function () {
-      $(this).css("transform", "translateY(-2px)");
-    },
-    function () {
-      $(this).css("transform", "translateY(0)");
-    }
-  );
 });
