@@ -1,11 +1,3 @@
-:root {
-  --primary-green: #27ae60;
-  --light-green: #d5f5e3;
-  --dark-green: #2f502c;
-  --w09: rgba(255, 255, 255, 0.9);
-  --title: "Caveat", "Georgia";
-}
-
 #site-icon {
   width: 2rem;
   height: 2rem;
@@ -76,7 +68,7 @@ body.sidebar-open .navbar {
 
 .nav-link:hover,
 .nav-link:focus {
-  color: white !important;
+  color: var(--light-color) !important;
   background-color: rgba(255, 255, 255, 0.15);
   transform: translateY(-2px);
 }
@@ -104,7 +96,7 @@ body.sidebar-open .navbar {
 }
 
 .navbar .dropdown-item:hover {
-  background-color: #d5f5e3;
+  background-color: var(--light-green);
   color: var(--primary-green) !important;
   font-weight: 500;
   transform: translateX(5px);
@@ -151,7 +143,7 @@ body.sidebar-open .navbar {
   background: rgba(39, 174, 96, 0.15) !important;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  color: white;
+  color: var(--light-color);
   border-left: 1px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -195,7 +187,7 @@ body.sidebar-open .navbar {
 
 .offcanvas-body .nav-link:hover {
   background-color: rgba(255, 255, 255, 0.2);
-  color: white !important;
+  color: var(--light-color) !important;
   transform: translateX(5px);
 }
 
