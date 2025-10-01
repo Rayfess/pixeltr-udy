@@ -24,11 +24,13 @@
     <link rel="stylesheet" href="/css/landing.css" />
     <link rel="stylesheet" href="/css/navbar.css" />
     <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/scarbonc.css" />
 
     <script src="/js/navbar.js"></script>
     <script src="/js/btnlanding.js"></script>
     <script src="/js/landing.js"></script>
     <script src="/js/footer.js"></script>
+    <script src="/js/scarbonc.js"></script>
   </head>
 
   <body>
@@ -281,14 +283,14 @@
           membangun masa depan yang lebih hijau mulai dari hal paling dasar, yaitu kesadaran.
         </h2>
       </div>
-      <div class="button-wrappers d-inline-flex position-relative">
+      <div class="d-inline-flex position-relative">
         <button class="btn-heroPage text-white z-0 px-5 py-3 position-relative rounded-3 fw-bold">
           Mulai Perubahan
         </button>
         <div
           class="icon-circle z-1 d-flex align-items-center justify-content-center rounded-circle position-absolute"
         >
-          <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" class="icon">
+          <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" class="icon-btnH">
             <path
               d="M258.9,48C141.92,46.42,46.42,141.92,48,258.9,49.56,371.09,140.91,462.44,253.1,464c117,1.6,212.48-93.9,210.88-210.88C462.44,140.91,371.09,49.56,258.9,48ZM351,175.24,268.76,361.76c-4.79,10.47-20.78,7-20.78-4.56V268a4,4,0,0,0-4-4H154.8c-11.52,0-15-15.87-4.57-20.67L336.76,161A10.73,10.73,0,0,1,351,175.24Z"
               fill="white"
@@ -427,9 +429,7 @@
         <div class="row">
           <div class="col-md-12 col-lg-7">
             <div class="container">
-              <h1 class="fs-1 fw-bold">
-                Bagikan dan Jelajahi Pengalaman nyata dari sesama pengguna
-              </h1>
+              <h1 class="fs-1 fw-bold">Jelajahi Berbagai Pengalaman nyata dari sesama pengguna</h1>
               <p class="fs-6 mb-5" style="text-align: justify">
                 Setiap orang punya cara unik untuk menjaga bumi ada yang hemat listrik, ada yang
                 kurangi plastik, ada pula yang lebih suka bersepeda. Ceritakan versi Anda di ruang
@@ -677,142 +677,110 @@
     </section>
 
     <!-- intro to carboncal -->
-    <section
-      class="pagepage d-flex justify-content-center align-items-center flex-column mb-5"
-      id="statistikEmisi"
-    >
-      <div class="container d-flex justify-content-center align-items-center flex-column">
-        <h1 class="fs-1 fw-bold mb-1 text-center">Mulai Kenali Jejak Karbonmu</h1>
-        <p class="text-center mb-3">
-          Amati kegiatanmu sehari-hari, dan temukan dampaknya terhadap bumi. Ambil langkah kecil
-          hari ini untuk perubahan besar esok.
-        </p>
-      </div>
-      <div class="container px-2 d-flex justify-content-center align-items-center">
-        <div class="carbon-container">
-          <div class="carbon-card">
-            <div class="card-inner">
-              <div class="card-left">
-                <div class="card-bg" id="category-bg"></div>
-                <div class="card-overlay"></div>
-
-                <div class="category-content">
-                  <div class="category-icon">
-                    <i class="fas fa-home" id="category-icon"></i>
-                  </div>
-                  <h2 class="category-title" id="category-title">Rumah Tangga</h2>
-                  <p class="category-desc" id="category-desc">
-                    Aktivitas rumah tangga menyumbang sekitar 20% dari total emisi karbon di
-                    Indonesia. Mulai dari penggunaan listrik, air, hingga pengelolaan sampah
-                    memiliki dampak signifikan terhadap lingkungan.
-                  </p>
+    <section class="pagepage" id="statistikEmisi">
+      <div class="carbon-container">
+        <div class="carbon-card fade-in">
+          <div class="card-header bg-dark bg-gradient">
+            <h2 class="card-title" id="category-title">Rumah Tangga</h2>
+            <div class="d-flex align-items-center">
+              <div class="category-selector">
+                <div class="category-btn active" data-category="home" title="Rumah Tangga">
+                  <i class="fas fa-home"></i>
                 </div>
+                <div class="category-btn" data-category="foods" title="Makanan">
+                  <i class="fas fa-utensils"></i>
+                </div>
+                <div class="category-btn" data-category="transportation" title="Transportasi">
+                  <i class="fas fa-car"></i>
+                </div>
+              </div>
+            </div>
+          </div>
 
-                <div class="category-switcher">
-                  <div
-                    class="calculator-btn"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="left"
-                    title="Mulai Kalkulasi"
-                  >
-                    <i class="fas fa-calculator"></i>
-                  </div>
+          <div class="card-body">
+            <!-- Overview Section -->
+            <div class="overview-section">
+              <div class="overview-image" id="overview-image"></div>
+              <div class="overview-content">
+                <h3 class="overview-title" id="overview-title">Konsumsi Energi Rumah Tangga</h3>
+                <p class="overview-text" id="overview-text">
+                  Sektor rumah tangga Indonesia menyumbang 17% dari total emisi karbon nasional.
+                  Penggunaan listrik menjadi kontributor terbesar dengan 58%, diikuti oleh
+                  transportasi pribadi (22%) dan pengelolaan sampah (12%).
+                </p>
+                <div class="data-source" id="overview-source">
+                  Sumber: Kementerian ESDM & BPS 2023
+                </div>
+              </div>
+            </div>
 
-                  <div
-                    class="category-btn active"
-                    data-category="home"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="left"
-                    title="Rumah Tangga"
-                  >
-                    <i class="fas fa-home"></i>
+            <!-- Stats Grid -->
+            <div class="stats-grid" id="stats-grid">
+              <!-- Stats will be loaded by JavaScript -->
+            </div>
+
+            <!-- Detail Toggle -->
+            <div class="detail-toggle">
+              <button class="toggle-details-btn" id="toggle-details">
+                <i class="fas fa-chevron-down"></i> Tampilkan Detail Lengkap
+              </button>
+            </div>
+
+            <!-- Detail Section (Initially Hidden) -->
+            <div class="detail-section collapsed" id="detail-content">
+              <!-- Chart Container -->
+              <div class="chart-container">
+                <h3 class="chart-title" id="chart-title">Sumber Emisi Karbon Rumah Tangga</h3>
+                <div class="chart-content">
+                  <div class="pie-chart" id="pie-chart">
+                    <div class="pie-center">
+                      <i class="fas fa-wind"></i>
+                    </div>
                   </div>
-                  <div
-                    class="category-btn"
-                    data-category="foods"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="left"
-                    title="Makanan"
-                  >
-                    <i class="fas fa-utensils"></i>
-                  </div>
-                  <div
-                    class="category-btn"
-                    data-category="transportation"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="left"
-                    title="Transportasi"
-                  >
-                    <i class="fas fa-car"></i>
-                  </div>
+                </div>
+                <div class="legend" id="chart-legend"></div>
+              </div>
+
+              <!-- Data Grid -->
+              <div class="data-grid">
+                <div class="data-card">
+                  <h3><i class="fas fa-list"></i> Faktor Penentu</h3>
+                  <ul class="factors-list" id="factors-list">
+                    <!-- Content will be loaded by JavaScript -->
+                  </ul>
+                </div>
+                <div class="data-card">
+                  <h3><i class="fas fa-exclamation-triangle"></i> Dampak Lingkungan</h3>
+                  <ul class="impacts-list" id="impacts-list">
+                    <!-- Content will be loaded by JavaScript -->
+                  </ul>
+                </div>
+                <div class="data-card">
+                  <h3><i class="fas fa-lightbulb"></i> Solusi</h3>
+                  <ul class="solutions-list" id="solutions-list">
+                    <!-- Content will be loaded by JavaScript -->
+                  </ul>
                 </div>
               </div>
 
-              <div class="card-right">
-                <div class="default-content">
-                  <div class="default-icon">
-                    <i class="fas fa-home" id="default-category-icon"></i>
-                  </div>
-                  <p class="default-text">Arahkan kursor untuk melihat detail emisi karbon</p>
-
-                  <div class="quick-stats">
-                    <div class="stat-item">
-                      <div class="stat-value" id="stat-value-1">20%</div>
-                      <div class="stat-label">Total Emisi</div>
-                    </div>
-                    <div class="stat-item">
-                      <div class="stat-value" id="stat-value-2">72 Jt</div>
-                      <div class="stat-label">Ton CO2/tahun</div>
-                    </div>
-                    <div class="stat-item">
-                      <div class="stat-value" id="stat-value-3">45%</div>
-                      <div class="stat-label">Dari Listrik</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="carbon-data">
-                  <div class="carbon-data-content">
-                    <h2 id="data-title">Data Emisi Karbon Rumah Tangga di Indonesia</h2>
-
-                    <div class="data-card active" id="general-card">
-                      <h3>Gambaran Umum</h3>
-                      <p id="general-overview">Memuat data...</p>
-                    </div>
-
-                    <div class="chart-container active" id="chart-card">
-                      <h3 class="chart-title" id="chart-title">Sumber Emisi Karbon Rumah Tangga</h3>
-                      <div class="pie-chart-container">
-                        <div class="pie-chart" id="pie-chart">
-                          <div class="pie-center"><i class="fa-solid fa-wind"></i></div>
-                        </div>
-                        <div class="pie-legend" id="pie-legend"></div>
-                      </div>
-                    </div>
-
-                    <div class="data-card active" id="factors-card">
-                      <h3>Faktor Penentu</h3>
-                      <ul class="factors-list" id="factors-list">
-                        <li>Memuat data...</li>
-                      </ul>
-                      <div class="read-more">
-                        Lihat selengkapnya <i class="fas fa-chevron-down"></i>
-                      </div>
-                    </div>
-
-                    <div class="data-card active" id="impacts-card">
-                      <h3>Dampak Lingkungan</h3>
-                      <ul class="impacts-list" id="impacts-list">
-                        <li>Memuat data...</li>
-                      </ul>
-                      <div class="read-more">
-                        Lihat selengkapnya <i class="fas fa-chevron-down"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="scroll-indicator">
-                    <i class="fas fa-chevron-down"></i>
-                  </div>
+              <!-- Action Section -->
+              <div class="action-section bg-dark bg-gradient">
+                <h3 class="action-title">Siap Mengurangi Jejak Karbon Anda?</h3>
+                <p>
+                  Bergabunglah dengan komunitas kami dan mulailah perjalanan menuju kehidupan yang
+                  lebih berkelanjutan.
+                </p>
+                <div class="action-buttons">
+                  <a
+                    href="/pages/carboncal.html"
+                    class="btn-primary-custom text-decoration-none"
+                    id="calculator-btn"
+                  >
+                    <i class="fas fa-calculator"></i> Hitung Jejak Karbon
+                  </a>
+                  <a href="" class="btn-secondary-custom text-decoration-none" id="learn-more-btn">
+                    <i class="fas fa-book"></i> Pelajari Lebih Lanjut
+                  </a>
                 </div>
               </div>
             </div>
@@ -842,8 +810,8 @@
                   gerakan komunitas yang menginspirasi. Semua terangkum dalam satu platform untuk
                   mendorong gaya hidup berkelanjutan
                 </p>
-                <div class="button-wrappers">
-                  <a href="/pages/news.html" class="btn"> Baca Selengkapnya </a>
+                <div>
+                  <a href="/pages/news.html" class="btn btn-success"> Baca Selengkapnya </a>
                 </div>
               </div>
             </div>
@@ -903,7 +871,7 @@
                 <div
                   class="container-views container justify-content-start px-0 d-flex align-items-center gap-2 mb-md-5"
                 >
-                  <button>Latest</button>
+                  <button class="pp">Latest</button>
                   <i class="ri-eye-line fs-5"></i>
                   <p>203.213</p>
                 </div>
@@ -1012,7 +980,7 @@
           Bergabunglah dengan kami dalam upaya melestarikan bumi untuk generasi mendatang. Setiap
           tindakan kecil dapat membuat perubahan besar.
         </p>
-        <a href="#" class="btn btn-join">Gabung Sekarang</a>
+        <a href="#" class="btn btn-warning btn-join">Gabung Sekarang</a>
       </div>
 
       <div class="scroll-indicator">
