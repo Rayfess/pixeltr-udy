@@ -579,20 +579,24 @@
                             <div class="donation-card card shadow">
                               <div class="card-body">
                                 <div class="donation-icon text-center">
-                                  <i class="fas fa-tree"></i>
+                                  <i class="fas fa-server"></i>
                                 </div>
-                                <h5>5 Pohon Pinus</h5>
-                                <p class="text-muted">Menetralisir ~420 kg CO₂ per tahun</p>
-                                <h4 class="text-success">Rp 500.000</h4>
+                                <h5>Dukungan Operasional Platform</h5>
+                                <p class="text-muted">
+                                  Bantu biaya server dan pemeliharaan platform untuk menjangkau
+                                  lebih banyak pengguna
+                                </p>
+                                <h4 class="text-success">Rp 25.000</h4>
                                 <p class="carbon-impact">
-                                  <i class="fas fa-cloud me-1"></i> ~70 kg CO₂ per pohon/tahun
+                                  <i class="fas fa-users me-1"></i> Menambah kapasitas pengunjung
+                                  website
                                 </p>
                                 <div class="text-end">
                                   <button
                                     class="btn btn-outline-success mt-3 px-4 py-1 select-donation"
-                                    data-amount="500000"
-                                    data-desc="5 Pohon Pinus"
-                                    data-co2="420"
+                                    data-amount="25000"
+                                    data-desc="Dukungan Operasional Platform"
+                                    data-co2="0"
                                   >
                                     Pilih
                                   </button>
@@ -607,18 +611,21 @@
                                 <div class="donation-icon text-center">
                                   <i class="ri-tree-fill"></i>
                                 </div>
-                                <h5>10 Pohon Beringin</h5>
-                                <p class="text-muted">Menetralisir ~1000 kg CO₂ per tahun</p>
-                                <h4 class="text-success">Rp 900.000</h4>
+                                <h5>Program Penanaman dan Perawatan Pohon Secara Masal</h5>
+                                <p class="text-muted">
+                                  Dukung penyelenggaraan penanaman pohon untuk bersama
+                                </p>
+                                <h4 class="text-success">Rp 50.000</h4>
                                 <p class="carbon-impact">
-                                  <i class="fas fa-cloud me-1"></i> ~100 kg CO₂ per pohon/tahun
+                                  <i class="fas fa-users me-1"></i> Bantu Orang yang sedang menanam
+                                  dan merawat pohon
                                 </p>
                                 <div class="text-end">
                                   <button
                                     class="btn btn-outline-success px-4 py-1 mt-3 select-donation"
-                                    data-amount="900000"
-                                    data-desc="10 Pohon Beringin"
-                                    data-co2="1000"
+                                    data-amount="50000"
+                                    data-desc="Bantu Dukung Penanam dan Perawat Pohon"
+                                    data-co2="0"
                                   >
                                     Pilih
                                   </button>
@@ -631,15 +638,16 @@
                             <div class="donation-card card shadow">
                               <div class="card-body">
                                 <div class="donation-icon text-center">
-                                  <i class="fas fa-solar-panel"></i>
+                                  <i class="fas fa-graduation-cap"></i>
                                 </div>
-                                <h5>Energi Terbarukan</h5>
+                                <h5>Program Edukasi Lingkungan</h5>
                                 <p class="text-muted">
-                                  Mendukung proyek energi surya setara 800 kg CO₂
+                                  Dukung penyelenggaraan workshop dan materi edukasi mengenai isu
+                                  lingkungan
                                 </p>
-                                <h4 class="text-success">Rp 500.000</h4>
+                                <h4 class="text-success">Rp 20.000</h4>
                                 <p class="carbon-impact">
-                                  <i class="fas fa-bolt me-1"></i> ~800 kg CO₂ terhindar
+                                  <i class="fas fa-users me-1"></i> Edukasi Banyak Orang
                                 </p>
                                 <div class="text-end">
                                   <button
@@ -710,8 +718,16 @@
                                 <strong><span id="carbonOffset">0</span> kg CO₂</strong>
                               </div>
                               <div class="d-flex justify-content-between mb-2">
+                                <span>Biaya Admin:</span>
+                                <strong><span>Rp 2.500</span></strong>
+                              </div>
+                              <div class="d-flex justify-content-between mb-2">
+                                <span>Biaya Perawatan (per pohon):</span>
+                                <strong><span>Rp 10.000</span></strong>
+                              </div>
+                              <div class="d-flex justify-content-between mb-2">
                                 <span>Total Biaya:</span>
-                                <strong><span id="treeCost">Rp 0</span></strong>
+                                <strong><span id="totalCost">Rp 0</span></strong>
                               </div>
                               <div class="d-flex justify-content-between mb-2">
                                 <span>Perkiraan Waktu Tumbuh:</span>
@@ -742,6 +758,7 @@
                                 type="number"
                                 class="form-control"
                                 min="10000"
+                                step="500"
                                 value="0"
                                 id="amountInput"
                               />
@@ -768,26 +785,9 @@
                                 <strong id="amountResult">Rp 0</strong>
                               </div>
                               <div class="d-flex justify-content-between mb-2">
-                                <span>Perkiraan Penyerapan Karbon:</span>
-                                <strong><span id="carbonFromMoney">0</span> kg CO₂/tahun</strong>
-                              </div>
-                              <div class="d-flex justify-content-between mb-2">
-                                <span>Biaya Administrasi:</span>
-                                <strong>Rp 2.500</strong>
-                              </div>
-                              <div class="d-flex justify-content-between mb-2">
                                 <span>Total yang akan dibayar:</span>
                                 <strong><span id="totalAmount">Rp 0</span></strong>
                               </div>
-                            </div>
-
-                            <div class="info-box">
-                              <h6><i class="fas fa-info-circle"></i> Informasi</h6>
-                              <p>
-                                Donasi Anda akan digunakan untuk menanam dan merawat pohon.
-                                <span class="fw-semibold">Setiap Rp 10.000</span> setara dengan
-                                penanaman dan perawatan 1 pohon selama 1 tahun.
-                              </p>
                             </div>
                           </div>
                         </div>
@@ -801,7 +801,7 @@
                         </div>
                         <p id="selectedDescription" class="fw-semibold mb-1"></p>
                         <p class="mb-1">Total: <strong id="selectedAmount"></strong></p>
-                        <p class="mb-0">
+                        <p class="mb-0 pkarbon">
                           Perkiraan Penyerapan Karbon: <strong id="selectedCO2">0</strong> kg
                           CO₂/tahun
                         </p>

@@ -582,3 +582,13 @@ body {
     font-size: 0.7rem;
   }
 }
+
+.cost-breakdown {
+  border-left: 3px solid #28a745;
+  padding-left: 10px;
+  margin: 5px 0;
+}
+
+.cost-breakdown small {
+  font-size: 0.8em;
+}

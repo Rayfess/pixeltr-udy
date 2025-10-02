@@ -1,4 +1,5 @@
 $(function () {
+  const adminFee = 2500;
   let currentCategory = "home";
   let emissionData = {};
   let treeData = {};
@@ -187,6 +188,18 @@ $(function () {
     updateTotals();
   });
 
+  function cleanupDonate() {
+    $("#carbon-form")[0].reset();
+    $("#emission-results").empty();
+    $(".vehicle-card").removeClass("selected");
+    $("#selected-vehicle-display").hide();
+    $(".donation-card").removeClass("selected");
+    $("#selectedDonation").addClass("d-none");
+    selectedPackage = null;
+    selectedVehicle = null;
+    updateTotals();
+  }
+
   function updateCategoryDropdown() {
     const { title, icon } = emissionData[currentCategory];
     $("#categoryDropdownBtn").html(`
@@ -262,7 +275,7 @@ $(function () {
 
     setTimeout(function () {
       hideCarbonAlertModal();
-    }, 5000);
+    });
   }
 
   function hideCarbonAlertModal() {
@@ -402,16 +415,20 @@ $(function () {
 
     if (selectedTreeType && treeData[selectedTreeType]) {
       const tree = treeData[selectedTreeType];
-      const cost = count * tree.cost;
+      const baseCost = count * tree.cost + 2500;
+      const plantingCareCost = count * 10000; // Biaya penanaman & perawatan Rp 2.500 per pohon
+      const totalCost = baseCost + plantingCareCost;
       const carbonOffset = count * tree.absorption;
 
-      $("#treeCost").text("Rp " + cost.toLocaleString("id-ID"));
       $("#carbonOffset").text(carbonOffset);
 
       // Update selected donation jika ini adalah donasi yang dipilih
       if (selectedDonationType === "pohon") {
         $("#selectedDescription").text(`${count} Pohon ${tree.name}`);
-        $("#selectedAmount").text("Rp " + cost.toLocaleString("id-ID"));
+        $("#selectedAmount").html(`
+                Rp ${totalCost.toLocaleString("id-ID")}
+                <small class="d-block text-muted">Termasuk biaya penanaman & perawatan</small>
+            `);
         $("#selectedCO2").text(carbonOffset);
         $("#selectedDonation").removeClass("d-none");
       }
@@ -421,18 +438,30 @@ $(function () {
   // Fungsi untuk memperbarui donasi uang
   function updateMoneyDonation() {
     const amount = parseInt($("#amountInput").val()) || 0;
-    const carbonEstimate = Math.floor(amount / 10000) * 22; // Setiap Rp 10.000 = 1 pohon = 22 kg CO₂/tahun
-    const totalAmount = amount + 2500; // Tambah biaya administrasi
+    const carbonEstimate = Math.floor(amount / 10000) * 22;
 
+    const totalAmount = amount + adminFee;
     $("#amountResult").text("Rp " + amount.toLocaleString("id-ID"));
     $("#carbonFromMoney").text(carbonEstimate);
+
+    $("#amountResult").html(`
+        Rp ${amount.toLocaleString("id-ID")}
+        <small class="d-block text-muted">+ Biaya admin: Rp ${adminFee.toLocaleString(
+          "id-ID"
+        )}</small>
+    `);
+
     $("#totalAmount").text("Rp " + totalAmount.toLocaleString("id-ID"));
 
     if (selectedDonationType === "uang" && amount >= 10000) {
       $("#selectedDescription").text("Donasi Mata Uang");
-      $("#selectedAmount").text("Rp " + amount.toLocaleString("id-ID"));
+      $("#selectedAmount").html(`
+            Rp ${totalAmount.toLocaleString("id-ID")}
+            <small class="d-block text-muted">Termasuk biaya administrasi</small>
+        `);
       $("#selectedCO2").text(carbonEstimate);
       $("#selectedDonation").removeClass("d-none");
+      $(".pkarbon").addClass("d-none");
     } else {
       $("#selectedDonation").addClass("d-none");
       return;
@@ -441,24 +470,34 @@ $(function () {
 
   function updateSelectedDonation() {
     if (selectedPackage) {
+      const totalAmount = selectedPackage.amount + adminFee;
+
       $("#selectedDescription").text(selectedPackage.desc);
-      $("#selectedAmount").text("Rp " + selectedPackage.amount.toLocaleString("id-ID"));
+      $("#selectedAmount").html(`
+            Rp ${totalAmount.toLocaleString("id-ID")}
+            <small class="d-block text-muted">Termasuk biaya administrasi</small>
+        `);
       $("#selectedCO2").text(selectedPackage.co2);
+      $(".pkarbon").addClass("d-none");
       $("#selectedDonation").removeClass("d-none");
     }
   }
 
   function processDonation() {
     let message = "";
+    let totalAmount = 0;
 
     if (selectedDonationType === "paket") {
       if (!selectedPackage) {
         alert("Silakan pilih paket donasi terlebih dahulu");
         return;
       }
+      totalAmount = selectedPackage.amount + adminFee;
       message = `Terima kasih! Donasi Anda untuk ${
         selectedPackage.desc
-      } sebesar Rp ${selectedPackage.amount.toLocaleString("id-ID")} berhasil diproses.`;
+      } sebesar Rp ${totalAmount.toLocaleString(
+        "id-ID"
+      )} (termasuk biaya administrasi) berhasil diproses.`;
     } else if (selectedDonationType === "pohon") {
       if (!selectedTreeType || !treeData[selectedTreeType]) {
         alert("Silakan pilih jenis pohon terlebih dahulu");
@@ -466,29 +505,32 @@ $(function () {
       }
       const count = parseInt($("#treeCount").val()) || 1;
       const tree = treeData[selectedTreeType];
-      const cost = count * tree.cost;
+      const baseCost = count * tree.cost + 2500;
+      const plantingCareCost = count * 10000; // Biaya penanaman & perawatan Rp 2.500 per pohon
+      const totalCost = baseCost + plantingCareCost;
 
       message = `Terima kasih! Donasi Anda untuk ${count} pohon ${
         tree.name
-      } sebesar Rp ${cost.toLocaleString("id-ID")} berhasil diproses.`;
+      } sebesar Rp ${totalCost.toLocaleString(
+        "id-ID"
+      )} (termasuk biaya penanaman & perawatan) berhasil diproses.`;
     } else if (selectedDonationType === "uang") {
       const amount = parseInt($("#amountInput").val()) || 0;
       if (amount < 10000) {
         alert("Minimum donasi adalah Rp 10.000");
         return;
       }
-      message = `Terima kasih! Donasi Anda sebesar Rp ${amount.toLocaleString(
+      totalAmount = amount + adminFee;
+      message = `Terima kasih! Donasi Anda sebesar Rp ${totalAmount.toLocaleString(
         "id-ID"
-      )} berhasil diproses.`;
+      )} (termasuk biaya administrasi) berhasil diproses.`;
     }
 
     alert(message);
     $("#donationModal").modal("hide");
 
-    // Reset form
-    $(".donation-card").removeClass("selected");
-    $("#selectedDonation").addClass("d-none");
-    selectedPackage = null;
+    // Reset form after DOnate
+    cleanupDonate();
   }
 
   // treetree
@@ -520,12 +562,15 @@ $(function () {
 
     const carbonAbsorption = Math.round(tree.absorption * count);
 
-    const cost = tree.cost * count;
+    const baseCost = count * tree.cost + 2500; // Biaya Admin
+    const plantingCareCost = count * 10000; // Biaya penanaman & perawatan Rp 2.500 per pohon
+    const totalCost = baseCost + plantingCareCost;
 
     $("#selectedTree").text(tree.name);
     $("#treeCountResult").text(count);
     $("#carbonOffset").text(carbonAbsorption);
-    $("#treeCost").text("Rp " + cost.toLocaleString("id-ID"));
+    $("#treeCost").text("Rp " + baseCost.toLocaleString("id-ID"));
+    $("#totalCost").text("Rp " + totalCost.toLocaleString("id-ID"));
     $("#growthTime").text(tree.growth);
 
     updateTreeDetails();
