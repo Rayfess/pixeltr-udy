@@ -22,8 +22,8 @@
     "title": "Transportation",
     "icon": "fa-solid fa-car",
     "type": {
-      "Bensin": { "liter": 2.3 },
-      "Solar": { "liter": 2.6 }
+      "Bensin": { "liter": 2.31 },
+      "Solar": { "liter": 2.68 }
     }
   }
 }

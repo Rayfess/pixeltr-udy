@@ -252,6 +252,7 @@
                       class="form-control fw-semibold"
                       min="0"
                       step="0.01"
+                      placeholder="0"
                       aria-label="Jumlah penggunaan"
                     />
                   </div>
@@ -279,32 +280,158 @@
                     </select>
                   </div>
                 </div>
+
                 <div class="trnsp">
                   <div class="mb-3">
-                    <label for="distance" class="form-label text-success fw-medium"
-                      >Jarak Tempuh (Km) :</label
-                    >
+                    <label for="distance" class="form-label text-success fw-medium">
+                      <i class="ri-road-map-line me-1"></i>Jarak Tempuh (Km) :
+                    </label>
                     <input
                       type="number"
                       id="distance"
                       class="form-control fw-semibold"
                       min="0"
-                      step="0.01"
-                      aria-label="Jumlah penggunaan"
+                      step="0.1"
+                      placeholder="0"
+                      aria-label="Jarak tempuh"
                     />
                   </div>
                   <div class="mb-3">
-                    <label for="efficiency" class="form-label text-success fw-medium"
-                      >Konsumsi Bahan Bakar (Km per Liter) :</label
-                    >
-                    <input
-                      type="number"
-                      id="efficiency"
-                      class="form-control fw-semibold"
-                      min="0"
-                      step="0.01"
-                      aria-label="Jumlah penggunaan"
-                    />
+                    <label class="form-label text-success fw-medium">
+                      <i class="ri-steering-2-line me-1"></i>Pilih Jenis Kendaraan :
+                    </label>
+
+                    <ul class="nav nav-pills mb-3" id="vehicleTabs" role="tablist">
+                      <li class="nav-item" role="presentation">
+                        <button
+                          class="pill-link active px-3 py-2 btn"
+                          id="motor-tab"
+                          data-bs-toggle="pill"
+                          data-bs-target="#motor"
+                          type="button"
+                        >
+                          <i class="ri-motorbike-fill me-1"></i>Motor
+                        </button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button
+                          class="pill-link px-3 py-2 btn"
+                          id="mobil-tab"
+                          data-bs-toggle="pill"
+                          data-bs-target="#mobil"
+                          type="button"
+                        >
+                          <i class="ri-car-line me-1"></i>Mobil
+                        </button>
+                      </li>
+                    </ul>
+
+                    <div class="tab-content" id="vehicleTabContent">
+                      <div class="tab-pane fade show active" id="motor" role="tabpanel">
+                        <div class="row g-2">
+                          <div class="col-12 col-md-4 mb-2">
+                            <div class="vehicle-card card text-center p-2" data-type="motor-kecil">
+                              <div class="my-2">
+                                <i class="fa-solid fa-motorcycle text-success fs-3"></i>
+                              </div>
+                              <div class="vehicle-info">
+                                <h6 class="mb-1 fw-semibold">Motor Kecil</h6>
+                                <small class="text-muted d-block">~52.8 km/L</small>
+                                <small class="text-muted">< 150cc</small>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-12 col-md-4 mb-2">
+                            <div class="vehicle-card card text-center p-2" data-type="motor-rata">
+                              <div class="my-2">
+                                <i class="fa-solid fa-motorcycle text-info fs-3"></i>
+                              </div>
+                              <div class="vehicle-info">
+                                <h6 class="mb-1 fw-semibold">Motor Rata-rata</h6>
+                                <small class="text-muted d-block">~38.4 km/L</small>
+                                <small class="text-muted">150-250cc</small>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-12 col-md-4 mb-2">
+                            <div class="vehicle-card card text-center p-2" data-type="motor-besar">
+                              <div class="my-2">
+                                <i class="fa-solid fa-motorcycle text-warning fs-3"></i>
+                              </div>
+                              <div class="vehicle-info">
+                                <h6 class="mb-1 fw-semibold">Motor Besar</h6>
+                                <small class="text-muted d-block">~24.6 km/L</small>
+                                <small class="text-muted">> 250cc</small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="tab-pane fade" id="mobil" role="tabpanel">
+                        <div class="row g-2">
+                          <div class="col-12 col-md-4 mb-2">
+                            <div class="vehicle-card card text-center p-2" data-type="mobil-kecil">
+                              <div class="my-2">
+                                <i class="fa-solid fa-car text-success fs-3"></i>
+                              </div>
+                              <div class="vehicle-info">
+                                <h6 class="mb-1 fw-semibold">Mobil Kecil</h6>
+                                <small class="text-muted d-block">~18.3 km/L</small>
+                                <small class="text-muted">LCGC</small>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-12 col-md-4 mb-2">
+                            <div class="vehicle-card card text-center p-2" data-type="mobil-rata">
+                              <div class="my-2">
+                                <i class="fa-solid fa-truck-pickup text-info fs-3"></i>
+                              </div>
+                              <div class="vehicle-info">
+                                <h6 class="mb-1 fw-semibold">Mobil Rata-rata</h6>
+                                <small class="text-muted d-block">~12.7 km/L</small>
+                                <small class="text-muted">MPV/Sedan</small>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-12 col-md-4 mb-2">
+                            <div class="vehicle-card card text-center p-2" data-type="mobil-besar">
+                              <div class="my-2">
+                                <i class="fa-solid fa-truck text-warning fs-3"></i>
+                              </div>
+                              <div class="vehicle-info">
+                                <h6 class="mb-1 fw-semibold">Mobil Besar</h6>
+                                <small class="text-muted d-block">~8.4 km/L</small>
+                                <small class="text-muted">SUV/Pickup</small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <input type="hidden" id="efficiency" value="" />
+                    <input type="hidden" id="selected-vehicle-type" value="" />
+
+                    <div class="mt-3" id="selected-vehicle-display" style="display: none">
+                      <div class="alert alert-success py-2">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div>
+                            <i class="ri-information-fill me-2"></i>
+                            <span class="fw-medium">Kendaraan dipilih: </span>
+                            <span id="selected-vehicle-text" class="fw-bold"></span>
+                            <span class="text-muted ms-2">(</span
+                            ><span id="selected-efficiency-text"></span
+                            ><span class="text-muted">)</span>
+                          </div>
+                          <small class="text-muted" id="selected-vehicle-desc"></small>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </form>
@@ -405,7 +532,7 @@
               >
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
-                    <div class="modal-header text-white" style="background-color: #28a745" ;>
+                    <div class="modal-header text-white">
                       <h5 class="modal-title" id="donationModalLabel">Pilih Jenis Donasi</h5>
                       <button
                         type="button"

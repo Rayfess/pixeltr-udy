@@ -479,6 +479,10 @@ body {
     padding: 0;
   }
 
+  .icon-berita svg {
+    width: 250px !important;
+  }
+
   .hero-news-page {
     display: flex;
     flex-direction: column;
