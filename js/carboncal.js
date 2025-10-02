@@ -9,72 +9,6 @@ $(function () {
   let selectedPackage = null;
   let selectedVehicle = null;
 
-  const vehicleEfficiencyData = {
-    // MOTOR - berdasarkan studi BPPT & ITS
-    "motor-kecil": {
-      name: "Motor Kecil (< 150cc)",
-      efficiency: 52.8,
-      icon: "ri-motorcycle-fill",
-      color: "text-primary",
-      description: "Honda Beat, Scoopy, Vario 125",
-      source: "BPPT (2023) - Efisiensi Motor <150cc",
-      type: "motor",
-    },
-    "motor-rata": {
-      name: "Motor Rata-rata (150-250cc)",
-      efficiency: 38.4,
-      icon: "ri-motorbike-fill",
-      color: "text-info",
-      description: "NMAX, PCX, Aerox 155",
-      source: "ITS Transportation Study (2022)",
-      type: "motor",
-    },
-    "motor-besar": {
-      name: "Motor Besar (> 250cc)",
-      efficiency: 24.6,
-      icon: "ri-temp-hot-fill",
-      color: "text-warning",
-      description: "CBR250RR, Ninja 250, GSX250",
-      source: "Ikatan Motor Indonesia (2023)",
-      type: "motor",
-    },
-
-    // MOBIL - berdasarkan Gaikindo & Kemenhub
-    "mobil-kecil": {
-      name: "Mobil Kecil (LCGC)",
-      efficiency: 18.3,
-      icon: "ri-car-fill",
-      color: "text-success",
-      description: "Ayla, Agya, Brio, Calya",
-      source: "Gaikindo Fuel Efficiency Report 2023",
-      type: "mobil",
-    },
-    "mobil-rata": {
-      name: "Mobil Rata-rata (MPV/Sedan)",
-      efficiency: 12.7,
-      icon: "ri-suv-fill",
-      color: "text-warning",
-      description: "Avanza, Xenia, Ertiga, Civic",
-      source: "Kemenhub - Konsumsi BBM 2023",
-      type: "mobil",
-    },
-    "mobil-besar": {
-      name: "Mobil Besar (SUV/Pickup)",
-      efficiency: 8.4,
-      icon: "ri-truck-fill",
-      color: "text-danger",
-      description: "Fortuner, Pajero, Ranger, Hilux",
-      source: "BPPT - Large Vehicle Efficiency 2023",
-      type: "mobil",
-    },
-  };
-
-  // Faktor emisi berdasarkan IPCC
-  const emissionFactors = {
-    bensin: 2.31, // kg CO2 per liter
-    solar: 2.68, // kg CO2 per liter
-  };
-
   //  ambil data jenis pohon dsb
   $.getJSON("/data/treedata.json", function (data) {
     treeData = data;
@@ -100,6 +34,7 @@ $(function () {
   $.getJSON("/data/emisi.json", function (data) {
     emissionData = data;
     populateUsageTypes();
+    initVehicleSelection();
   });
 
   // Inisialisasi tampilan
@@ -111,48 +46,8 @@ $(function () {
     $(".trnsp").addClass("d-none");
   }
 
-  function initializeVehicleSelection() {
-    // Event listener untuk kartu kendaraan
-    $(".vehicle-card").on("click", function () {
-      // Hapus seleksi sebelumnya
-      $(".vehicle-card").removeClass("selected");
-
-      // Seleksi kartu yang diklik
-      $(this).addClass("selected");
-
-      // Simpan data kendaraan
-      const vehicleType = $(this).data("type");
-      selectedVehicle = vehicleEfficiencyData[vehicleType];
-
-      // Update input tersembunyi
-      $("#efficiency").val(selectedVehicle.efficiency);
-      $("#selected-vehicle-type").val(vehicleType);
-
-      // Tampilkan kendaraan yang dipilih
-      updateSelectedVehicleDisplay();
-    });
-
-    // Event listener untuk tab
-    $("#vehicleTabs button").on("click", function () {
-      // Reset pilihan saat ganti tab
-      $(".vehicle-card").removeClass("selected");
-      selectedVehicle = null;
-      $("#selected-vehicle-display").hide();
-    });
-  }
-
-  // FUNGSI TAMPILAN KENDARAAN DIPILIH
-  function updateSelectedVehicleDisplay() {
-    if (selectedVehicle) {
-      $("#selected-vehicle-text").text(selectedVehicle.name);
-      $("#selected-efficiency-text").text(selectedVehicle.efficiency + " km/L");
-      $("#selected-vehicle-desc").text(selectedVehicle.description);
-      $("#selected-vehicle-display").show();
-    }
-  }
-
   function populateUsageTypes() {
-    const types = Object.keys(emissionData[currentCategory].type);
+    const types = Object.keys(emissionData[currentCategory].emtype);
     $("#usage-type").empty();
     types.forEach((t) => {
       $("#usage-type").append(new Option(t, t));
@@ -163,7 +58,7 @@ $(function () {
   $("#usage-type").on("change", updateUnits);
   function updateUnits() {
     const type = $("#usage-type").val();
-    const units = Object.keys(emissionData[currentCategory].type[type]);
+    const units = Object.keys(emissionData[currentCategory].emtype[type]);
     $("#unit").empty();
     units.forEach((u) => {
       $("#unit").append(new Option(u, u));
@@ -214,7 +109,11 @@ $(function () {
       // Kalkulasi emisi
       const efficiency = selectedVehicle.efficiency;
       const fuelUsed = distance / efficiency;
-      emission = fuelUsed * emissionFactors.bensin; // Gunakan faktor emisi bensin
+
+      const fuelType = $("#usage-type").val();
+      const emissionFactor = emissionData.transportation.emtype[fuelType].liter;
+
+      emission = fuelUsed * emissionFactor;
       tangguhan = Math.round(emission * 2000); // Carbon price Rp 2.000/kg CO2
 
       row = `
@@ -235,7 +134,7 @@ $(function () {
         return;
       }
 
-      const factor = emissionData[currentCategory].type[type][unit];
+      const factor = emissionData[currentCategory].emtype[type][unit];
       const multiplier = { harian: 365, mingguan: 52, bulanan: 12, tahunan: 1 }[freq];
 
       emission = amount * factor * multiplier;
@@ -265,10 +164,13 @@ $(function () {
     let totalTangguhan = 0;
 
     $("#emission-results tr").each(function () {
-      totalEmission += parseFloat($(this).find("td:eq(2)").text());
-      totalTangguhan += parseFloat(
-        $(this).find("td:eq(3)").text().replace(/\./g, "").replace(",", ".")
-      );
+      totalEmission += parseFloat($(this).find("td:eq(2)").text()) || 0;
+      let tangguhanText = $(this).find("td:eq(3)").text();
+
+      // Hapus semua karakter non-digit kecuali angka
+      let cleanTangguhan = tangguhanText.replace(/[^\d]/g, "");
+
+      totalTangguhan += parseInt(cleanTangguhan) || 0;
     });
 
     $("#overall-emission").text(totalEmission.toFixed(2) + " KgCO2");
@@ -661,5 +563,35 @@ $(function () {
     }
   }
 
-  initializeVehicleSelection();
+  function initVehicleSelection() {
+    $(".vehicle-card").on("click", function () {
+      $(".vehicle-card").removeClass("selected");
+      $(this).addClass("selected");
+
+      const vehicleType = $(this).data("type");
+      selectedVehicle = emissionData.transportation.emfactor[vehicleType];
+
+      // Update input tersembunyi
+      $("#efficiency").val(selectedVehicle.efficiency);
+      $("#selected-vehicle-type").val(vehicleType);
+
+      updateSelectedVehicleDisplay();
+    });
+
+    $("#vehicleTabs button").on("click", function () {
+      // Reset pilihan saat ganti tab
+      $(".vehicle-card").removeClass("selected");
+      selectedVehicle = null;
+      $("#selected-vehicle-display").hide();
+    });
+  }
+
+  function updateSelectedVehicleDisplay() {
+    if (selectedVehicle) {
+      $("#selected-vehicle-text").text(selectedVehicle.name);
+      $("#selected-efficiency-text").text(selectedVehicle.efficiency + " km/L");
+      $("#selected-vehicle-desc").text(selectedVehicle.description);
+      $("#selected-vehicle-display").show();
+    }
+  }
 });

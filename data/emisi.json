@@ -2,7 +2,7 @@
   "home": {
     "title": "Home",
     "icon": "fa-solid fa-house",
-    "type": {
+    "emtype": {
       "Listrik": { "KwH": 0.85 },
       "Minyak Tanah": { "liter": 2.5 },
       "LPG": { "Kg": 2.9 },
@@ -12,7 +12,7 @@
   "foods": {
     "title": "Foods",
     "icon": "fa-solid fa-utensils",
-    "type": {
+    "emtype": {
       "Daging": { "Kg": 27.0 },
       "Beras": { "Kg": 2.7 },
       "Kedelai": { "Kg": 0.3 }
@@ -21,9 +21,66 @@
   "transportation": {
     "title": "Transportation",
     "icon": "fa-solid fa-car",
-    "type": {
+    "emtype": {
       "Bensin": { "liter": 2.31 },
       "Solar": { "liter": 2.68 }
+    },
+    "emfactor": {
+      "motor-kecil": {
+        "name": "Motor Kecil (< 150cc)",
+        "efficiency": 52.8,
+        "icon": "ri-motorcycle-fill",
+        "color": "text-primary",
+        "description": "Honda Beat, Scoopy, Vario 125",
+        "source": "BPPT (2023) - Efisiensi Motor <150cc",
+        "type": "motor"
+      },
+      "motor-rata": {
+        "name": "Motor Rata-rata (150-250cc)",
+        "efficiency": 38.4,
+        "icon": "ri-motorbike-fill",
+        "color": "text-info",
+        "description": "NMAX, PCX, Aerox 155",
+        "source": "ITS Transportation Study (2022)",
+        "type": "motor"
+      },
+      "motor-besar": {
+        "name": "Motor Besar (> 250cc)",
+        "efficiency": 24.6,
+        "icon": "ri-temp-hot-fill",
+        "color": "text-warning",
+        "description": "CBR250RR, Ninja 250, GSX250",
+        "source": "Ikatan Motor Indonesia (2023)",
+        "type": "motor"
+      },
+
+      "mobil-kecil": {
+        "name": "Mobil Kecil (LCGC)",
+        "efficiency": 18.3,
+        "icon": "ri-car-fill",
+        "color": "text-success",
+        "description": "Ayla, Agya, Brio, Calya",
+        "source": "Gaikindo Fuel Efficiency Report 2023",
+        "type": "mobil"
+      },
+      "mobil-rata": {
+        "name": "Mobil Rata-rata (MPV/Sedan)",
+        "efficiency": 12.7,
+        "icon": "ri-suv-fill",
+        "color": "text-warning",
+        "description": "Avanza, Xenia, Ertiga, Civic",
+        "source": "Kemenhub - Konsumsi BBM 2023",
+        "type": "mobil"
+      },
+      "mobil-besar": {
+        "name": "Mobil Besar (SUV/Pickup)",
+        "efficiency": 8.4,
+        "icon": "ri-truck-fill",
+        "color": "text-danger",
+        "description": "Fortuner, Pajero, Ranger, Hilux",
+        "source": "BPPT - Large Vehicle Efficiency 2023",
+        "type": "mobil"
+      }
     }
   }
 }
