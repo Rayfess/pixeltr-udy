@@ -2,20 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Bumi Berseka</title>
+    <title>article-page</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
       rel="stylesheet"
     />
     <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css"
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css"
       rel="stylesheet"
     />
     <link
@@ -27,9 +24,17 @@
     <link rel="stylesheet" href="../css/navbara.css" />
     <link rel="stylesheet" href="../css/footer.css" />
 
-    <script src="../js/article.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+
+    <script defer src="../js/article.js"></script>
     <script src="../js/footer.js"></script>
-    <script src="../js/navbar.js"></script>
+    <script src="../js/navbara.js"></script>
   </head>
 
   <body>
@@ -52,10 +57,11 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
+        <!-- Konten navbar untuk desktop -->
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                 <i class="fas fa-compass me-2"></i>Explore
               </a>
               <ul class="dropdown-menu">
@@ -83,7 +89,7 @@
             </li>
 
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                 <i class="fas fa-bolt me-2"></i>Aksi & Perubahan
               </a>
               <ul class="dropdown-menu">
@@ -101,12 +107,12 @@
             </li>
 
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                 <i class="fas fa-bars me-2"></i>Menu
               </a>
               <ul class="dropdown-menu dropdown-menu-end">
                 <li>
-                  <a class="dropdown-item" href="/index.html">
+                  <a class="dropdown-item" href="/index.html#">
                     <i class="fas fa-home me-2"></i>Beranda
                   </a>
                 </li>
@@ -127,6 +133,7 @@
       </div>
     </nav>
 
+    <!-- Offcanvas sidebar untuk mobile -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
       <div class="offcanvas-header">
         <img src="../resources/icon/icon.png" alt="iconweb" id="site-icon" class="me-3" />
@@ -146,7 +153,7 @@
             </a>
             <ul class="dropdown-menu">
               <li>
-                <a class="dropdown-item" href="#statistikEmisi">
+                <a class="dropdown-item" href="/index.html#statistikEmisi">
                   <i class="fas fa-chart-line me-2"></i>Statistik Emisi
                 </a>
               </li>
@@ -174,12 +181,12 @@
             </a>
             <ul class="dropdown-menu">
               <li>
-                <a class="dropdown-item" href="#gabungSekarangNow">
+                <a class="dropdown-item" href="/index.html#gabungSekarangNow">
                   <i class="fas fa-users me-2"></i>Gabung Komunitas
                 </a>
               </li>
               <li>
-                <a class="dropdown-item" href="#section-6-landing">
+                <a class="dropdown-item" href="/index.html#section-6-landing">
                   <i class="fas fa-calendar-alt me-2"></i>Event & Berita
                 </a>
               </li>
@@ -195,7 +202,7 @@
                 <a class="dropdown-item" href="#"> <i class="fas fa-home me-2"></i>Beranda </a>
               </li>
               <li>
-                <a class="dropdown-item" href="#tntgProgram">
+                <a class="dropdown-item" href="/index.html#tntgProgram">
                   <i class="fas fa-info-circle me-2"></i>About Us
                 </a>
               </li>
@@ -210,7 +217,7 @@
       </div>
     </div>
 
-    <section class="hero-section mt-5">
+    <section class="hero-section">
       <div class="row">
         <div class="col">
           <div class="icon-hero">
@@ -246,75 +253,58 @@
     </section>
 
     <!-- carousel animation -->
-
     <section id="carousel">
-      <button class="nav-btn prev-btn">&#10094;</button>
-      <div class="container-carousel">
-        <div class="card-wrapper-carousel">
-          <li class="card-item-carousel">
-            <a
-              href="#"
-              class="card-link-carousel"
-              style="background: url('../resources/image/carousel-animation/main-animastion.png')"
-            >
-              <div class="card-content d-flex flex-column justify-content-between">
-                <p>Setiap tahun, dunia kehilangan 10 juta hektar hutan</p>
+      <div class="slider-wrapper">
+        <div class="infinite-slider" id="infinite-slider">
+          <div class="infinite-slider-track">
+            <div class="infinite-slider-item">
+              <div class="infinite-slider-card">
+                <img src="../resources/image/carousel-animation/main-animastion (4).png" alt="1" />
+                <div class="container pb-5">
+                  <p>Setiap tahun, dunia kehilangan 10 juta hektar hutan</p>
+                </div>
               </div>
-            </a>
-          </li>
+            </div>
+            <div class="infinite-slider-item">
+              <div class="infinite-slider-card">
+                <img src="../resources/image/carousel-animation/main-animastion (1).png" alt="2" />
+                <div class="container pb-5">
+                  <p>Diperkirakan 8 juta ton plastik masuk ke lautan setiap tahun</p>
+                </div>
+              </div>
+            </div>
+            <div class="infinite-slider-item">
+              <div class="infinite-slider-card">
+                <img src="../resources/image/carousel-animation/main-animastion (2).png" alt="3" />
+                <div class="container pb-5">
+                  <p>Transportasi menyumbang sekitar 24% emisi gas rumah kaca global</p>
+                </div>
+              </div>
+            </div>
+            <div class="infinite-slider-item">
+              <div class="infinite-slider-card">
+                <img src="../resources/image/carousel-animation/main-animastion (3).png" alt="4" />
+                <div class="container pb-5">
+                  <p>Lebih dari 1 juta spesies hewan akibat ulah manusia</p>
+                </div>
+              </div>
+            </div>
+            <div class="infinite-slider-item">
+              <div class="infinite-slider-card">
+                <img src="../resources/image/carousel-animation/main-animastion (5).png" alt="5" />
+                <div class="container pb-5">
+                  <p>
+                    Energi terbarukan diperkirakan bisa memenuhi 90% kebutuhan listrik dunia di 2050
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
 
-          <li class="card-item-carousel">
-            <a
-              href="#"
-              class="card-link-carousel"
-              style="background: url('../resources/image/carousel-animation/Rectangle\ 20.png')"
-            >
-              <p>Diperkirakan 8 juta ton plastik masuk ke lautan setiap tahun</p>
-            </a>
-          </li>
-
-          <li class="card-item-carousel">
-            <a
-              href="#"
-              class="card-link-carousel"
-              style="
-                background: url('../resources/image/carousel-animation/Rounded\ rectangle.png');
-              "
-            >
-              <p>Transportasi menyumbang sekitar 24% emisi gas rumah kaca global</p>
-            </a>
-          </li>
-
-          <!-- Card 5 -->
-          <li class="card-item-carousel">
-            <a
-              href="#"
-              class="card-link-carousel"
-              style="
-                background: url('../resources/image/carousel-animation/Rounded\ rectangle-2.png');
-              "
-            >
-              <p>Lebih dari 1 juta spesies hewan dan tumbuhan terancam punah akibat ulah manusia</p>
-            </a>
-          </li>
-
-          <!-- Card 6 -->
-          <li class="card-item-carousel">
-            <a
-              href="#"
-              class="card-link-carousel"
-              style="
-                background: url('../resources/image/carousel-animation/Rounded\ rectangle\ 3.png');
-              "
-            >
-              <p>
-                Energi terbarukan diperkirakan bisa memenuhi 90% kebutuhan listrik dunia di 2050
-              </p>
-            </a>
-          </li>
+          <button class="infinite-slider-nav prev" aria-label="Prev">‹</button>
+          <button class="infinite-slider-nav next" aria-label="Next">›</button>
         </div>
       </div>
-      <button class="nav-btn next-btn">&#10095;</button>
     </section>
 
     <section>
@@ -327,7 +317,7 @@
             <div class="card h-100 text-white bg-article-main">
               <div class="card-body d-flex flex-column justify-content-between">
                 <div class="d-flex justify-content-between align-items-center">
-                  <h5 class="title-article mb-0">1.Limbah Plastik</h5>
+                  <h5 class="fs-6 mb-0">1.Limbah Plastik</h5>
                   <button class="btn btn-light btn-sm btn-article-bergambar">Baca Dampaknya</button>
                 </div>
                 <p class="desc-article-bergambar">
@@ -343,7 +333,7 @@
                 <div class="card text-white bg-article-left">
                   <div class="card-body d-flex flex-column justify-content-between">
                     <div class="d-flex justify-content-between align-items-center">
-                      <h5 class="title-article mb-0 mb-0">2.Limbah Industri</h5>
+                      <h5 class="fs-6 mb-0 mb-0">2.Limbah Industri</h5>
                       <button class="btn btn-light btn-sm btn-article-bergambar">
                         Baca Dampaknya
                       </button>
@@ -356,7 +346,7 @@
                 <div class="card text-white bg-article-right">
                   <div class="card-body d-flex flex-column justify-content-between">
                     <div class="d-flex justify-content-between align-items-center">
-                      <h5 class="title-article mb-0">3.Limbah Organik</h5>
+                      <h5 class="fs-6 mb-0">3.Limbah Organik</h5>
                       <button class="btn btn-light btn-sm btn-article-bergambar">
                         Belajar Membuat Kompos
                       </button>
@@ -371,7 +361,7 @@
                 <div class="card text-white bg-article-bottom">
                   <div class="card-body d-flex flex-column justify-content-between">
                     <div class="d-flex justify-content-between align-items-center">
-                      <h5 class="title-article mb-0">4.Limbah Elektronik</h5>
+                      <h5 class="fs-6 mb-0">4.Limbah Elektronik</h5>
                       <button class="btn btn-light btn-sm btn-article-bergambar">
                         Lihat Solusi Daur Ulang
                       </button>
@@ -389,94 +379,42 @@
       </div>
     </section>
 
-    <section class="article-edukasi">
-      <div class="container d-flex justify-content-between align-items-center">
-        <h1 class="title-edukasi mb-0">
-          Apa Saja yang <br />
-          Meningkatkan Jejak Karbon?
-        </h1>
-        <img src="../resources/icon/icon-article-edukasi/Rectangle 86.png" alt="" width="109px" />
-      </div>
-      <div
-        class="container card-edukasi"
-        style="
-          background: url('../resources/image/article-edukasi/Rectangle\ 85.png') center no-repeat;
-        "
-      >
-        <div class="card-body d-flex flex-column justify-content-around">
-          <h1 class="title-article-edukasi">1.Transportasi Berbahan Bakar Fosil</h1>
-          <p class="desc-article-edukasi">
-            Sektor transportasi merupakan salah satu penyumbang terbesar jejak karbon. Kendaraan
-            bermotor yang menggunakan bahan bakar fosil (seperti bensin dan solar) menghasilkan
-            emisi CO₂ dan polutan lain dalam jumlah besar. Penggunaan mobil pribadi secara
-            berlebihan memperparah kemacetan dan meningkatkan konsumsi bahan bakar.Jika tidak
-            dikendalikan, emisi dari transportasi akan terus memperburuk kualitas udara serta
-            mempercepat pemanasan global. Alternatif ramah lingkungan seperti bersepeda, berjalan
-            kaki, menggunakan transportasi umum, atau beralih ke kendaraan listrik dapat membantu
-            menekan jejak karbon dari sektor ini.
-          </p>
-        </div>
-      </div>
-      <div
-        class="container card-edukasi"
-        style="background: url('../resources/image/article-edukasi/Rectangle\ 86.png') no-repeat"
-      >
-        <div class="card-body d-flex flex-column justify-content-around">
-          <h1 class="title-article-edukasi">2.Penggunaan Energi Listrik Berlebih</h1>
-          <p class="desc-article-edukasi">
-            Penggunaan listrik yang berlebihan menjadi salah satu faktor utama meningkatnya jejak
-            karbon, terutama karena sebagian besar energi masih dihasilkan dari pembakaran bahan
-            bakar fosil. Kebiasaan sederhana seperti membiarkan lampu tetap menyala pada ruangan
-            kosong, menggunakan pendingin ruangan dengan suhu terlalu rendah, hingga membiarkan
-            peralatan elektronik tetap terhubung meskipun tidak digunakan, tanpa disadari
-            memperbesar konsumsi energi. Peralatan rumah tangga lama yang boros listrik, seperti
-            kulkas atau mesin cuci, juga ikut memperburuk masalah ini. Semakin tinggi penggunaan
-            energi yang tidak efisien, semakin besar pula jumlah emisi karbon yang dilepaskan ke
-            atmosfer.
-          </p>
-        </div>
-      </div>
-      <div
-        class="container card-edukasi mb-5"
-        style="background: url('../resources/image/article-edukasi/Rectangle\ 87.png') no-repeat"
-      >
-        <div class="card-body d-flex flex-column justify-content-around">
-          <h1 class="title-article-edukasi">3.Penggunaan Plastik Sekali Pakai</h1>
-          <p class="desc-article-edukasi">
-            Plastik sekali pakai seperti kantong kresek, sedotan, styrofoam, dan kemasan makanan
-            merupakan salah satu penyumbang terbesar peningkatan jejak karbon. Proses produksinya
-            membutuhkan energi yang besar dari bahan bakar fosil, sementara daur ulangnya sangat
-            terbatas. Akibatnya, plastik ini sering berakhir di tempat pembuangan akhir atau
-            mencemari laut, membahayakan satwa dan ekosistem.Penggunaan plastik sekali pakai yang
-            berlebihan juga meningkatkan kebutuhan produksi baru, yang artinya semakin banyak emisi
-            karbon dilepaskan ke atmosfer.
-          </p>
-        </div>
-      </div>
-    </section>
-
     <!-- article grid -->
 
-    <section>
+    <section class="mt-5">
       <div class="container" id="container-section-article-5">
         <div class="row">
           <div class="col-md-6" id="information-article-5">
-            <h3>Mengurangi Jejak Karbon Lewat <span>Gaya Hidup Hijau</span></h3>
-            <p class="mt-3">
-              Setiap aktivitas manusia, mulai dari transportasi hingga konsumsi energi rumah tangga,
-              meninggalkan jejak karbon yang berdampak pada perubahan iklim. Dengan memahami sumber
-              utama emisi, kita dapat mulai mengambil langkah kecil yang berarti untuk menekan
-              dampaknya.
+            <h3 class="fs-1">Mengapa harus Mencegah <span>Emisi Karbon </span> ?</h3>
+            <p class="mt-3" style="text-align: justify">
+              Emisi karbon yang berlebihan menjadi penyumbang utama perubahan iklim dan pemanasan
+              global. Gas karbon dioksida yang dilepaskan dari aktivitas sehari-hari, seperti
+              penggunaan listrik, kendaraan bermotor, dan pembakaran bahan bakar fosil, dapat
+              menumpuk di atmosfer dan memerangkap panas bumi.
             </p>
-            <p>
-              Perubahan sederhana seperti menggunakan transportasi umum, mengurangi plastik sekali
-              pakai, serta memilih energi terbarukan dapat membantu menjaga kualitas udara dan
-              menekan pemanasan global. Aksi kecil dari individu, jika dilakukan bersama-sama, mampu
-              membawa perubahan besar bagi bumi.
+            <p style="text-align: justify">
+              Jika tidak dicegah, dampaknya dapat meluas, seperti cuaca ekstrem, naiknya permukaan
+              air laut, hingga berkurangnya kualitas udara yang kita hirup. Dengan mengurangi emisi
+              karbon, kita tidak hanya menjaga keseimbangan lingkungan, tetapi juga melindungi
+              kesehatan, keberlangsungan hidup generasi mendatang, dan kelestarian bumi yang menjadi
+              rumah bersama.
             </p>
           </div>
           <div class="col-md-6">
-            <img src="../resources/image/image-article-5/Group 445.png" alt="" width="600px" />
+            <div class="row justify-content-center align-items-center">
+              <div class="images-article-5">
+                <img
+                  src="https://images.unsplash.com/photo-1517065963912-27f75001ebe2?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Foto depan"
+                  class="front"
+                />
+                <img
+                  src="https://images.unsplash.com/photo-1682841698468-f10ce1b4840d?q=80&w=435&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  alt="Foto belakang"
+                  class="back"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -660,6 +598,142 @@
                 keberlanjutan lingkungan.
               </p>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="bank-sampah">
+      <div class="container">
+        <!-- Header -->
+        <div class="header-bank-sampah">
+          <h1>Bank Sampah</h1>
+          <div class="tabs-wrapper">
+            <div class="tabs">
+              <div class="tab active" data-target="jakarta">Jakarta</div>
+              <div class="tab" data-target="bandung">Bandung</div>
+              <div class="tab" data-target="surabaya">Surabaya</div>
+            </div>
+          </div>
+          <p class="subtitle">Temukan Bank Sampah di Sekitarmu</p>
+        </div>
+
+        <!-- Konten Jakarta -->
+        <div class="content active" id="jakarta">
+          <div class="list">
+            <h4>Jakarta</h4>
+            <div class="list-item" id="top-bottom">
+              <h3>
+                Bank Sampah Induk Jakarta Selatan <br />
+                <span class="fw-normal"> Jl. Tebet Barat Dalam No. 45, Jakarta Selatan. </span>
+              </h3>
+              <p>Melayani penimbangan sampah anorganik setiap Senin–Jumat pukul 08.00–15.00 WIB.</p>
+            </div>
+            <div class="list-item">
+              <h3>
+                Bank Sampah Kenari <br />
+                <span class="fw-normal"> Jl. Salemba Tengah No. 17, Jakarta Pusat. </span>
+              </h3>
+              <p>
+                Menawarkan program tabungan sampah plastik dan kertas yang bisa ditukar dengan
+                kebutuhan pokok.
+              </p>
+            </div>
+            <div class="list-item">
+              <h3>
+                Bank Sampah Berseri <br />
+                <span class="fw-normal"> Jl. Rawamangun Raya No. 20, Jakarta Timur. </span>
+              </h3>
+              <p>
+                Bekerja sama dengan UMKM daur ulang untuk menghasilkan produk kreatif ramah
+                lingkungan.
+              </p>
+            </div>
+          </div>
+          <div class="image-box">
+            <img
+              src="https://images.unsplash.com/photo-1555899434-94d1368aa7af?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Jakarta"
+            />
+          </div>
+        </div>
+
+        <!-- Konten Bandung -->
+        <div class="content" id="bandung">
+          <div class="list">
+            <h4>Bandung</h4>
+            <div class="list-item">
+              <h3>
+                Bank Sampah Melati <br />
+                <span class="fw-normal"> Jl. Buah Batu No. 123, Bandung. </span>
+              </h3>
+              <p>Program utama: penukaran sampah plastik dengan voucher belanja di toko mitra.</p>
+            </div>
+            <div class="list-item">
+              <h3>
+                Bank Sampah Cibaduyut <br />
+                <span class="fw-normal"> Jl. Sukapura No. 56, Bandung Selatan. </span>
+              </h3>
+              <p>Fokus pada pengumpulan minyak jelantah yang diolah kembali menjadi biodiesel.</p>
+            </div>
+            <div class="list-item">
+              <h3>
+                Bank Sampah Harmoni <br />
+                <span class="fw-normal"> Jl. Setiabudi No. 88, Bandung Utara. </span>
+              </h3>
+              <p>
+                Mengadakan workshop rutin untuk masyarakat mengenai pengolahan sampah organik
+                menjadi kompos.
+              </p>
+            </div>
+          </div>
+          <div class="image-box">
+            <img
+              src="https://images.unsplash.com/photo-1611638281871-1063d3e76e1f?q=80&w=833&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Bandung"
+            />
+          </div>
+        </div>
+
+        <!-- Konten Surabaya -->
+        <div class="content" id="surabaya">
+          <div class="list">
+            <h4>Surabaya</h4>
+            <div class="list-item">
+              <h3>
+                Bank Sampah Induk Surabaya Timur <br />
+                <span class="fw-normal"> Jl. Rungkut Industri No. 10, Surabaya. </span>
+              </h3>
+              <p>
+                Melakukan pemilahan sampah elektronik (e-waste) dan kerja sama dengan perusahaan
+                daur ulang resmi.
+              </p>
+            </div>
+            <div class="list-item">
+              <h3>
+                Bank Sampah Tunjungan <br />
+                <span class="fw-normal"> Jl. Tunjungan No. 45, Surabaya Pusat. </span>
+              </h3>
+              <p>
+                Program tabungan sampah botol plastik yang bisa ditukar dengan tiket transportasi
+                umum.
+              </p>
+            </div>
+            <div class="list-item">
+              <h3>
+                Bank Sampah Sejahtera <br />
+                <span class="fw-normal"> Jl. Dukuh Kupang No. 77, Surabaya Barat. </span>
+              </h3>
+              <p>
+                Memberikan layanan jemput sampah anorganik untuk warga sekitar dengan sistem poin.
+              </p>
+            </div>
+          </div>
+          <div class="image-box">
+            <img
+              src="https://images.unsplash.com/photo-1688525141547-2e4c04a218d7?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Surabaya"
+            />
           </div>
         </div>
       </div>
