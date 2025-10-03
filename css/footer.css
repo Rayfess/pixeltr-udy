@@ -12,6 +12,12 @@
   --body-text: "Inter", sans-serif;
 }
 
+body {
+  font-size: 16px;
+  font-family: var(--body-text);
+  transition: background 0.3s, color 0.3s;
+}
+
 #footer {
   background: linear-gradient(to bottom, var(--primary-green), var(--dark-green));
   color: var(--light-color);
