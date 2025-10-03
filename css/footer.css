@@ -12,6 +12,17 @@
   --body-text: "Inter", sans-serif;
 }
 
+.section-anim {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+}
+
+.section-anim.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 body {
   font-size: 16px;
   font-family: var(--body-text);
