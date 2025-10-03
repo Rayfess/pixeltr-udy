@@ -1,4 +1,5 @@
 $(function () {
+  const adminFee = 2500;
   let currentCategory = "home";
   let emissionData = {};
   let treeData = {};
@@ -7,6 +8,7 @@ $(function () {
   let selectedDonationType = "paket";
   let selectedTreeType = "";
   let selectedPackage = null;
+  let selectedVehicle = null;
 
   //  ambil data jenis pohon dsb
   $.getJSON("/data/treedata.json", function (data) {
@@ -29,6 +31,13 @@ $(function () {
     });
   });
 
+  // ambil data emisi
+  $.getJSON("/data/emisi.json", function (data) {
+    emissionData = data;
+    populateUsageTypes();
+    initVehicleSelection();
+  });
+
   // Inisialisasi tampilan
   if (currentCategory === "transportation") {
     $(".norm").addClass("d-none");
@@ -38,14 +47,8 @@ $(function () {
     $(".trnsp").addClass("d-none");
   }
 
-  // ambil data emisi
-  $.getJSON("/data/emisi.json", function (data) {
-    emissionData = data;
-    populateUsageTypes();
-  });
-
   function populateUsageTypes() {
-    const types = Object.keys(emissionData[currentCategory].type);
+    const types = Object.keys(emissionData[currentCategory].emtype);
     $("#usage-type").empty();
     types.forEach((t) => {
       $("#usage-type").append(new Option(t, t));
@@ -56,7 +59,7 @@ $(function () {
   $("#usage-type").on("change", updateUnits);
   function updateUnits() {
     const type = $("#usage-type").val();
-    const units = Object.keys(emissionData[currentCategory].type[type]);
+    const units = Object.keys(emissionData[currentCategory].emtype[type]);
     $("#unit").empty();
     units.forEach((u) => {
       $("#unit").append(new Option(u, u));
@@ -92,26 +95,36 @@ $(function () {
 
     if (currentCategory === "transportation") {
       const distance = parseFloat($("#distance").val());
-      const efficiency = parseFloat($("#efficiency").val());
 
-      if (isNaN(distance) || distance <= 0 || isNaN(efficiency) || efficiency <= 0) {
-        alert("Masukkan jarak dan efisiensi yang valid");
+      // Validasi input
+      if (isNaN(distance) || distance <= 0) {
+        alert("Masukkan jarak tempuh yang valid");
         return;
       }
 
-      const factor = 2.31;
+      if (!selectedVehicle) {
+        alert("Pilih jenis kendaraan terlebih dahulu");
+        return;
+      }
+
+      // Kalkulasi emisi
+      const efficiency = selectedVehicle.efficiency;
       const fuelUsed = distance / efficiency;
-      emission = fuelUsed * factor;
-      tangguhan = emission * 2000;
+
+      const fuelType = $("#usage-type").val();
+      const emissionFactor = emissionData.transportation.emtype[fuelType].liter;
+
+      emission = fuelUsed * emissionFactor;
+      tangguhan = Math.round(emission * 2000); // Carbon price Rp 2.000/kg CO2
 
       row = `
-      <tr>
-        <td>${type}</td>
-        <td>${distance} km || ${efficiency} km/l</td>
-        <td>${emission.toFixed(2)}</td>
-        <td>${tangguhan.toLocaleString("id-ID")}</td>
-        <td><button class="btn btn-sm btn-danger btn-remove"><i class="ri-delete-bin-line"></i></button></td>
-      </tr>`;
+    <tr>
+      <td>${selectedVehicle.name}</td>
+      <td>${distance} km | ${fuelUsed.toFixed(2)} L</td>
+      <td>${emission.toFixed(2)}</td>
+      <td>Rp ${tangguhan.toLocaleString("id-ID")}</td>
+      <td><button class="btn btn-sm btn-danger btn-remove"><i class="ri-delete-bin-line"></i></button></td>
+    </tr>`;
     } else {
       const amount = parseFloat($("#amount").val());
       const unit = $("#unit").val();
@@ -122,7 +135,7 @@ $(function () {
         return;
       }
 
-      const factor = emissionData[currentCategory].type[type][unit];
+      const factor = emissionData[currentCategory].emtype[type][unit];
       const multiplier = { harian: 365, mingguan: 52, bulanan: 12, tahunan: 1 }[freq];
 
       emission = amount * factor * multiplier;
@@ -152,10 +165,13 @@ $(function () {
     let totalTangguhan = 0;
 
     $("#emission-results tr").each(function () {
-      totalEmission += parseFloat($(this).find("td:eq(2)").text());
-      totalTangguhan += parseFloat(
-        $(this).find("td:eq(3)").text().replace(/\./g, "").replace(",", ".")
-      );
+      totalEmission += parseFloat($(this).find("td:eq(2)").text()) || 0;
+      let tangguhanText = $(this).find("td:eq(3)").text();
+
+      // Hapus semua karakter non-digit kecuali angka
+      let cleanTangguhan = tangguhanText.replace(/[^\d]/g, "");
+
+      totalTangguhan += parseInt(cleanTangguhan) || 0;
     });
 
     $("#overall-emission").text(totalEmission.toFixed(2) + " KgCO2");
@@ -166,8 +182,23 @@ $(function () {
   $("#btn-reset").on("click", function () {
     $("#carbon-form")[0].reset();
     $("#emission-results").empty();
+    $(".vehicle-card").removeClass("selected");
+    $("#selected-vehicle-display").hide();
+    selectedVehicle = null;
     updateTotals();
   });
+
+  function cleanupDonate() {
+    $("#carbon-form")[0].reset();
+    $("#emission-results").empty();
+    $(".vehicle-card").removeClass("selected");
+    $("#selected-vehicle-display").hide();
+    $(".donation-card").removeClass("selected");
+    $("#selectedDonation").addClass("d-none");
+    selectedPackage = null;
+    selectedVehicle = null;
+    updateTotals();
+  }
 
   function updateCategoryDropdown() {
     const { title, icon } = emissionData[currentCategory];
@@ -176,7 +207,7 @@ $(function () {
       <i class="${icon} me-1"></i>
     </span>
     <span class="current-category fw-medium"> ${title} </span>
-`);
+    `);
   }
 
   // Sistem rating
@@ -244,7 +275,7 @@ $(function () {
 
     setTimeout(function () {
       hideCarbonAlertModal();
-    }, 5000);
+    });
   }
 
   function hideCarbonAlertModal() {
@@ -384,16 +415,20 @@ $(function () {
 
     if (selectedTreeType && treeData[selectedTreeType]) {
       const tree = treeData[selectedTreeType];
-      const cost = count * tree.cost;
+      const baseCost = count * tree.cost + 2500;
+      const plantingCareCost = count * 10000; // Biaya penanaman & perawatan Rp 2.500 per pohon
+      const totalCost = baseCost + plantingCareCost;
       const carbonOffset = count * tree.absorption;
 
-      $("#treeCost").text("Rp " + cost.toLocaleString("id-ID"));
       $("#carbonOffset").text(carbonOffset);
 
       // Update selected donation jika ini adalah donasi yang dipilih
       if (selectedDonationType === "pohon") {
         $("#selectedDescription").text(`${count} Pohon ${tree.name}`);
-        $("#selectedAmount").text("Rp " + cost.toLocaleString("id-ID"));
+        $("#selectedAmount").html(`
+                Rp ${totalCost.toLocaleString("id-ID")}
+                <small class="d-block text-muted">Termasuk biaya penanaman & perawatan</small>
+            `);
         $("#selectedCO2").text(carbonOffset);
         $("#selectedDonation").removeClass("d-none");
       }
@@ -403,18 +438,30 @@ $(function () {
   // Fungsi untuk memperbarui donasi uang
   function updateMoneyDonation() {
     const amount = parseInt($("#amountInput").val()) || 0;
-    const carbonEstimate = Math.floor(amount / 10000) * 22; // Setiap Rp 10.000 = 1 pohon = 22 kg CO₂/tahun
-    const totalAmount = amount + 2500; // Tambah biaya administrasi
+    const carbonEstimate = Math.floor(amount / 10000) * 22;
 
+    const totalAmount = amount + adminFee;
     $("#amountResult").text("Rp " + amount.toLocaleString("id-ID"));
     $("#carbonFromMoney").text(carbonEstimate);
+
+    $("#amountResult").html(`
+        Rp ${amount.toLocaleString("id-ID")}
+        <small class="d-block text-muted">+ Biaya admin: Rp ${adminFee.toLocaleString(
+          "id-ID"
+        )}</small>
+    `);
+
     $("#totalAmount").text("Rp " + totalAmount.toLocaleString("id-ID"));
 
     if (selectedDonationType === "uang" && amount >= 10000) {
       $("#selectedDescription").text("Donasi Mata Uang");
-      $("#selectedAmount").text("Rp " + amount.toLocaleString("id-ID"));
+      $("#selectedAmount").html(`
+            Rp ${totalAmount.toLocaleString("id-ID")}
+            <small class="d-block text-muted">Termasuk biaya administrasi</small>
+        `);
       $("#selectedCO2").text(carbonEstimate);
       $("#selectedDonation").removeClass("d-none");
+      $(".pkarbon").addClass("d-none");
     } else {
       $("#selectedDonation").addClass("d-none");
       return;
@@ -423,24 +470,34 @@ $(function () {
 
   function updateSelectedDonation() {
     if (selectedPackage) {
+      const totalAmount = selectedPackage.amount + adminFee;
+
       $("#selectedDescription").text(selectedPackage.desc);
-      $("#selectedAmount").text("Rp " + selectedPackage.amount.toLocaleString("id-ID"));
+      $("#selectedAmount").html(`
+            Rp ${totalAmount.toLocaleString("id-ID")}
+            <small class="d-block text-muted">Termasuk biaya administrasi</small>
+        `);
       $("#selectedCO2").text(selectedPackage.co2);
+      $(".pkarbon").addClass("d-none");
       $("#selectedDonation").removeClass("d-none");
     }
   }
 
   function processDonation() {
     let message = "";
+    let totalAmount = 0;
 
     if (selectedDonationType === "paket") {
       if (!selectedPackage) {
         alert("Silakan pilih paket donasi terlebih dahulu");
         return;
       }
+      totalAmount = selectedPackage.amount + adminFee;
       message = `Terima kasih! Donasi Anda untuk ${
         selectedPackage.desc
-      } sebesar Rp ${selectedPackage.amount.toLocaleString("id-ID")} berhasil diproses.`;
+      } sebesar Rp ${totalAmount.toLocaleString(
+        "id-ID"
+      )} (termasuk biaya administrasi) berhasil diproses.`;
     } else if (selectedDonationType === "pohon") {
       if (!selectedTreeType || !treeData[selectedTreeType]) {
         alert("Silakan pilih jenis pohon terlebih dahulu");
@@ -448,29 +505,32 @@ $(function () {
       }
       const count = parseInt($("#treeCount").val()) || 1;
       const tree = treeData[selectedTreeType];
-      const cost = count * tree.cost;
+      const baseCost = count * tree.cost + 2500;
+      const plantingCareCost = count * 10000; // Biaya penanaman & perawatan Rp 2.500 per pohon
+      const totalCost = baseCost + plantingCareCost;
 
       message = `Terima kasih! Donasi Anda untuk ${count} pohon ${
         tree.name
-      } sebesar Rp ${cost.toLocaleString("id-ID")} berhasil diproses.`;
+      } sebesar Rp ${totalCost.toLocaleString(
+        "id-ID"
+      )} (termasuk biaya penanaman & perawatan) berhasil diproses.`;
     } else if (selectedDonationType === "uang") {
       const amount = parseInt($("#amountInput").val()) || 0;
       if (amount < 10000) {
         alert("Minimum donasi adalah Rp 10.000");
         return;
       }
-      message = `Terima kasih! Donasi Anda sebesar Rp ${amount.toLocaleString(
+      totalAmount = amount + adminFee;
+      message = `Terima kasih! Donasi Anda sebesar Rp ${totalAmount.toLocaleString(
         "id-ID"
-      )} berhasil diproses.`;
+      )} (termasuk biaya administrasi) berhasil diproses.`;
     }
 
     alert(message);
     $("#donationModal").modal("hide");
 
-    // Reset form
-    $(".donation-card").removeClass("selected");
-    $("#selectedDonation").addClass("d-none");
-    selectedPackage = null;
+    // Reset form after DOnate
+    cleanupDonate();
   }
 
   // treetree
@@ -502,12 +562,15 @@ $(function () {
 
     const carbonAbsorption = Math.round(tree.absorption * count);
 
-    const cost = tree.cost * count;
+    const baseCost = count * tree.cost + 2500; // Biaya Admin
+    const plantingCareCost = count * 10000; // Biaya penanaman & perawatan Rp 2.500 per pohon
+    const totalCost = baseCost + plantingCareCost;
 
     $("#selectedTree").text(tree.name);
     $("#treeCountResult").text(count);
     $("#carbonOffset").text(carbonAbsorption);
-    $("#treeCost").text("Rp " + cost.toLocaleString("id-ID"));
+    $("#treeCost").text("Rp " + baseCost.toLocaleString("id-ID"));
+    $("#totalCost").text("Rp " + totalCost.toLocaleString("id-ID"));
     $("#growthTime").text(tree.growth);
 
     updateTreeDetails();
@@ -542,6 +605,38 @@ $(function () {
     } else {
       $("#treeDetails").html("<p class='text-muted'>Pilih jenis pohon untuk melihat detail</p>");
       $("#treeImage").attr("src", "");
+    }
+  }
+
+  function initVehicleSelection() {
+    $(".vehicle-card").on("click", function () {
+      $(".vehicle-card").removeClass("selected");
+      $(this).addClass("selected");
+
+      const vehicleType = $(this).data("type");
+      selectedVehicle = emissionData.transportation.emfactor[vehicleType];
+
+      // Update input tersembunyi
+      $("#efficiency").val(selectedVehicle.efficiency);
+      $("#selected-vehicle-type").val(vehicleType);
+
+      updateSelectedVehicleDisplay();
+    });
+
+    $("#vehicleTabs button").on("click", function () {
+      // Reset pilihan saat ganti tab
+      $(".vehicle-card").removeClass("selected");
+      selectedVehicle = null;
+      $("#selected-vehicle-display").hide();
+    });
+  }
+
+  function updateSelectedVehicleDisplay() {
+    if (selectedVehicle) {
+      $("#selected-vehicle-text").text(selectedVehicle.name);
+      $("#selected-efficiency-text").text(selectedVehicle.efficiency + " km/L");
+      $("#selected-vehicle-desc").text(selectedVehicle.description);
+      $("#selected-vehicle-display").show();
     }
   }
 });

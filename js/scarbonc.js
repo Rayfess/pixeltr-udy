@@ -181,9 +181,7 @@ class CarbonStatsManager {
 
   handleCalculatorClick(event) {
     event.stopPropagation();
-    this.showNotification(
-      "Kalkulator jejak karbon akan segera tersedia! Fitur ini akan membantu Anda menghitung dan melacak jejak karbon pribadi Anda."
-    );
+    this.showNotification("Beralih Page Ke Carbon Calculator...");
   }
 
   handleLearnMoreClick(event) {

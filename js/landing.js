@@ -258,9 +258,7 @@ $(document).ready(function () {
     }
   }
 
-  // Jalankan saat halaman dimuat
   checkScreenSize();
 
-  // Jalankan saat ukuran jendela berubah
   $(window).on("resize", checkScreenSize);
 });

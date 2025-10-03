@@ -148,6 +148,11 @@ body {
   margin-bottom: 20px;
 }
 
+.modal-header,
+.modal-footer {
+  background-color: var(--primary-green);
+}
+
 .carbon-alert-modal {
   opacity: 0;
   transform: translateY(-20px);
@@ -520,4 +525,70 @@ body {
 .main-title:hover {
   transform: translateY(-3px);
   color: #27ae60;
+}
+
+.vehicle-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  height: 100%;
+  min-height: 130px;
+  position: relative;
+}
+
+.vehicle-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border-color: #dee2e6;
+}
+
+.vehicle-card.selected {
+  border-color: #28a745;
+  background-color: #e8f5e9;
+  transform: translateY(-3px);
+}
+
+.vehicle-card.selected .vehicle-icon {
+  transform: scale(1.2);
+}
+
+.vehicle-card.selected .vehicle-info h6 {
+  color: #28a745;
+}
+
+.nav-pills .pill-link {
+  color: #6c757d;
+  font-weight: 500;
+  border: 1px solid #dee2e6;
+  margin-right: 5px;
+}
+
+.nav-pills .pill-link.active {
+  background-color: #28a745;
+  border-color: #28a745;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .vehicle-card {
+    min-height: 110px;
+  }
+
+  .vehicle-info h6 {
+    font-size: 0.85rem;
+  }
+
+  .vehicle-info small {
+    font-size: 0.7rem;
+  }
+}
+
+.cost-breakdown {
+  border-left: 3px solid #28a745;
+  padding-left: 10px;
+  margin: 5px 0;
+}
+
+.cost-breakdown small {
+  font-size: 0.8em;
 }

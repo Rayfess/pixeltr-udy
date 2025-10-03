@@ -124,11 +124,6 @@
                     <i class="fas fa-book me-2"></i>Resources
                   </a>
                 </li>
-                <li>
-                  <a class="dropdown-item" href="#footer">
-                    <i class="fas fa-shield-alt me-2"></i>Privacy Policy
-                  </a>
-                </li>
               </ul>
             </li>
           </ul>
@@ -232,9 +227,9 @@
             <div class="card-body">
               <form id="carbon-form">
                 <div class="mb-3">
-                  <label for="usage-type" class="form-label text-success fw-medium"
-                    >Jenis Pemakaian</label
-                  >
+                  <label for="usage-type" class="form-label text-success fw-medium">
+                    <i class="ri-stack-line me-1"></i>Jenis Pemakaian
+                  </label>
                   <select
                     class="form-select fw-semibold"
                     id="usage-type"
@@ -244,7 +239,7 @@
                 <div class="norm">
                   <div class="mb-3">
                     <label for="amount" class="form-label text-success fw-medium"
-                      >Jumlah Penggunaan</label
+                      ><i class="ri-increase-decrease-line me-1"></i>Jumlah Penggunaan</label
                     >
                     <input
                       type="number"
@@ -252,11 +247,14 @@
                       class="form-control fw-semibold"
                       min="0"
                       step="0.01"
+                      placeholder="0"
                       aria-label="Jumlah penggunaan"
                     />
                   </div>
                   <div class="mb-3">
-                    <label for="unit" class="form-label text-success fw-medium">Satuan Unit</label>
+                    <label for="unit" class="form-label text-success fw-medium"
+                      ><i class="ri-shapes-line me-1"></i>Satuan Unit</label
+                    >
                     <select
                       class="form-select fw-medium text-primary"
                       id="unit"
@@ -265,7 +263,7 @@
                   </div>
                   <div class="mb-3">
                     <label for="frequency" class="form-label text-success fw-medium"
-                      >Frekuensi</label
+                      ><i class="ri-calendar-schedule-line me-1"></i>Frekuensi</label
                     >
                     <select
                       class="form-select text-danger fw-semibold"
@@ -279,32 +277,158 @@
                     </select>
                   </div>
                 </div>
+
                 <div class="trnsp">
                   <div class="mb-3">
-                    <label for="distance" class="form-label text-success fw-medium"
-                      >Jarak Tempuh (Km) :</label
-                    >
+                    <label for="distance" class="form-label text-success fw-medium">
+                      <i class="ri-road-map-line me-1"></i>Jarak Tempuh (Km) :
+                    </label>
                     <input
                       type="number"
                       id="distance"
                       class="form-control fw-semibold"
                       min="0"
-                      step="0.01"
-                      aria-label="Jumlah penggunaan"
+                      step="0.1"
+                      placeholder="0"
+                      aria-label="Jarak tempuh"
                     />
                   </div>
                   <div class="mb-3">
-                    <label for="efficiency" class="form-label text-success fw-medium"
-                      >Konsumsi Bahan Bakar (Km per Liter) :</label
-                    >
-                    <input
-                      type="number"
-                      id="efficiency"
-                      class="form-control fw-semibold"
-                      min="0"
-                      step="0.01"
-                      aria-label="Jumlah penggunaan"
-                    />
+                    <label class="form-label text-success fw-medium">
+                      <i class="ri-steering-2-line me-1"></i>Pilih Jenis Kendaraan :
+                    </label>
+
+                    <ul class="nav nav-pills mb-3" id="vehicleTabs" role="tablist">
+                      <li class="nav-item" role="presentation">
+                        <button
+                          class="pill-link active px-3 py-2 btn"
+                          id="motor-tab"
+                          data-bs-toggle="pill"
+                          data-bs-target="#motor"
+                          type="button"
+                        >
+                          <i class="ri-motorbike-fill me-1"></i>Motor
+                        </button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button
+                          class="pill-link px-3 py-2 btn"
+                          id="mobil-tab"
+                          data-bs-toggle="pill"
+                          data-bs-target="#mobil"
+                          type="button"
+                        >
+                          <i class="ri-car-line me-1"></i>Mobil
+                        </button>
+                      </li>
+                    </ul>
+
+                    <div class="tab-content" id="vehicleTabContent">
+                      <div class="tab-pane fade show active" id="motor" role="tabpanel">
+                        <div class="row g-2">
+                          <div class="col-12 col-md-4 mb-2">
+                            <div class="vehicle-card card text-center p-2" data-type="motor-kecil">
+                              <div class="my-2">
+                                <i class="fa-solid fa-motorcycle text-success fs-3"></i>
+                              </div>
+                              <div class="vehicle-info">
+                                <h6 class="mb-1 fw-semibold">Motor Kecil</h6>
+                                <small class="text-muted d-block">~52.8 km/L</small>
+                                <small class="text-muted">< 150cc</small>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-12 col-md-4 mb-2">
+                            <div class="vehicle-card card text-center p-2" data-type="motor-rata">
+                              <div class="my-2">
+                                <i class="fa-solid fa-motorcycle text-info fs-3"></i>
+                              </div>
+                              <div class="vehicle-info">
+                                <h6 class="mb-1 fw-semibold">Motor Rata-rata</h6>
+                                <small class="text-muted d-block">~38.4 km/L</small>
+                                <small class="text-muted">150-250cc</small>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-12 col-md-4 mb-2">
+                            <div class="vehicle-card card text-center p-2" data-type="motor-besar">
+                              <div class="my-2">
+                                <i class="fa-solid fa-motorcycle text-warning fs-3"></i>
+                              </div>
+                              <div class="vehicle-info">
+                                <h6 class="mb-1 fw-semibold">Motor Besar</h6>
+                                <small class="text-muted d-block">~24.6 km/L</small>
+                                <small class="text-muted">> 250cc</small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="tab-pane fade" id="mobil" role="tabpanel">
+                        <div class="row g-2">
+                          <div class="col-12 col-md-4 mb-2">
+                            <div class="vehicle-card card text-center p-2" data-type="mobil-kecil">
+                              <div class="my-2">
+                                <i class="fa-solid fa-car text-success fs-3"></i>
+                              </div>
+                              <div class="vehicle-info">
+                                <h6 class="mb-1 fw-semibold">Mobil Kecil</h6>
+                                <small class="text-muted d-block">~18.3 km/L</small>
+                                <small class="text-muted">LCGC</small>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-12 col-md-4 mb-2">
+                            <div class="vehicle-card card text-center p-2" data-type="mobil-rata">
+                              <div class="my-2">
+                                <i class="fa-solid fa-truck-pickup text-info fs-3"></i>
+                              </div>
+                              <div class="vehicle-info">
+                                <h6 class="mb-1 fw-semibold">Mobil Rata-rata</h6>
+                                <small class="text-muted d-block">~12.7 km/L</small>
+                                <small class="text-muted">MPV/Sedan</small>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-12 col-md-4 mb-2">
+                            <div class="vehicle-card card text-center p-2" data-type="mobil-besar">
+                              <div class="my-2">
+                                <i class="fa-solid fa-truck text-warning fs-3"></i>
+                              </div>
+                              <div class="vehicle-info">
+                                <h6 class="mb-1 fw-semibold">Mobil Besar</h6>
+                                <small class="text-muted d-block">~8.4 km/L</small>
+                                <small class="text-muted">SUV/Pickup</small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <input type="hidden" id="efficiency" value="" />
+                    <input type="hidden" id="selected-vehicle-type" value="" />
+
+                    <div class="mt-3" id="selected-vehicle-display" style="display: none">
+                      <div class="alert alert-success py-2">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div>
+                            <i class="ri-information-fill me-2"></i>
+                            <span class="fw-medium">Kendaraan dipilih: </span>
+                            <span id="selected-vehicle-text" class="fw-bold"></span>
+                            <span class="text-muted ms-2">(</span
+                            ><span id="selected-efficiency-text"></span
+                            ><span class="text-muted">)</span>
+                          </div>
+                          <small class="text-muted" id="selected-vehicle-desc"></small>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </form>
@@ -405,7 +529,7 @@
               >
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
-                    <div class="modal-header text-white" style="background-color: #28a745" ;>
+                    <div class="modal-header text-white">
                       <h5 class="modal-title" id="donationModalLabel">Pilih Jenis Donasi</h5>
                       <button
                         type="button"
@@ -455,20 +579,24 @@
                             <div class="donation-card card shadow">
                               <div class="card-body">
                                 <div class="donation-icon text-center">
-                                  <i class="fas fa-tree"></i>
+                                  <i class="fas fa-server"></i>
                                 </div>
-                                <h5>5 Pohon Pinus</h5>
-                                <p class="text-muted">Menetralisir ~420 kg CO₂ per tahun</p>
-                                <h4 class="text-success">Rp 500.000</h4>
+                                <h5>Dukungan Operasional Platform</h5>
+                                <p class="text-muted">
+                                  Bantu biaya server dan pemeliharaan platform untuk menjangkau
+                                  lebih banyak pengguna
+                                </p>
+                                <h4 class="text-success">Rp 25.000</h4>
                                 <p class="carbon-impact">
-                                  <i class="fas fa-cloud me-1"></i> ~70 kg CO₂ per pohon/tahun
+                                  <i class="fas fa-users me-1"></i> Menambah kapasitas pengunjung
+                                  website
                                 </p>
                                 <div class="text-end">
                                   <button
                                     class="btn btn-outline-success mt-3 px-4 py-1 select-donation"
-                                    data-amount="500000"
-                                    data-desc="5 Pohon Pinus"
-                                    data-co2="420"
+                                    data-amount="25000"
+                                    data-desc="Dukungan Operasional Platform"
+                                    data-co2="0"
                                   >
                                     Pilih
                                   </button>
@@ -483,18 +611,21 @@
                                 <div class="donation-icon text-center">
                                   <i class="ri-tree-fill"></i>
                                 </div>
-                                <h5>10 Pohon Beringin</h5>
-                                <p class="text-muted">Menetralisir ~1000 kg CO₂ per tahun</p>
-                                <h4 class="text-success">Rp 900.000</h4>
+                                <h5>Program Penanaman dan Perawatan Pohon Secara Masal</h5>
+                                <p class="text-muted">
+                                  Dukung penyelenggaraan penanaman pohon untuk bersama
+                                </p>
+                                <h4 class="text-success">Rp 50.000</h4>
                                 <p class="carbon-impact">
-                                  <i class="fas fa-cloud me-1"></i> ~100 kg CO₂ per pohon/tahun
+                                  <i class="fas fa-users me-1"></i> Bantu Orang yang sedang menanam
+                                  dan merawat pohon
                                 </p>
                                 <div class="text-end">
                                   <button
                                     class="btn btn-outline-success px-4 py-1 mt-3 select-donation"
-                                    data-amount="900000"
-                                    data-desc="10 Pohon Beringin"
-                                    data-co2="1000"
+                                    data-amount="50000"
+                                    data-desc="Bantu Dukung Penanam dan Perawat Pohon"
+                                    data-co2="0"
                                   >
                                     Pilih
                                   </button>
@@ -507,15 +638,16 @@
                             <div class="donation-card card shadow">
                               <div class="card-body">
                                 <div class="donation-icon text-center">
-                                  <i class="fas fa-solar-panel"></i>
+                                  <i class="fas fa-graduation-cap"></i>
                                 </div>
-                                <h5>Energi Terbarukan</h5>
+                                <h5>Program Edukasi Lingkungan</h5>
                                 <p class="text-muted">
-                                  Mendukung proyek energi surya setara 800 kg CO₂
+                                  Dukung penyelenggaraan workshop dan materi edukasi mengenai isu
+                                  lingkungan
                                 </p>
-                                <h4 class="text-success">Rp 500.000</h4>
+                                <h4 class="text-success">Rp 20.000</h4>
                                 <p class="carbon-impact">
-                                  <i class="fas fa-bolt me-1"></i> ~800 kg CO₂ terhindar
+                                  <i class="fas fa-users me-1"></i> Edukasi Banyak Orang
                                 </p>
                                 <div class="text-end">
                                   <button
@@ -586,8 +718,16 @@
                                 <strong><span id="carbonOffset">0</span> kg CO₂</strong>
                               </div>
                               <div class="d-flex justify-content-between mb-2">
+                                <span>Biaya Admin:</span>
+                                <strong><span>Rp 2.500</span></strong>
+                              </div>
+                              <div class="d-flex justify-content-between mb-2">
+                                <span>Biaya Perawatan (per pohon):</span>
+                                <strong><span>Rp 10.000</span></strong>
+                              </div>
+                              <div class="d-flex justify-content-between mb-2">
                                 <span>Total Biaya:</span>
-                                <strong><span id="treeCost">Rp 0</span></strong>
+                                <strong><span id="totalCost">Rp 0</span></strong>
                               </div>
                               <div class="d-flex justify-content-between mb-2">
                                 <span>Perkiraan Waktu Tumbuh:</span>
@@ -618,6 +758,7 @@
                                 type="number"
                                 class="form-control"
                                 min="10000"
+                                step="500"
                                 value="0"
                                 id="amountInput"
                               />
@@ -644,26 +785,9 @@
                                 <strong id="amountResult">Rp 0</strong>
                               </div>
                               <div class="d-flex justify-content-between mb-2">
-                                <span>Perkiraan Penyerapan Karbon:</span>
-                                <strong><span id="carbonFromMoney">0</span> kg CO₂/tahun</strong>
-                              </div>
-                              <div class="d-flex justify-content-between mb-2">
-                                <span>Biaya Administrasi:</span>
-                                <strong>Rp 2.500</strong>
-                              </div>
-                              <div class="d-flex justify-content-between mb-2">
                                 <span>Total yang akan dibayar:</span>
                                 <strong><span id="totalAmount">Rp 0</span></strong>
                               </div>
-                            </div>
-
-                            <div class="info-box">
-                              <h6><i class="fas fa-info-circle"></i> Informasi</h6>
-                              <p>
-                                Donasi Anda akan digunakan untuk menanam dan merawat pohon.
-                                <span class="fw-semibold">Setiap Rp 10.000</span> setara dengan
-                                penanaman dan perawatan 1 pohon selama 1 tahun.
-                              </p>
                             </div>
                           </div>
                         </div>
@@ -677,7 +801,7 @@
                         </div>
                         <p id="selectedDescription" class="fw-semibold mb-1"></p>
                         <p class="mb-1">Total: <strong id="selectedAmount"></strong></p>
-                        <p class="mb-0">
+                        <p class="mb-0 pkarbon">
                           Perkiraan Penyerapan Karbon: <strong id="selectedCO2">0</strong> kg
                           CO₂/tahun
                         </p>

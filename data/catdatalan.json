@@ -24,7 +24,8 @@
     "overviewTitle": "Konsumsi Energi Rumah Tangga",
     "overviewText": "Sektor rumah tangga Indonesia menyumbang 17% dari total emisi karbon nasional. Penggunaan listrik menjadi kontributor terbesar dengan 58%, diikuti oleh transportasi pribadi (22%) dan pengelolaan sampah (12%).",
     "overviewSource": "Sumber: Kementerian ESDM & BPS 2023",
-    "overviewImage": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "overviewImage": "https://images.unsplash.com/photo-1626806819282-2c1dc01a5e0c?q=80&w=870&auto=format&fit=crop&w=800&q=80",
+
     "chartTitle": "Sumber Emisi Karbon Rumah Tangga",
     "chartData": [
       { "label": "Konsumsi Listrik", "value": 58, "color": "#feb64c" },
