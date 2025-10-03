@@ -207,7 +207,7 @@ $(function () {
       <i class="${icon} me-1"></i>
     </span>
     <span class="current-category fw-medium"> ${title} </span>
-`);
+    `);
   }
 
   // Sistem rating
