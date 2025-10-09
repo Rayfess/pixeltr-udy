@@ -283,16 +283,8 @@
   justify-content: center;
 }
 
-#container-section-article-5 {
-  padding: 50px;
-}
-
-#information-article-5 h3 {
-  font-weight: 700;
-}
-
-#information-article-5 h3 span {
-  color: #2e6e65;
+#information-article-5 span {
+  color: var(--dark-green);
 }
 
 #information-article-5 p {
@@ -301,31 +293,16 @@
   color: #6b6a6a;
 }
 
-.images-article-5 {
-  flex: 1 1 45%;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.images-article-5 img {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
 .images-article-5 img.back {
   position: absolute;
-  top: -60px;
+  top: 0;
   right: -30px;
-
   z-index: 0;
 }
 
 .images-article-5 img.front {
   position: relative;
+  top: 30px;
   z-index: 1;
 }
 
@@ -361,9 +338,8 @@
 
 #konten-article-6 h1 {
   background-color: var(--dark-green);
-  border-radius: 50%;
-  padding: 20px 30px 20px 30px;
-  font-size: 46x;
+  border-radius: 100%;
+  padding: 20px 30px;
   font-weight: 700;
   color: #fff;
 }
@@ -406,7 +382,8 @@
   color: #fff;
   width: 500px;
   padding: 100px;
-  background: url("../resources/image/image-slider-article/Frame\ 1.png") center no-repeat;
+  background: url("../resources/image/image-slider-article/Frame\ 1.png") center
+    no-repeat;
 }
 
 .grid-container {
@@ -468,10 +445,6 @@
   color: #fff;
 }
 
-.title-bergambar h1 {
-  font-weight: 700;
-}
-
 .card {
   border: none;
   border-radius: 15px;
@@ -483,21 +456,23 @@
 }
 
 .bg-article-main {
-  background: url("../resources/image/article-bergambar/Rectangle\ 69.png") center/cover no-repeat;
+  background: url("../resources/image/article-bergambar/Rectangle\ 69.png")
+    center/cover no-repeat;
 }
 
 .bg-article-left {
-  background: url("../resources/image/article-bergambar/Rectangle\ 70.png") center/cover no-repeat;
+  background: url("../resources/image/article-bergambar/Rectangle\ 70.png")
+    center/cover no-repeat;
 }
 
 .bg-article-right {
-  background: url("../resources/image/article-bergambar/Rectangle\ 70\ \(2\).png") center/cover
-    no-repeat;
+  background: url("../resources/image/article-bergambar/Rectangle\ 70\ \(2\).png")
+    center/cover no-repeat;
 }
 
 .bg-article-bottom {
-  background: url("../resources/image/article-bergambar/Rectangle\ 70\ \(1\).png") center/cover
-    no-repeat;
+  background: url("../resources/image/article-bergambar/Rectangle\ 70\ \(1\).png")
+    center/cover no-repeat;
 }
 
 .btn-article-bergambar {
@@ -512,11 +487,8 @@
 }
 
 .bg-ajakan {
-  background: url("../resources/image/ajakan/Rectangle\ 80.png") center/cover no-repeat;
-}
-
-.title-ajakan {
-  font-size: 40px;
+  background: url("../resources/image/ajakan/Rectangle\ 80.png") center/cover
+    no-repeat;
 }
 
 .card-ajakan {
@@ -530,12 +502,13 @@
   color: #000;
   font-weight: 600;
   border-radius: 20px;
-  padding: 8px 20px;
+  padding: 8px 5rem;
   transition: 0.3s;
 }
 
 .btn-ajakan:hover {
   background-color: #7ad15c;
+  color: #000;
 }
 
 .card-edukasi {
@@ -782,6 +755,9 @@
   width: 620px;
 }
 
+.heading-slider span {
+  color: var(--dark-green);
+}
 .slides {
   display: flex;
   transition: transform 0.7s ease-in-out;
@@ -803,7 +779,7 @@
   font-weight: 700;
   max-width: 500px;
   margin-bottom: 60px;
-  color: #2e6e65;
+  color: var(--dark-green);
   margin-bottom: 12px;
   font-weight: 700;
 }
